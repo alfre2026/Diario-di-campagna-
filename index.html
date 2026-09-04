@@ -463,6 +463,29 @@ table.mix td.dose{font-family:var(--mono);white-space:nowrap;text-align:right}
 .icona-btn{border-radius:999px;padding:6px 11px}
 .nastro{border-radius:12px}
 .sugg-box{border-radius:0 0 12px 12px;border-color:rgba(28,35,33,.65)}
+
+/* ============ NUMERAZIONE BLOCCHI (riferimento per modifiche) ============ */
+#btn-blocchi{position:fixed;right:10px;bottom:66px;z-index:9998;width:38px;height:38px;border-radius:999px;
+  border:1px solid rgba(28,35,33,.3);background:var(--carta,#fff);color:var(--inchiostro,#1c2321);
+  font:700 13px var(--mono,monospace);opacity:.55;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+#btn-blocchi.on{opacity:1;background:#2f6f6b;color:#fff;border-color:#2f6f6b}
+body.modalita-blocchi .has-blocco{outline:1px dashed rgba(47,111,107,.55);outline-offset:1px}
+.blocco-badge{display:none}
+body.modalita-blocchi .blocco-badge{display:flex;align-items:center;justify-content:center;
+  position:absolute;top:-8px;right:-8px;min-width:17px;height:17px;padding:0 3px;border-radius:999px;
+  background:#2f6f6b;color:#fff;font:700 10px/1 var(--mono,monospace);z-index:9999;
+  box-shadow:0 0 0 2px var(--carta,#fff);pointer-events:none}
+
+/* ============ BARRA DI NAVIGAZIONE IN BASSO ============ */
+body{padding-bottom:64px}
+.tab-basso{position:fixed;left:0;right:0;bottom:0;z-index:9997;display:flex;
+  background:var(--carta,#fff);border-top:1px solid var(--riga,#ddd);
+  padding-bottom:env(safe-area-inset-bottom,0)}
+.tab-basso button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:8px 2px 7px;background:none;border:none;color:var(--inchiostro-2,#666);
+  font:500 10.5px var(--sans,inherit)}
+.tab-basso button .tab-ic{font-size:19px;line-height:1}
+.tab-basso button.on{color:var(--inchiostro,#1c2321);font-weight:700}
 </style>
 </head>
 <body>
@@ -550,6 +573,13 @@ table.mix td.dose{font-family:var(--mono);white-space:nowrap;text-align:right}
 <section class="pannello" id="p-genera" hidden></section>
 <section class="pannello" id="p-appunto" hidden></section>
 <div class="toast" id="toast" hidden></div>
+<nav class="tab-basso" id="tab-basso" aria-label="Navigazione principale">
+  <button data-tab-vai="home"><span class="tab-ic">📋</span><span class="tab-t">Ricette</span></button>
+  <button data-tab-vai="consultorio"><span class="tab-ic">🔎</span><span class="tab-t">Consultorio</span></button>
+  <button data-tab-vai="prodotti"><span class="tab-ic">🧴</span><span class="tab-t">Banca Dati</span></button>
+  <button data-tab-vai="storico"><span class="tab-ic">📒</span><span class="tab-t">QDCA</span></button>
+</nav>
+<button id="btn-blocchi" aria-label="Mostra numeri blocco" title="Mostra numeri blocco">#</button>
 
 <script>
 "use strict";
@@ -1761,7 +1791,8 @@ function disegnaNastro(){
 }
 function disegnaColture(){
   const ord=COL_HOME().map(coltura).filter(Boolean).concat(DB.colture.filter(c=>COL_HOME().indexOf(c.id)<0));
-  $("#f-colture").innerHTML=ord.map(function(c){
+  const chipTutti='<button class="chip col'+(S.coltura?"":" on")+'" data-c="" style="--c:#5b6660"><span class="pallino"></span>Tutti'+(DB.voci.length?'<span class="n">'+DB.voci.length+'</span>':"")+'</button>';
+  $("#f-colture").innerHTML=chipTutti+ord.map(function(c){
     const n=DB.voci.filter(v=>coltureDi(v).indexOf(c.id)>=0).length;
     return '<button class="chip col'+(S.coltura===c.id?" on":"")+'" data-c="'+c.id+'" style="--c:'+c.colore+'"><span class="pallino"></span>'+esc(c.nome)+(n?'<span class="n">'+n+'</span>':"")+'</button>';
   }).join("");
@@ -1774,7 +1805,10 @@ function disegnaFiltriStorico(){
     const n=DB.voci.filter(v=>(v.avversita||[]).indexOf(a.id)>=0&&(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)).length;
     return '<button class="chip'+(S.avversita.indexOf(a.id)>=0?" on":"")+'" data-a="'+a.id+'">'+esc(a.nome)+(n?'<span class="n">'+n+'</span>':"")+'</button>';
   }).join("");
-  const c=coltura(S.coltura),fasi=c?c.fasi:[];
+  const c=coltura(S.coltura);
+  let fasi;
+  if(S.coltura)fasi=c?c.fasi:[];
+  else{fasi=[];DB.colture.forEach(function(x){(x.fasi||[]).forEach(function(f){if(fasi.indexOf(f)<0)fasi.push(f);});});}
   $("#lbl-fasi").hidden=!fasi.length;
   $("#f-fasi").innerHTML=fasi.map(function(f){
     const n=DB.voci.filter(v=>v.fase===f&&(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)).length;
@@ -1819,9 +1853,9 @@ function disegnaLista(extra){
 function disegnaHome(){
   const c=coltura(S.coltura),col=c?c.colore:"#1C2321";
   const m=new Date().getMonth(),a=new Date().getFullYear();
-  const nMese=DB.voci.filter(v=>coltureDi(v).indexOf(S.coltura)>=0&&meseDi(v)===m&&annoDi(v)===a).length;
-  const nTot=DB.voci.filter(v=>coltureDi(v).indexOf(S.coltura)>=0).length;
-  const nSch=SCHEDE.filter(s=>s.col.indexOf(S.coltura)>=0).length;
+  const nMese=DB.voci.filter(v=>(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)&&meseDi(v)===m&&annoDi(v)===a).length;
+  const nTot=DB.voci.filter(v=>!S.coltura||coltureDi(v).indexOf(S.coltura)>=0).length;
+  const nSch=SCHEDE.filter(s=>!S.coltura||s.col.indexOf(S.coltura)>=0).length;
   function B(k,t,s,n,forte){
     return '<button class="b-menu'+(forte?" forte":"")+'" data-vai="'+k+'" style="--c:'+col+'">'+
       '<span><span class="bm-t">'+t+'</span><span class="bm-s">'+s+'</span></span>'+
@@ -1840,15 +1874,15 @@ function disegnaHome(){
    ============================================================ */
 function disegnaSuggerimenti(){
   const m=new Date().getMonth(),a=new Date().getFullYear(),col=coloreColtura(S.coltura);
-  const crit=SCHEDE.filter(s=>s.col.indexOf(S.coltura)>=0&&(calDi(s)[m]||0)>=2)
+  const crit=SCHEDE.filter(s=>(!S.coltura||s.col.indexOf(S.coltura)>=0)&&(calDi(s)[m]||0)>=2)
     .sort((x,y)=>(calDi(y)[m]-calDi(x)[m])||x.rango-y.rango||x.n.localeCompare(y.n,"it"));
-  const pass=DB.voci.filter(v=>coltureDi(v).indexOf(S.coltura)>=0&&meseDi(v)===m&&annoDi(v)<a)
+  const pass=DB.voci.filter(v=>(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)&&meseDi(v)===m&&annoDi(v)<a)
     .sort((x,y)=>(y.data||"").localeCompare(x.data||""));
   const anni={},ordA=[];
   pass.forEach(function(v){const y=annoDi(v);if(!anni[y]){anni[y]=[];ordA.push(y);}anni[y].push(v);});
   ordA.sort((x,y)=>y-x);
   $("#sez-suggerimenti").innerHTML=
-  '<div class="briciole">'+MESI_LUNGHI[m]+' \u00b7 '+esc(nomeColtura(S.coltura))+'</div>'+
+  '<div class="briciole">'+MESI_LUNGHI[m]+' \u00b7 '+(S.coltura?esc(nomeColtura(S.coltura)):"Tutte le colture")+'</div>'+
   '<div class="divisorio"><span class="linguetta tinta" style="--c:'+col+'">Da sorvegliare adesso</span>'+
   '<span class="n-gruppo">'+crit.length+'</span><span class="coda tinta" style="--c:'+col+'"></span></div>'+
   (crit.length?crit.map(function(s){
@@ -1908,8 +1942,9 @@ let R=null,PASSO=1,PICK=null,RES=false,RIC_TOP=false;
 function nuovoProdotto(){return {nome:"",formulato:"",dose:"",unita:"",ok:true,auto:false};}
 function prodottoNoto(nome){return (DB.prodotti||[]).find(p=>norm(p.nome)===norm(nome));}
 function ricettaVuota(modo){
+  const colDef=S.coltura||(DB.colture[0]||{}).id||"";
   return {id:nuovoId(),tipo:"Ricetta",modo:modo,base:(basiDi(modo)[0]||{}).v,data:oggiISO(),
-    coltura:S.coltura,colture:[S.coltura],varieta:[],aziende:[],avversita:[],fase:"",tag:[],titolo:"",
+    coltura:colDef,colture:[colDef],varieta:[],aziende:[],avversita:[],fase:"",tag:[],titolo:"",
     prodotti:[nuovoProdotto()],testo:"",allegati:[],pin:false,creato:Date.now(),modificato:Date.now()};
 }
 function apriRicetta(modo,id){
@@ -2521,6 +2556,7 @@ function vaiA(k){
   let vis=k;
   if(k==="mese")vis="storico";
   sezione=vis;
+  aggiornaTabBasso(vis);
   ["home","storico","suggerimenti","consultorio","prodotti"].forEach(function(x){
     const el=$("#sez-"+x);if(el)el.hidden=(x!==vis);
   });
@@ -2563,15 +2599,27 @@ function mostraSugg(box,voci,onPick,testo){
 $("#f-colture").addEventListener("click",function(e){
   const b=e.target.closest("[data-c]");if(!b)return;
   S.coltura=b.dataset.c;S.avversita=[];S.fasi=[];
+  if(!S.coltura){S.g1="coltura";const selG1=$("#g1");if(selG1)selG1.value="coltura";}
   disegnaColture();
   if(sezione==="home")disegnaHome();
   else if(sezione==="storico"){disegnaNastro();disegnaFiltriStorico();disegnaLista(filtroStorico);}
   else if(sezione==="suggerimenti")disegnaSuggerimenti();
-  else if(sezione==="consultorio"){SC.coltura=S.coltura;SC.liv="cat";disegnaConsultorio();}
+  else if(sezione==="consultorio"){
+    if(S.coltura){SC.coltura=S.coltura;SC.liv="cat";}else{SC.coltura="";SC.liv="colture";}
+    disegnaConsultorio();
+  }
 });
 $("#h-titolo").addEventListener("click",function(e){if(e.target.closest("[data-home]"))vaiA("home");});
 $("#menu-home").addEventListener("click",function(e){const b=e.target.closest("[data-vai]");if(b)vaiA(b.dataset.vai);});
 $("#btn-imp").addEventListener("click",function(){apriImp("menu");});
+function aggiornaTabBasso(vis){
+  const nav=$("#tab-basso");if(!nav)return;
+  nav.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.tabVai===vis);});
+}
+$("#tab-basso").addEventListener("click",function(e){
+  const b=e.target.closest("[data-tab-vai]");if(!b)return;
+  vaiA(b.dataset.tabVai);
+});
 
 $("#cerca").addEventListener("input",function(e){S.q=e.target.value;$("#cerca-x").hidden=!S.q;disegnaFiltriStorico();disegnaLista(filtroStorico);});
 $("#cerca-x").addEventListener("click",function(){S.q="";$("#cerca").value="";$("#cerca-x").hidden=true;disegnaFiltriStorico();disegnaLista(filtroStorico);});
@@ -3163,6 +3211,49 @@ function migra(){
   }
   DB.v=3;
 }
+/* ============================================================
+   16. NUMERAZIONE BLOCCHI — riferimento per chiedere modifiche
+   Assegna un numero visibile (badge) a ogni elemento cliccabile e a
+   ogni scheda/riga compilabile visibile a schermo, ripartendo da 1
+   a ogni cambio di schermata. Attivo/disattivo con il bottone "#" in
+   basso a destra; per default \u00e8 spento e non interferisce con l'uso
+   normale. Selettore volutamente ampio: bottoni, select, link con
+   data-vai-scheda, righe .scheda, .prod, .ri-edit, .cal-tap.
+   ============================================================ */
+const SEL_BLOCCHI="button, select, a[data-vai-scheda], .scheda, .prod, .ri-edit, .cal-tap";
+let BLOCCHI_ON=false, OSS_BLOCCHI=null;
+function rinumeraBlocchi(){
+  if(!BLOCCHI_ON)return;
+  if(OSS_BLOCCHI)OSS_BLOCCHI.disconnect();
+  document.querySelectorAll(".blocco-badge").forEach(function(b){b.remove();});
+  document.querySelectorAll(".has-blocco").forEach(function(b){b.classList.remove("has-blocco");});
+  const radici=[];
+  const header=document.querySelector("header.top");if(header)radici.push(header);
+  const tabBasso=document.querySelector("#tab-basso");if(tabBasso)radici.push(tabBasso);
+  document.querySelectorAll("main.wrap > div").forEach(function(el){if(!el.hidden)radici.push(el);});
+  document.querySelectorAll(".pannello").forEach(function(el){if(!el.hidden)radici.push(el);});
+  $("#btn-blocchi") && radici.push($("#btn-blocchi"));
+  let n=0;
+  radici.forEach(function(root){
+    root.querySelectorAll(SEL_BLOCCHI).forEach(function(el){
+      n++;
+      el.classList.add("has-blocco");
+      const s=document.createElement("span");
+      s.className="blocco-badge";s.textContent=n;
+      el.appendChild(s);
+    });
+  });
+  if(OSS_BLOCCHI)OSS_BLOCCHI.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:["hidden"]});
+}
+$("#btn-blocchi").addEventListener("click",function(){
+  BLOCCHI_ON=!BLOCCHI_ON;
+  document.body.classList.toggle("modalita-blocchi",BLOCCHI_ON);
+  $("#btn-blocchi").classList.toggle("on",BLOCCHI_ON);
+  if(BLOCCHI_ON)rinumeraBlocchi();
+  else{document.querySelectorAll(".blocco-badge").forEach(function(b){b.remove();});document.querySelectorAll(".has-blocco").forEach(function(b){b.classList.remove("has-blocco");});}
+});
+OSS_BLOCCHI=new MutationObserver(function(){clearTimeout(window.__bT);window.__bT=setTimeout(rinumeraBlocchi,80);});
+
 (function(){
   Archivio.leggi().then(function(s){
     if(s&&s.voci){DB=s;migra();}
