@@ -469,12 +469,95 @@ table.mix td.dose{font-family:var(--mono);white-space:nowrap;text-align:right}
   border:1px solid rgba(28,35,33,.3);background:var(--carta,#fff);color:var(--inchiostro,#1c2321);
   font:700 13px var(--mono,monospace);opacity:.55;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 #btn-blocchi.on{opacity:1;background:#2f6f6b;color:#fff;border-color:#2f6f6b}
-body.modalita-blocchi .has-blocco{outline:1px dashed rgba(47,111,107,.55);outline-offset:1px}
+body.modalita-blocchi .has-blocco{outline:1px dashed rgba(47,111,107,.55);outline-offset:1px;position:relative!important}
+.blocco-wrap{display:inline-block}
 .blocco-badge{display:none}
 body.modalita-blocchi .blocco-badge{display:flex;align-items:center;justify-content:center;
-  position:absolute;top:-8px;right:-8px;min-width:17px;height:17px;padding:0 3px;border-radius:999px;
-  background:#2f6f6b;color:#fff;font:700 10px/1 var(--mono,monospace);z-index:9999;
+  position:absolute;top:2px;right:2px;min-width:16px;height:16px;padding:0 3px;border-radius:999px;
+  background:#2f6f6b;color:#fff;font:700 9.5px/1 var(--mono,monospace);z-index:9999;
   box-shadow:0 0 0 2px var(--carta,#fff);pointer-events:none}
+
+/* ============ NOTE SUL PUNTO (chiocciola) ============ */
+#btn-note{position:fixed;right:10px;bottom:112px;z-index:9998;width:38px;height:38px;border-radius:999px;
+  border:1px solid rgba(28,35,33,.3);background:var(--carta,#fff);color:var(--inchiostro,#1c2321);
+  font:700 16px var(--mono,monospace);opacity:.55;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+#btn-note.on{opacity:1;background:#8C1D2F;color:#fff;border-color:#8C1D2F}
+#btn-note .n-conta{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;
+  border-radius:999px;background:#1C2321;color:#fff;font:700 10px/17px var(--mono,monospace);
+  box-shadow:0 0 0 2px var(--carta,#fff)}
+.nota-barra{position:fixed;left:0;right:0;top:0;z-index:10000;display:flex;align-items:center;gap:6px;
+  padding:calc(6px + env(safe-area-inset-top)) 10px 6px;background:#8C1D2F;color:#fff;
+  font:600 11.5px var(--mono,monospace);letter-spacing:.04em}
+.nota-barra .nb-t{margin-right:auto;text-transform:uppercase;font-size:10.5px;opacity:.9}
+.nota-barra button{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4);
+  border-radius:999px;padding:6px 11px;font:600 11px var(--mono,monospace)}
+.nota-barra button.att{background:#fff;color:#8C1D2F;border-color:#fff}
+body.modalita-note{padding-top:46px}
+body.modalita-note.naviga .nota-barra{background:#4A5D3A}
+.nota-mirino{position:fixed;z-index:9999;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:999px;
+  border:2px solid #8C1D2F;background:rgba(140,29,47,.25);pointer-events:none}
+.nota-bolla{position:fixed;z-index:10001;width:min(320px,calc(100vw - 24px));background:var(--carta,#fff);
+  border:1px solid var(--inchiostro,#1c2321);border-radius:14px;padding:12px;
+  box-shadow:0 10px 34px -8px rgba(0,0,0,.45)}
+.nota-bolla .nb-dove{font:600 10px var(--mono,monospace);letter-spacing:.07em;text-transform:uppercase;
+  color:var(--sanguigna,#8C1D2F);margin-bottom:3px}
+.nota-bolla .nb-el{font:11.5px var(--mono,monospace);color:var(--inchiostro-2,#5D6660);
+  margin-bottom:8px;word-break:break-word}
+.nota-bolla textarea{width:100%;min-height:96px;padding:10px;border:1px solid var(--riga-forte,#AFB4A6);
+  border-radius:10px;background:var(--carta-2,#F3F4EE);font-size:16px;line-height:1.4;resize:vertical}
+.nota-bolla .nb-az{display:flex;gap:7px;margin-top:9px}
+.nota-bolla .nb-az button{flex:1;padding:9px;border-radius:9px;font:600 12px var(--mono,monospace);
+  letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--riga-forte,#AFB4A6);
+  background:var(--carta-2,#F3F4EE);color:var(--inchiostro-2,#5D6660)}
+.nota-bolla .nb-az button.ok{background:var(--sanguigna,#8C1D2F);color:#fff;border-color:var(--sanguigna,#8C1D2F)}
+.nota-bolla .nb-az button.rm{color:var(--sanguigna,#8C1D2F)}
+.nota-velo{position:fixed;inset:0;z-index:10000;background:rgba(28,35,33,.28)}
+.nota-c{border:1px solid var(--riga);border-left:3px solid var(--sanguigna);border-radius:10px;
+  padding:11px 12px;margin-bottom:9px;background:var(--carta-2)}
+.nota-c .nc-h{font:600 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;
+  color:var(--sanguigna);margin-bottom:2px}
+.nota-c .nc-el{font:11px var(--mono);color:var(--inchiostro-2);margin-bottom:7px;word-break:break-word}
+.nota-c .nc-t{font-size:14.5px;line-height:1.45;white-space:pre-wrap}
+.nota-c .nc-az{display:flex;gap:7px;margin-top:9px}
+.nota-c .nc-az button{width:auto;text-align:center}
+#p-note textarea{width:100%;min-height:150px;padding:11px;border:1px solid var(--riga-forte);
+  border-radius:10px;background:var(--carta-2);font:12.5px/1.5 var(--mono);margin-top:9px}
+
+/* ============ METEO ============ */
+#p-meteo input[type=text]{width:100%;padding:11px 12px;background:var(--carta-2);
+  border:1px solid var(--riga-forte);border-radius:10px;font-size:16px}
+.met-riga{border:1px solid rgba(175,180,166,.7);border-radius:14px;padding:11px 12px;
+  margin-bottom:9px;background:var(--carta)}
+.met-luogo{border:1px solid rgba(175,180,166,.7);border-radius:14px;padding:12px 13px;
+  margin-bottom:11px;background:var(--carta-2)}
+.met-luogo h4{margin:0;font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.2}
+.met-top{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.met-top select{flex:1;min-width:0}
+.met-x{background:none;border:1px solid var(--riga);border-radius:9px;
+  color:var(--inchiostro-2);font-size:16px;line-height:1;padding:8px 10px}
+.met-campi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.met-c label,.met-lab{display:block;font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--inchiostro-2);margin-bottom:4px}
+.met-c input{width:100%}
+.met-coord{font-family:var(--mono);font-size:11.5px;color:var(--inchiostro-2);margin-top:2px}
+.met-fonte{font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);
+  margin-top:9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.met-pill{display:inline-block;border:1px solid var(--riga-forte);border-radius:20px;
+  padding:1px 9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
+.met-pill.auto{color:var(--oliva);border-color:rgba(74,93,58,.5)}
+.met-pill.man{color:var(--ocra);border-color:rgba(169,118,27,.5)}
+.met-prev{display:flex;gap:16px;margin-top:9px;flex-wrap:wrap}
+.met-gg{min-width:66px}
+.met-gg .g{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--inchiostro-2)}
+.met-gg .t{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--inchiostro)}
+.met-az{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.met-az .mini{width:auto;text-align:center}
+.met-az a.mini{text-decoration:none;display:inline-block}
+.met-ris{border:1px solid var(--riga-forte);border-radius:10px;margin-top:9px;overflow:hidden;background:var(--carta)}
+.met-ris button{display:block;width:100%;text-align:left;padding:11px 12px;
+  border-bottom:1px solid var(--riga);font-size:14.5px}
+.met-ris button:last-child{border-bottom:none}
 
 /* ============ BARRA DI NAVIGAZIONE IN BASSO ============ */
 body{padding-bottom:64px}
@@ -572,6 +655,8 @@ body{padding-bottom:64px}
 <section class="pannello" id="p-info" hidden></section>
 <section class="pannello" id="p-genera" hidden></section>
 <section class="pannello" id="p-appunto" hidden></section>
+<section class="pannello" id="p-meteo" hidden></section>
+<section class="pannello" id="p-note" hidden></section>
 <div class="toast" id="toast" hidden></div>
 <nav class="tab-basso" id="tab-basso" aria-label="Navigazione principale">
   <button data-tab-vai="home"><span class="tab-ic">📋</span><span class="tab-t">Ricette</span></button>
@@ -580,6 +665,7 @@ body{padding-bottom:64px}
   <button data-tab-vai="storico"><span class="tab-ic">📒</span><span class="tab-t">QDCA</span></button>
 </nav>
 <button id="btn-blocchi" aria-label="Mostra numeri blocco" title="Mostra numeri blocco">#</button>
+<button id="btn-note" aria-label="Note sul punto" title="Note sul punto">@</button>
 
 <script>
 "use strict";
@@ -1207,6 +1293,10 @@ function impMenu(){
   impVoce("note-prod","Note sui prodotti","Equivalenze e precisazioni",c.noteProd.length)+
   '<div class="imp-sez">Consultorio</div>'+
   impVoce("calendari","Calendari delle avversit\u00e0","Tara i periodi critici sulla tua zona",SCHEDE.length)+
+  '<div class="imp-sez">Note per Claude</div>'+
+  impVoce("note","Note sul punto","Quello che hai segnato con la chiocciola",(DB.noteApp||[]).length)+
+  '<div class="imp-sez">Meteo</div>'+
+  impVoce("meteo","Luoghi e temperature","Cosa entra da solo nelle ricette",meteoCfg().luoghi.length)+
   '<div class="imp-sez">Dati</div>'+
   impVoce("dati","Backup, ripristino, azzeramento","")+
   '<div style="height:40px"></div></div>';
@@ -1312,7 +1402,7 @@ function impProdotto(){
   '<div class="due"><div class="campo"><label>Dose abituale</label><input type="text" inputmode="decimal" data-pk="dose" value="'+esc(p.dose||"")+'"></div>'+
   '<div class="campo"><label>Unit\u00e0</label><select data-pk="unita"><option value=""></option>'+
   UNITA().map(u=>'<option value="'+u+'"'+(p.unita===u?" selected":"")+'>'+u+'</option>').join("")+'</select></div></div>'+
-  '<div class="campo"><label>Nota personale</label><textarea data-pk="nota" style="min-height:80px" placeholder="Equivalenze, avvertenze, dove lo compri\u2026">'+esc(p.nota||"")+'</textarea></div>'+
+  '<div class="nota-p" style="margin-bottom:14px">Le note su questo prodotto si aggiungono e modificano dalla schermata Banca Dati, direttamente sotto il prodotto (possono essere pi\u00f9 di una).</div>'+
   '<a class="b-etichetta" style="display:block;text-align:center;margin-bottom:14px" href="'+linkEtichetta(p.nome)+'" target="_blank" rel="noopener">\u2193 Etichetta ministeriale</a>'+
   '<div class="nota-p">Usato in '+usi.length+' ricette. Rinominandolo qui, le ricette gi\u00e0 salvate mantengono il nome vecchio: usa \u00abrinomina ovunque\u00bb per allinearle.</div>'+
   '<button class="mini" data-rinomina style="margin-top:12px">Rinomina anche nelle '+usi.length+' ricette</button>'+
@@ -1456,7 +1546,7 @@ function impDati(){
   const nAll=DB.voci.reduce((s,v)=>s+((v.allegati||[]).length),0);
   return impBarra("Dati")+'<div class="wrap">'+
   '<div style="padding:16px 0 6px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--inchiostro-2);text-transform:uppercase">'+
-  DB.voci.length+' voci \u00b7 '+nAll+' appunti \u00b7 '+(DB.prodotti||[]).length+' prodotti \u00b7 '+(DB.aziende||[]).length+' aziende</div>'+
+  DB.voci.length+' voci \u00b7 '+nAll+' appunti \u00b7 '+(DB.prodotti||[]).length+' prodotti \u00b7 '+(DB.aziende||[]).length+' aziende<br>'+VERSIONE_APP+'</div>'+
   impVoce("_appunto","Nuovo appunto","Osservazione o nota senza miscela")+
   '<button class="voce-imp" data-esporta><span><span class="vi-t">Salva una copia (.json)</span><span class="vi-s">Backup completo, impostazioni comprese</span></span><span class="frecc">\u2193</span></button>'+
   '<button class="voce-imp" data-esporta-txt><span><span class="vi-t">Esporta in testo</span><span class="vi-s">Versione leggibile e stampabile</span></span><span class="frecc">\u2193</span></button>'+
@@ -1600,6 +1690,7 @@ function linkScheda(s){
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
+const VERSIONE_APP="v7.2 \u2014 05/09/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -1637,6 +1728,11 @@ function notaProdotto(nome){
   for(let i=0;i<l.length;i++){ if(n===norm(l[i].k)||n.indexOf(norm(l[i].k))>=0) return l[i].t; }
   return null;
 }
+function notaProdottoEntry(nome){
+  const n=norm(nome),l=(DB.cfg&&DB.cfg.noteProd)?DB.cfg.noteProd:[];
+  for(let i=0;i<l.length;i++){ if(n===norm(l[i].k)||n.indexOf(norm(l[i].k))>=0) return l[i]; }
+  return null;
+}
 
 const DEF_MENU=[
   {k:"ric-fogliare",t:"Nuova ricetta fogliare",s:"Dose riferita al volume di miscela",forte:true},
@@ -1647,7 +1743,8 @@ const DEF_MENU=[
   {k:"suggerimenti",t:"Suggerimenti per il mese",s:"Cosa sorvegliare adesso e cosa facevi negli anni scorsi",forte:false},
   {k:"storico",t:"Storico",s:"Tutte le voci, con filtri e ricerca",forte:false},
   {k:"consultorio",t:"Consultorio",s:"Schede tecniche delle avversit\u00e0",forte:false},
-  {k:"prodotti",t:"Prodotti",s:"Anagrafica di prodotti e formulati",forte:false}
+  {k:"prodotti",t:"Prodotti",s:"Anagrafica di prodotti e formulati",forte:false},
+  {k:"meteo",t:"Meteo",s:"Luoghi e temperature che finiscono nelle ricette",forte:false}
 ];
 function cfg(){
   DB.cfg=DB.cfg||{};
@@ -1936,6 +2033,283 @@ function convertiRicetta(v,litriNuovi){
 }
 
 /* ============================================================
+   7ter. METEO — luoghi salvati e temperature del giorno
+   Fonte automatica: Open-Meteo (api.open-meteo.com), API pubblica
+   senza chiave e con CORS aperto, dati CC BY 4.0. Sono previsioni
+   di modello sulle coordinate indicate, NON misure di una stazione
+   a terra: SIAS e 3bmeteo restano il riscontro da fare a mano.
+   Ogni valore scritto a mano vince e non viene piu' sovrascritto
+   (m.fonte === "manuale").
+   ============================================================ */
+const METEO_URL="https://api.open-meteo.com/v1/forecast";
+const METEO_GEO="https://geocoding-api.open-meteo.com/v1/search";
+const METEO_SIAS="http://www.sias.regione.sicilia.it/frameset_previsioni.htm";
+const METEO_3B="https://www.3bmeteo.com/meteo/";
+const METEO_VAR_PIENE="temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,relative_humidity_2m_mean";
+const METEO_VAR_BASE="temperature_2m_max,temperature_2m_min,precipitation_sum";
+const METEO_CAMPI=["tmax","tmin","pioggia","vento","umid"];
+const DEF_LUOGHI=[
+  {id:"paterno",nome:"Patern\u00f2",lat:37.5667,lon:14.9,def:true,slug:"paterno"},
+  {id:"catania",nome:"Catania",lat:37.5079,lon:15.083,def:true,slug:"catania"}
+];
+let METEO_STATO={q:"",ris:[],msg:"",mod:null,lav:false};
+let METEO_RITORNO=null;
+
+function meteoCfg(){
+  const c=cfg();
+  if(!c.meteo)c.meteo={};
+  if(!Array.isArray(c.meteo.luoghi))c.meteo.luoghi=DEF_LUOGHI.map(function(l){return Object.assign({},l);});
+  if(c.meteo.auto===undefined)c.meteo.auto=true;
+  return c.meteo;
+}
+function luoghiMeteo(){return meteoCfg().luoghi;}
+function luogoMeteo(id){return luoghiMeteo().find(function(l){return l.id===id;})||null;}
+function luoghiDefault(){
+  const l=luoghiMeteo().filter(function(x){return x.def!==false;});
+  return l.length?l:luoghiMeteo().slice(0,1);
+}
+function cacheMeteo(){DB.cacheMeteo=DB.cacheMeteo||{};return DB.cacheMeteo;}
+function metNum(x){
+  if(x===null||x===undefined||x==="")return "";
+  const n=Number(x);
+  return isNaN(n)?"":n;
+}
+function fmtT(x){
+  if(x===null||x===undefined||x==="")return "";
+  const n=Number(x);
+  if(isNaN(n))return String(x);
+  return String(Math.round(n*10)/10).replace(".",",");
+}
+function slugLuogo(n){
+  return String(n||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+}
+function nuovoIdLuogo(nome){
+  let b=slugLuogo(nome)||("luogo-"+Date.now().toString(36));
+  let k=b,i=2;
+  while(luoghiMeteo().some(function(l){return l.id===k;})){k=b+"-"+i;i++;}
+  return k;
+}
+
+/* ---------- scarico dei dati ---------- */
+function chiediMeteo(l,forza){
+  if(!l||l.lat===undefined||l.lon===undefined||l.lat===""||l.lon==="")
+    return Promise.reject(new Error("coordinate mancanti"));
+  const c=cacheMeteo(),vecchia=c[l.id];
+  const buona=vecchia&&vecchia.giorni&&Number(vecchia.lat)===Number(l.lat)&&
+    Number(vecchia.lon)===Number(l.lon)&&(Date.now()-vecchia.t)<3*3600*1000;
+  if(buona&&!forza)return Promise.resolve(vecchia.giorni);
+  if(typeof navigator!=="undefined"&&navigator.onLine===false)
+    return Promise.reject(new Error("nessuna connessione"));
+  function tenta(vars){
+    const u=METEO_URL+"?latitude="+encodeURIComponent(l.lat)+"&longitude="+encodeURIComponent(l.lon)+
+      "&daily="+vars+"&timezone=Europe%2FRome&past_days=7&forecast_days=16";
+    return fetch(u).then(function(r){
+      if(!r.ok)throw new Error("HTTP "+r.status);
+      return r.json();
+    }).then(function(j){
+      if(!j||!j.daily||!j.daily.time)throw new Error("risposta senza dati");
+      return j;
+    });
+  }
+  return tenta(METEO_VAR_PIENE).catch(function(){return tenta(METEO_VAR_BASE);}).then(function(j){
+    const d=j.daily,g={};
+    d.time.forEach(function(gg,i){
+      g[gg]={
+        tmax:metNum(d.temperature_2m_max&&d.temperature_2m_max[i]),
+        tmin:metNum(d.temperature_2m_min&&d.temperature_2m_min[i]),
+        pioggia:metNum(d.precipitation_sum&&d.precipitation_sum[i]),
+        vento:metNum(d.wind_speed_10m_max&&d.wind_speed_10m_max[i]),
+        umid:metNum(d.relative_humidity_2m_mean&&d.relative_humidity_2m_mean[i])
+      };
+    });
+    c[l.id]={t:Date.now(),lat:Number(l.lat),lon:Number(l.lon),nome:l.nome,giorni:g};
+    salva();
+    return g;
+  });
+}
+function cercaLuogo(q){
+  const u=METEO_GEO+"?name="+encodeURIComponent(q)+"&count=8&language=it&format=json";
+  return fetch(u).then(function(r){
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    return r.json();
+  }).then(function(j){return (j&&j.results)?j.results:[];});
+}
+
+/* ---------- righe meteo dentro la ricetta ---------- */
+function rigaMeteoDa(l){
+  return {luogoId:l.id,nome:l.nome,lat:l.lat,lon:l.lon,
+    tmax:"",tmin:"",pioggia:"",vento:"",umid:"",fonte:"",gg:""};
+}
+function meteoVuoto(){
+  if(!meteoCfg().auto)return [];
+  return luoghiDefault().map(rigaMeteoDa);
+}
+function meteoPieno(m){
+  return METEO_CAMPI.some(function(k){return m[k]!==""&&m[k]!==undefined&&m[k]!==null;});
+}
+function meteoRiassunto(v){
+  return (v.meteo||[]).filter(meteoPieno).map(function(m){
+    const t=[];
+    if(m.tmax!=="")t.push(fmtT(m.tmax)+"\u00b0");
+    if(m.tmin!=="")t.push(fmtT(m.tmin)+"\u00b0");
+    return m.nome+" "+(t.length?t.join(" / "):"\u2014");
+  }).join("  \u00b7  ");
+}
+function compilaMeteoRicetta(forza){
+  if(!R||!Array.isArray(R.meteo)||!R.meteo.length)return;
+  if(!meteoCfg().auto&&!forza)return;
+  const data=R.data||oggiISO(),idRic=R.id;
+  R.meteo.forEach(function(m,i){
+    if(m.fonte==="manuale"&&!forza)return;
+    const l=luogoMeteo(m.luogoId)||{id:m.luogoId||("tmp-"+i),nome:m.nome,lat:m.lat,lon:m.lon};
+    chiediMeteo(l,!!forza).then(function(g){
+      if(!R||R.id!==idRic)return;
+      const m2=R.meteo[i];
+      if(!m2||(m2.fonte==="manuale"&&!forza))return;
+      const v=g[data];
+      if(!v){m2.fonte="fuori";m2.gg=data;aggiornaCampiMeteo();return;}
+      METEO_CAMPI.forEach(function(k){m2[k]=fmtT(v[k]);});
+      m2.fonte="auto";m2.gg=data;
+      aggiornaCampiMeteo();
+    }).catch(function(){
+      if(!R||R.id!==idRic)return;
+      const m2=R.meteo[i];
+      if(m2&&m2.fonte!=="manuale"&&!meteoPieno(m2)){m2.fonte="niente";aggiornaCampiMeteo();}
+    });
+  });
+}
+function aggiornaCampiMeteo(){
+  const box=$("#r-meteo");if(!box||!R||!R.meteo)return;
+  R.meteo.forEach(function(m,i){
+    METEO_CAMPI.forEach(function(k){
+      const el=box.querySelector('[data-met="'+k+'"][data-i="'+i+'"]');
+      if(el&&document.activeElement!==el)el.value=(m[k]===undefined||m[k]===null)?"":m[k];
+    });
+    const f=box.querySelector('[data-met-fonte="'+i+'"]');
+    if(f)f.innerHTML=meteoFonteHTML(m);
+  });
+}
+function meteoFonteHTML(m){
+  if(m.fonte==="manuale")return '<span class="met-pill man">scritto a mano</span>';
+  if(m.fonte==="auto")return '<span class="met-pill auto">Open-Meteo</span><span>'+esc(dataIt(m.gg||""))+'</span>';
+  if(m.fonte==="fuori")return '<span class="met-pill">fuori previsione</span><span>oltre 16 giorni avanti o 7 indietro: scrivi a mano</span>';
+  if(m.fonte==="niente")return '<span class="met-pill">non scaricato</span><span>senza rete: scrivi a mano</span>';
+  return '<span class="met-pill">in attesa\u2026</span>';
+}
+function bloccoMeteo(){
+  const l=luoghiMeteo(),righe=R.meteo||[];
+  const corpo=righe.map(function(m,i){
+    let opt=l.map(function(x){
+      return '<option value="'+esc(x.id)+'"'+(x.id===m.luogoId?" selected":"")+'>'+esc(x.nome)+'</option>';
+    }).join("");
+    if(!l.some(function(x){return x.id===m.luogoId;}))
+      opt='<option value="'+esc(m.luogoId||"")+'" selected>'+esc(m.nome||"\u2014")+'</option>'+opt;
+    return '<div class="met-riga" data-i="'+i+'">'+
+      '<div class="met-top"><select data-met-luogo="'+i+'">'+opt+'</select>'+
+      '<button class="met-x" data-met-agg="'+i+'" title="Riscarica questo luogo">\u21bb</button>'+
+      '<button class="met-x" data-met-del="'+i+'" aria-label="Togli">\u00d7</button></div>'+
+      '<div class="met-campi">'+
+        '<div class="met-c"><label>T max \u00b0C</label><input type="text" inputmode="decimal" data-met="tmax" data-i="'+i+'" value="'+esc(m.tmax||"")+'" placeholder="\u2014"></div>'+
+        '<div class="met-c"><label>T min \u00b0C</label><input type="text" inputmode="decimal" data-met="tmin" data-i="'+i+'" value="'+esc(m.tmin||"")+'" placeholder="\u2014"></div>'+
+        '<div class="met-c"><label>Pioggia mm</label><input type="text" inputmode="decimal" data-met="pioggia" data-i="'+i+'" value="'+esc(m.pioggia||"")+'" placeholder="\u2014"></div>'+
+        '<div class="met-c"><label>Vento max km/h</label><input type="text" inputmode="decimal" data-met="vento" data-i="'+i+'" value="'+esc(m.vento||"")+'" placeholder="\u2014"></div>'+
+        '<div class="met-c"><label>Umidit\u00e0 media %</label><input type="text" inputmode="decimal" data-met="umid" data-i="'+i+'" value="'+esc(m.umid||"")+'" placeholder="\u2014"></div>'+
+      '</div>'+
+      '<div class="met-fonte" data-met-fonte="'+i+'">'+meteoFonteHTML(m)+'</div></div>';
+  }).join("");
+  const liberi=l.filter(function(x){return !righe.some(function(m){return m.luogoId===x.id;});});
+  return '<div class="blocco"><span class="bl-t"><b>Meteo</b>Massima e minima del giorno indicato sopra, riempite da sole per i luoghi predefiniti. '+
+    'Ogni casella resta modificabile: se la tocchi, il valore diventa tuo e non viene pi\u00f9 sovrascritto.</span>'+
+    '<div id="r-meteo">'+(corpo||'<p class="suggerimento" style="margin:0 0 10px">Nessun luogo in questa ricetta.</p>')+'</div>'+
+    (liberi.length?'<div class="met-az">'+liberi.map(function(x){
+      return '<button class="mini" data-met-add="'+esc(x.id)+'">+ '+esc(x.nome)+'</button>';
+    }).join("")+'</div>':"")+
+    '<div class="met-az"><button class="mini" data-met-tutti>\u21bb Riscarica tutto</button>'+
+    '<button class="mini" data-met-pagina>Gestisci i luoghi \u203a</button></div></div>';
+}
+
+/* ---------- pagina Meteo ---------- */
+function apriMeteo(ritorno){
+  METEO_RITORNO=ritorno||null;
+  METEO_STATO.ris=[];METEO_STATO.msg="";METEO_STATO.mod=null;
+  disegnaMeteo();
+  mostraPannello($("#p-meteo"));
+}
+function prevLuogo(l){
+  const c=cacheMeteo()[l.id];
+  if(!c||!c.giorni)return '<p class="suggerimento" style="margin:9px 0 0">Nessuna previsione ancora scaricata per questo luogo.</p>';
+  const oggi=oggiISO();
+  const gg=Object.keys(c.giorni).filter(function(x){return x>=oggi;}).sort().slice(0,4);
+  if(!gg.length)return '<p class="suggerimento" style="margin:9px 0 0">Previsioni vecchie: tocca Aggiorna.</p>';
+  const scar=new Date(c.t);
+  return '<div class="met-prev">'+gg.map(function(x){
+    const v=c.giorni[x],pz=x.split("-");
+    return '<div class="met-gg"><div class="g">'+(x===oggi?"oggi":pz[2]+"/"+pz[1])+'</div>'+
+      '<div class="t">'+(fmtT(v.tmax)||"\u2014")+'\u00b0/'+(fmtT(v.tmin)||"\u2014")+'\u00b0</div></div>';
+  }).join("")+'</div>'+
+  '<p class="suggerimento" style="margin:7px 0 0;font-size:11.5px">Scaricate il '+
+  esc(dataIt(scar.getFullYear()+"-"+String(scar.getMonth()+1).padStart(2,"0")+"-"+String(scar.getDate()).padStart(2,"0")))+
+  ' alle '+String(scar.getHours()).padStart(2,"0")+":"+String(scar.getMinutes()).padStart(2,"0")+'.</p>';
+}
+function schedaLuogo(l,i){
+  const sl=l.slug||slugLuogo(l.nome);
+  return '<div class="met-luogo" data-i="'+i+'">'+
+    '<div class="met-top"><div style="flex:1;min-width:0"><h4>'+esc(l.nome||"(senza nome)")+'</h4>'+
+    '<div class="met-coord">'+esc(String(l.lat))+', '+esc(String(l.lon))+'</div></div>'+
+    '<button class="scelta'+(l.def!==false?" on":"")+'" data-met-def="'+i+'">'+
+    (l.def!==false?"\u25c9 predefinito":"\u25cb non predefinito")+'</button></div>'+
+    prevLuogo(l)+
+    '<div class="met-az">'+
+      '<button class="mini" data-met-scarica="'+i+'">\u21bb Aggiorna</button>'+
+      '<a class="mini" href="'+METEO_3B+encodeURIComponent(sl)+'" target="_blank" rel="noopener">3bmeteo</a>'+
+      '<a class="mini" href="'+METEO_SIAS+'" target="_blank" rel="noopener">SIAS</a>'+
+      '<button class="mini" data-met-mod="'+i+'">'+(METEO_STATO.mod===i?"Chiudi":"Modifica")+'</button>'+
+      '<button class="mini" data-met-rm="'+i+'">Elimina</button>'+
+    '</div>'+
+    (METEO_STATO.mod===i?'<div style="margin-top:12px">'+
+      '<label class="met-lab">Nome</label><input type="text" data-ml="nome" data-i="'+i+'" value="'+esc(l.nome||"")+'">'+
+      '<div class="met-campi" style="margin-top:9px">'+
+      '<div class="met-c"><label>Latitudine</label><input type="text" inputmode="decimal" data-ml="lat" data-i="'+i+'" value="'+esc(String(l.lat))+'"></div>'+
+      '<div class="met-c"><label>Longitudine</label><input type="text" inputmode="decimal" data-ml="lon" data-i="'+i+'" value="'+esc(String(l.lon))+'"></div></div>'+
+      '<div style="margin-top:9px"><label class="met-lab">Nome nell\u2019indirizzo 3bmeteo</label>'+
+      '<input type="text" data-ml="slug" data-i="'+i+'" value="'+esc(l.slug||"")+'" placeholder="'+esc(sl)+'"></div>'+
+      '<p class="suggerimento">Il nome 3bmeteo \u00e8 l\u2019ultimo pezzo dell\u2019indirizzo del loro sito. Se il bottone porta al comune sbagliato \u2014 capita con i nomi ripetuti \u2014 apri 3bmeteo, cerca il posto giusto e copia qui quel pezzo.</p>'+
+      '<div class="met-az"><button class="mini" data-met-geo="'+i+'">Ritrova le coordinate dal nome</button></div></div>':"")+
+  '</div>';
+}
+function disegnaMeteo(){
+  const c=meteoCfg(),l=c.luoghi;
+  $("#p-meteo").innerHTML=
+  '<div class="barra-p"><button class="indietro" data-met-back>\u2039 '+(METEO_RITORNO==="ricetta"?"Ricetta":"Indietro")+'</button>'+
+  '<span class="titolo-p">Meteo</span><span style="width:60px"></span></div>'+
+  '<div class="wrap"><div class="testata"><div class="tipo-d">Luoghi</div>'+
+  '<h2>Le temperature che entrano nelle ricette</h2>'+
+  '<p class="suggerimento" style="font-size:13px">I luoghi segnati come predefiniti compaiono da soli in ogni ricetta nuova, gi\u00e0 riempiti con massima e minima del giorno della ricetta \u2014 oggi, o il giorno previsto se sposti la data. Dentro la ricetta puoi sempre cambiare luogo e correggere ogni numero.</p></div>'+
+
+  '<div class="blocco"><span class="bl-t"><b>Compilazione automatica</b>Se la spegni, le ricette nuove nascono senza righe meteo e le aggiungi tu quando servono.</span>'+
+  '<div class="scelte"><button class="scelta'+(c.auto?" on":"")+'" data-met-auto>'+(c.auto?"\u25c9 attiva":"\u25cb spenta")+'</button></div></div>'+
+
+  (l.length?l.map(schedaLuogo).join(""):'<p class="suggerimento" style="margin:14px 0">Nessun luogo salvato. Aggiungine uno qui sotto.</p>')+
+  (l.length?'<div class="met-az" style="margin-bottom:14px"><button class="mini" data-met-tuttiluoghi>\u21bb Aggiorna tutti i luoghi</button></div>':"")+
+
+  '<div class="blocco"><span class="bl-t"><b>Aggiungi un luogo</b>Scrivi il nome del comune e tocca Cerca. Se il posto che ti serve \u00e8 una contrada che non compare, mettine uno vicino oppure inserisci le coordinate a mano.</span>'+
+  '<input type="text" id="met-q" value="'+esc(METEO_STATO.q||"")+'" placeholder="es. Ramacca" autocomplete="off">'+
+  '<div class="met-az"><button class="mini" data-met-cerca>'+(METEO_STATO.lav?"Cerco\u2026":"Cerca")+'</button>'+
+  '<button class="mini" data-met-mano>+ Coordinate a mano</button></div>'+
+  (METEO_STATO.msg?'<p class="suggerimento">'+esc(METEO_STATO.msg)+'</p>':"")+
+  (METEO_STATO.ris.length?'<div class="met-ris">'+METEO_STATO.ris.map(function(r,i){
+    const dove=[r.admin3,r.admin2,r.admin1,r.country].filter(Boolean).join(" \u00b7 ");
+    return '<button data-met-pick="'+i+'"><b>'+esc(r.name)+'</b>'+
+      '<div class="met-coord">'+esc(dove)+' \u00b7 '+Number(r.latitude).toFixed(4)+', '+Number(r.longitude).toFixed(4)+'</div></button>';
+  }).join("")+'</div>':"")+
+  '</div>'+
+
+  '<div class="blocco-attenzione"><b>Da dove arrivano i numeri</b>La compilazione automatica usa Open-Meteo (open-meteo.com), servizio pubblico gratuito che restituisce previsioni di modello per le coordinate indicate: non sono le misure di una stazione a terra vicina al campo. I bottoni SIAS e 3bmeteo su ogni luogo servono al riscontro. Se il numero deve reggere \u2014 un trattamento discusso, una contestazione \u2014 controlla la fonte e correggi a mano nella ricetta.</div>'+
+  '<div style="height:44px"></div></div>';
+}
+
+/* ============================================================
    8. NUOVA RICETTA
    ============================================================ */
 let R=null,PASSO=1,PICK=null,RES=false,RIC_TOP=false;
@@ -1945,7 +2319,8 @@ function ricettaVuota(modo){
   const colDef=S.coltura||(DB.colture[0]||{}).id||"";
   return {id:nuovoId(),tipo:"Ricetta",modo:modo,base:(basiDi(modo)[0]||{}).v,data:oggiISO(),
     coltura:colDef,colture:[colDef],varieta:[],aziende:[],avversita:[],fase:"",tag:[],titolo:"",
-    prodotti:[nuovoProdotto()],testo:"",allegati:[],pin:false,creato:Date.now(),modificato:Date.now()};
+    prodotti:[nuovoProdotto()],testo:"",allegati:[],meteo:meteoVuoto(),
+    pin:false,creato:Date.now(),modificato:Date.now()};
 }
 function apriRicetta(modo,id){
   R=id?JSON.parse(JSON.stringify(DB.voci.find(v=>v.id===id))):ricettaVuota(modo);
@@ -1956,9 +2331,11 @@ function apriRicetta(modo,id){
   R.varieta=varietaDi(R);
   if(!R.modo) R.modo=modo||"fogliare";
   if(!R.base) R.base=(basiDi(R.modo)[0]||{}).v;
+  if(!Array.isArray(R.meteo))R.meteo=id?[]:meteoVuoto();
   RES=!!id;PASSO=1;PICK=null;RIC_TOP=true;
   disegnaRicetta();
   mostraPannello($("#p-ricetta"));
+  compilaMeteoRicetta(false);
 }
 function vaiPasso(n){
   leggiRicetta();
@@ -1988,7 +2365,7 @@ function prodottoHTML(p,i){
 const PASSI=[
   {n:1,t:"Prodotti",s:"Cosa entra in botte e in che ordine"},
   {n:2,t:"Campo",s:"Azienda, dose, coltura e variet\u00e0"},
-  {n:3,t:"Finitura",s:"Data, note, fase e bersaglio"}
+  {n:3,t:"Finitura",s:"Data, meteo, note, fase e bersaglio"}
 ];
 const DEF_VARIETA={
   ara:["Tarocco","Tarocco Ippolito","Tarocco Sciara","Tarocco Gallo","Tarocco Meli","Moro","Sanguinello",
@@ -2136,6 +2513,8 @@ function passoTre(){
     '<input type="date" id="r-data" value="'+esc(R.data)+'">'+
     '<div class="data-riga" id="r-data-riga">'+rigaData()+'</div></div>'+
 
+  bloccoMeteo()+
+
   '<div class="blocco"><span class="bl-t"><b>Note</b>Condizioni, macchina, pressione, motivo della scelta, cosa sorvegliare dopo.</span>'+
     '<textarea id="r-note" placeholder="Scrivi qui quello che fra due anni non ricorderesti\u2026">'+esc(R.testo)+'</textarea></div>'+
 
@@ -2173,6 +2552,14 @@ function leggiRicetta(){
   if($("#r-data"))R.data=g("r-data");
   if($("#r-note"))R.testo=$("#r-note").value;
   if($("#r-tit"))R.titolo=g("r-tit").trim();
+  if($("#r-meteo")&&Array.isArray(R.meteo)){
+    R.meteo.forEach(function(m,i){
+      METEO_CAMPI.forEach(function(k){
+        const el=$('#r-meteo [data-met="'+k+'"][data-i="'+i+'"]');
+        if(el)m[k]=el.value.trim();
+      });
+    });
+  }
   R.prodotti.forEach(function(p,i){
     const q=function(s){return $('#r-prod [data-p="'+s+'"][data-i="'+i+'"]');};
     if(q("nome"))p.nome=q("nome").value.trim();
@@ -2277,7 +2664,8 @@ function creaImmagine(){
   }
   let righeNote=[];
   note.forEach(function(n){ if(n.trim()) righeNote=righeNote.concat(wrap(n,W-2*P,"30px Georgia, serif")); else righeNote.push(""); });
-  const H=300+conv.length*76+(righeNote.length?70+righeNote.length*42:0)+120;
+  const metLinea=meteoRiassunto(R);
+  const H=300+conv.length*76+(righeNote.length?70+righeNote.length*42:0)+120+(metLinea?42:0);
   cv.width=W;cv.height=H;
   const c=cv.getContext("2d");
   c.fillStyle="#E9EAE3";c.fillRect(0,0,W,H);
@@ -2294,6 +2682,10 @@ function creaImmagine(){
   let sub=R.colture.map(nomeColtura).join(" \u00b7 ")+(R.varieta.length?" \u2014 "+R.varieta.join(", "):"");
   if(R.aziende.length)sub+="  \u00b7  "+R.aziende.join(", ");
   c.fillText(sub,P,y);y+=46;
+  if(metLinea){
+    c.fillStyle="#5D6660";c.font="24px ui-monospace, Menlo, monospace";
+    c.fillText(wrap(metLinea,W-2*P,"24px ui-monospace, Menlo, monospace")[0],P,y);y+=42;
+  }
   // banda dose
   c.fillStyle=tinta;c.fillRect(P,y-4,W-2*P,62);
   c.fillStyle="#fff";c.font="600 30px ui-monospace, Menlo, monospace";
@@ -2339,17 +2731,46 @@ function condividiImmagine(){
 /* ============================================================
    9. PRODOTTI
    ============================================================ */
+const CATEGORIE_PRODOTTO=["Insetticida","Acaricida","Fungicida","Fitoregolatore","Insetti utili",
+  "Confusione sessuale","Olio","Concime fogliare","Concime radicale","Correttore",
+  "Biostimolante","Biostimolante microbico","Diserbante","Altro"];
+let PROD_ESPANSO=null;
 function disegnaProdotti(){
   const l=(DB.prodotti||[]).slice().sort((a,b)=>a.nome.localeCompare(b.nome,"it"));
   $("#sez-prodotti").innerHTML=
   '<div class="briciole">Anagrafica \u00b7 '+l.length+' prodotti</div>'+
   (l.length?l.map(function(p){
-    const nt=notaProdotto(p.nome);
+    p.note=p.note||[];p.categorie=p.categorie||[];
+    const ne=notaProdottoEntry(p.nome);
+    const espanso=(PROD_ESPANSO===p.nome);
+    const cats=p.categorie.map(c=>c==="Altro"?(p.categoriaAltro||"Altro"):c);
     return '<div class="prod-riga"><div class="el-lista" style="border:none;padding-bottom:6px">'+
     '<span class="rango r3">'+esc(p.formulato||"\u2014")+'</span>'+
     '<span class="nome-a"><b>'+esc(p.nome)+'</b><i>'+(p.dose?esc(p.dose+" "+(p.unita||"")):"dose non registrata")+(p.usi?' \u00b7 usato '+p.usi+' volte':"")+'</i></span>'+
     '<button class="x" data-del-p="'+esc(p.nome)+'" style="color:var(--sanguigna);font-size:17px;padding:2px 8px">\u00d7</button></div>'+
-    (nt?'<div class="nota-prod">'+esc(nt)+'</div>':"")+
+    (cats.length?'<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">'+
+      cats.map(c=>'<span class="chip col on" style="--c:var(--oliva)"><span class="pallino"></span>'+esc(c)+'</span>').join("")+'</div>':"")+
+    (ne&&!espanso?'<div class="nota-prod">'+esc(ne.t)+'</div>':"")+
+    (!espanso?p.note.map(t=>'<div class="nota-prod" style="border-left-color:var(--oliva);color:var(--inchiostro)">'+esc(t)+'</div>').join(""):"")+
+    '<button class="mini" data-tocca-nota="'+esc(p.nome)+'" style="width:auto;display:inline-block;margin:2px 0 6px">'+
+      (espanso?"Chiudi":((p.note.length||p.categorie.length)?"\u270e Modifica note / categorie":"+ Note e categorie"))+'</button>'+
+    (espanso?
+      '<div class="campo"><label>Categorie (puoi sceglierne pi\u00f9 di una)</label>'+
+      '<div style="display:flex;flex-wrap:wrap;gap:5px">'+
+        CATEGORIE_PRODOTTO.map(c=>'<button class="chip'+(p.categorie.indexOf(c)>=0?" on":"")+'" data-toggle-cat="'+esc(p.nome)+'" data-c="'+esc(c)+'">'+esc(c)+'</button>').join("")+
+      '</div></div>'+
+      (p.categorie.indexOf("Altro")>=0?'<div class="campo"><label>Specifica categoria</label><input type="text" data-cat-altro-prod="'+esc(p.nome)+'" value="'+esc(p.categoriaAltro||"")+'" placeholder="Scrivi la categoria"></div>':"")+
+      (ne?'<div class="campo"><label>Nota automatica (da \u00abNote sui prodotti\u00bb)</label>'+
+        '<textarea data-nota-auto-prod="'+esc(p.nome)+'" style="min-height:60px">'+esc(ne.t)+'</textarea></div>':"")+
+      '<div class="campo"><label>Note</label>'+
+      (p.note.length?p.note.map(function(t,i){
+        return '<div style="display:flex;gap:6px;align-items:flex-start;margin-bottom:6px">'+
+          '<textarea data-nota-i-prod="'+esc(p.nome)+'" data-i="'+i+'" style="min-height:60px;flex:1">'+esc(t)+'</textarea>'+
+          '<button class="ri-x" data-del-nota-prod="'+esc(p.nome)+'" data-i="'+i+'">\u00d7</button></div>';
+      }).join(""):'<div class="nota-p" style="margin:0 0 8px">Ancora nessuna nota.</div>')+
+      '</div>'+
+      '<button class="mini" data-add-nota-prod="'+esc(p.nome)+'" style="width:auto;display:inline-block;margin-bottom:10px">+ Aggiungi un\u2019altra nota</button>'
+    :"")+
     '<a class="b-etichetta" href="'+linkEtichetta(p.nome)+'" target="_blank" rel="noopener">\u2193 Etichetta ministeriale</a></div>';
   }).join("")
    :'<div class="vuoto"><p>Nessun prodotto registrato.</p><small>I prodotti si registrano da soli quando li scrivi in una ricetta.</small></div>')+
@@ -2474,6 +2895,19 @@ function apriLettura(id){
     '<table class="mix"><thead><tr><th>Prodotto</th><th style="text-align:right">Dose</th></tr></thead><tbody>'+
     v.prodotti.filter(p=>p.nome).map(p=>'<tr><td><a href="'+linkEtichetta(p.nome)+'" target="_blank" rel="noopener" style="color:var(--inchiostro);text-decoration:none;border-bottom:1px dotted var(--sanguigna)">'+esc(p.nome)+'</a>'+(p.formulato?'<div style="font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);margin-top:2px">'+esc(p.formulato)+'</div>':"")+(notaProdotto(p.nome)?'<div class="nota-prod" style="margin-top:4px">'+esc(notaProdotto(p.nome))+'</div>':"")+'</td>'+
     '<td class="dose">'+esc(p.dose)+' '+esc(p.unita||"")+'</td></tr>').join("")+'</tbody></table></div>':"")+
+  ((v.meteo||[]).filter(meteoPieno).length?'<div class="sez"><h3>Meteo</h3>'+
+    '<table class="mix"><tbody>'+(v.meteo||[]).filter(meteoPieno).map(function(m){
+      const d=[];
+      if(m.tmax!=="")d.push("max "+fmtT(m.tmax)+"\u00b0C");
+      if(m.tmin!=="")d.push("min "+fmtT(m.tmin)+"\u00b0C");
+      if(m.pioggia!=="")d.push(fmtT(m.pioggia)+" mm");
+      if(m.vento!=="")d.push("vento "+fmtT(m.vento)+" km/h");
+      if(m.umid!=="")d.push("umid. "+fmtT(m.umid)+"%");
+      return '<tr><td>'+esc(m.nome||"\u2014")+
+        '<div style="font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);margin-top:2px">'+
+        (m.fonte==="manuale"?"scritto a mano":"Open-Meteo")+'</div></td>'+
+        '<td class="dose" style="font-size:13px">'+esc(d.join(" \u00b7 "))+'</td></tr>';
+    }).join("")+'</tbody></table></div>':"")+
   (v.testo?'<div class="sez"><h3>Note</h3><div class="testo">'+esc(v.testo)+'</div></div>':"")+
   '<div class="sez"><h3>Appunti allegati'+((v.allegati||[]).length?' \u00b7 '+v.allegati.length:"")+'</h3>'+
     ((v.allegati||[]).length?v.allegati.map(a=>'<div class="allegato"><div class="a-tit"><span>'+esc(a.titolo||"Appunto")+'</span><span class="a-data">'+dataIt(a.data)+'</span></div><div class="a-testo">'+esc(a.testo)+'</div></div>').join("")
@@ -2496,6 +2930,8 @@ function testoCondivisibile(v){
   if(avv.length)r.push("Avversit\u00e0: "+avv.join(", "));
   if((v.prodotti||[]).filter(p=>p.nome).length){r.push("");r.push("MISCELA \u2014 "+baseTesto(v));
     v.prodotti.filter(p=>p.nome).forEach(p=>r.push("\u2022 "+p.nome+(p.formulato?" ("+p.formulato+")":"")+" \u2014 "+p.dose+" "+(p.unita||"")));}
+  const met=meteoRiassunto(v);
+  if(met){r.push("");r.push("METEO \u2014 "+met);}
   if(v.testo){r.push("");r.push(v.testo);}
   (v.allegati||[]).forEach(function(a){r.push("");r.push("\u21b3 "+(a.titolo||"Appunto")+" ("+dataIt(a.data)+")");r.push(a.testo);});
   return r.join("\n");
@@ -2553,6 +2989,7 @@ function chiudiPannelli(){$$(".pannello").forEach(function(x){x.hidden=true;});d
 function vaiA(k){
   chiudiPannelli();
   if(k.indexOf("ric-")===0){apriRicetta(k.slice(4));return;}
+  if(k==="meteo"){apriMeteo(null);return;}
   let vis=k;
   if(k==="mese")vis="storico";
   sezione=vis;
@@ -2650,12 +3087,63 @@ $("#cons-corpo").addEventListener("click",function(e){
   const s=e.target.closest("[data-scheda]");if(s)apriScheda(s.dataset.scheda);
 });
 $("#sez-prodotti").addEventListener("click",function(e){
-  const d=e.target.closest("[data-del-p]");if(!d)return;
-  const n=d.dataset.delP;
-  if(confirm("Togliere \u00ab"+n+"\u00bb dall\u2019anagrafica? Le ricette gi\u00e0 salvate non cambiano.")){
-    DB.prodotti=DB.prodotti.filter(p=>p.nome!==n);salva();disegnaProdotti();disegnaHome();
+  const d=e.target.closest("[data-del-p]");
+  if(d){
+    const n=d.dataset.delP;
+    if(confirm("Togliere \u00ab"+n+"\u00bb dall\u2019anagrafica? Le ricette gi\u00e0 salvate non cambiano.")){
+      DB.prodotti=DB.prodotti.filter(p=>p.nome!==n);salva();disegnaProdotti();disegnaHome();
+    }
+    return;
+  }
+  const t=e.target.closest("[data-tocca-nota]");
+  if(t){PROD_ESPANSO=(PROD_ESPANSO===t.dataset.toccaNota)?null:t.dataset.toccaNota;disegnaProdotti();return;}
+  const tc=e.target.closest("[data-toggle-cat]");
+  if(tc){
+    const p=(DB.prodotti||[]).find(x=>x.nome===tc.dataset.toggleCat);
+    if(p){
+      p.categorie=p.categorie||[];
+      const c=tc.dataset.c,i=p.categorie.indexOf(c);
+      if(i>=0){p.categorie.splice(i,1);if(c==="Altro")p.categoriaAltro="";}
+      else p.categorie.push(c);
+      salva();disegnaProdotti();
+    }
+    return;
+  }
+  const an=e.target.closest("[data-add-nota-prod]");
+  if(an){
+    const p=(DB.prodotti||[]).find(x=>x.nome===an.dataset.addNotaProd);
+    if(p){p.note=p.note||[];p.note.push("");salva();disegnaProdotti();
+      setTimeout(function(){const ta=$$('[data-nota-i-prod="'+an.dataset.addNotaProd+'"]');const last=ta[ta.length-1];if(last)last.focus();},60);
+    }
+    return;
+  }
+  const dn=e.target.closest("[data-del-nota-prod]");
+  if(dn){
+    const p=(DB.prodotti||[]).find(x=>x.nome===dn.dataset.delNotaProd);
+    if(p&&p.note){p.note.splice(+dn.dataset.i,1);salva();disegnaProdotti();}
+    return;
   }
 });
+$("#sez-prodotti").addEventListener("blur",function(e){
+  const n=e.target.closest("[data-nota-i-prod]");
+  if(n){
+    const p=(DB.prodotti||[]).find(x=>x.nome===n.dataset.notaIProd);
+    if(p&&p.note){const i=+n.dataset.i;if(p.note[i]!==n.value){p.note[i]=n.value;salva();}}
+    return;
+  }
+  const na=e.target.closest("[data-nota-auto-prod]");
+  if(na){
+    const ne=notaProdottoEntry(na.dataset.notaAutoProd);
+    if(ne&&ne.t!==na.value){ne.t=na.value;salva();}
+    return;
+  }
+  const a=e.target.closest("[data-cat-altro-prod]");
+  if(a){
+    const p=(DB.prodotti||[]).find(x=>x.nome===a.dataset.catAltroProd);
+    if(p&&p.categoriaAltro!==a.value){p.categoriaAltro=a.value;salva();}
+    return;
+  }
+},true);
 
 /* --- RICETTA --- */
 function confermaDose(el){
@@ -2725,12 +3213,51 @@ $("#p-ricetta").addEventListener("click",function(e){
     avviso(senza.length?senza.length+" senza formulato: controlla":"Riordinati per sequenza di miscela");
     return;
   }
+  const mAgg=t.closest("[data-met-agg]");
+  if(mAgg){
+    leggiRicetta();
+    const i=+mAgg.dataset.metAgg,m=R.meteo[i];
+    if(m){m.fonte="";aggiornaCampiMeteo();
+      const l=luogoMeteo(m.luogoId)||{id:m.luogoId,nome:m.nome,lat:m.lat,lon:m.lon};
+      chiediMeteo(l,true).then(function(g){
+        const v=g[R.data||oggiISO()];
+        if(!v){m.fonte="fuori";m.gg=R.data;aggiornaCampiMeteo();avviso("Giorno fuori dalla previsione");return;}
+        METEO_CAMPI.forEach(function(k){m[k]=fmtT(v[k]);});
+        m.fonte="auto";m.gg=R.data;aggiornaCampiMeteo();avviso("Meteo aggiornato");
+      }).catch(function(e){m.fonte="niente";aggiornaCampiMeteo();avviso("Non scaricato: "+e.message);});
+    }
+    return;
+  }
+  const mDel=t.closest("[data-met-del]");
+  if(mDel){leggiRicetta();R.meteo.splice(+mDel.dataset.metDel,1);disegnaRicetta(false);return;}
+  const mAdd=t.closest("[data-met-add]");
+  if(mAdd){
+    leggiRicetta();
+    const l=luogoMeteo(mAdd.dataset.metAdd);
+    if(l){R.meteo.push(rigaMeteoDa(l));disegnaRicetta(false);compilaMeteoRicetta(true);}
+    return;
+  }
+  if(t.closest("[data-met-tutti]")){leggiRicetta();compilaMeteoRicetta(true);avviso("Riscarico il meteo\u2026");return;}
+  if(t.closest("[data-met-pagina]")){leggiRicetta();apriMeteo("ricetta");return;}
   if(t.closest("[data-info]")){leggiRicetta();infoMiscela();return;}
   if(t.closest("[data-genera]")){apriGenera();return;}
 });
 $("#p-ricetta").addEventListener("change",function(e){
   if(e.target.id==="r-base"){R.base=e.target.value;return;}
-  if(e.target.id==="r-data"){R.data=e.target.value;const rd=$("#r-data-riga");if(rd)rd.innerHTML=rigaData();return;}
+  if(e.target.id==="r-data"){R.data=e.target.value;const rd=$("#r-data-riga");if(rd)rd.innerHTML=rigaData();
+    (R.meteo||[]).forEach(function(m){if(m.fonte!=="manuale")m.fonte="";});
+    aggiornaCampiMeteo();compilaMeteoRicetta(false);return;}
+  const ml=e.target.dataset?e.target.dataset.metLuogo:null;
+  if(ml!==null&&ml!==undefined){
+    leggiRicetta();
+    const i=+ml,l=luogoMeteo(e.target.value);
+    if(l&&R.meteo[i]){
+      R.meteo[i]=rigaMeteoDa(l);
+      disegnaRicetta(false);
+      compilaMeteoRicetta(true);
+    }
+    return;
+  }
   if(e.target.dataset&&e.target.dataset.p==="unita")R.prodotti[+e.target.dataset.i].unita=e.target.value;
 });
 $("#p-ricetta").addEventListener("input",function(e){
@@ -2738,6 +3265,17 @@ $("#p-ricetta").addEventListener("input",function(e){
   if(PICK&&el.id==="r-"+PICK){
     const box=$('#p-ricetta [data-lista="'+PICK+'"]');
     if(box)box.innerHTML=righePick(PICK,el.value.trim());
+    return;
+  }
+  const mk=el.dataset.met;
+  if(mk){
+    const i=+el.dataset.i;
+    if(R.meteo&&R.meteo[i]){
+      R.meteo[i][mk]=el.value.trim();
+      R.meteo[i].fonte="manuale";
+      const f=$('#r-meteo [data-met-fonte="'+i+'"]');
+      if(f)f.innerHTML=meteoFonteHTML(R.meteo[i]);
+    }
     return;
   }
   const p=el.dataset.p;if(!p)return;
@@ -2994,6 +3532,8 @@ $("#p-impostazioni").addEventListener("click",function(e){
   if(nav){
     impApplica();
     if(nav.dataset.imp==="_appunto"){chiudiPannelli();apriAppunto();return;}
+    if(nav.dataset.imp==="meteo"){apriMeteo("imp");return;}
+    if(nav.dataset.imp==="note"){NOTE_RITORNO="imp";apriNote();return;}
     apriImp(nav.dataset.imp);return;
   }
   const su=t.closest("[data-su]"),giu=t.closest("[data-giu]");
@@ -3111,6 +3651,109 @@ $("#p-impostazioni").addEventListener("change",function(e){
   }catch(err){avviso("File non valido");}};
   r.readAsText(f);e.target.value="";
 });
+$("#p-meteo").addEventListener("click",function(e){
+  const t=e.target,c=meteoCfg(),l=c.luoghi;
+  if(t.closest("[data-met-back]")){
+    if(METEO_RITORNO==="ricetta"){disegnaRicetta(false);mostraPannello($("#p-ricetta"));}
+    else if(METEO_RITORNO==="imp"){apriImp("menu");}
+    else{chiudiPannelli();vaiA("home");}
+    return;
+  }
+  if(t.closest("[data-met-auto]")){c.auto=!c.auto;salva();disegnaMeteo();return;}
+  const d=t.closest("[data-met-def]");
+  if(d){const i=+d.dataset.metDef;l[i].def=(l[i].def===false);salva();disegnaMeteo();return;}
+  const mo=t.closest("[data-met-mod]");
+  if(mo){const i=+mo.dataset.metMod;METEO_STATO.mod=(METEO_STATO.mod===i?null:i);disegnaMeteo();return;}
+  const rm=t.closest("[data-met-rm]");
+  if(rm){
+    const i=+rm.dataset.metRm;
+    if(!confirm("Togliere \u00ab"+(l[i].nome||"questo luogo")+"\u00bb? Le ricette gi\u00e0 salvate non cambiano."))return;
+    delete cacheMeteo()[l[i].id];
+    l.splice(i,1);METEO_STATO.mod=null;salva();disegnaMeteo();
+    return;
+  }
+  const sc=t.closest("[data-met-scarica]");
+  if(sc){
+    const i=+sc.dataset.metScarica;
+    METEO_STATO.msg="";
+    chiediMeteo(l[i],true).then(function(){disegnaMeteo();avviso("Previsioni aggiornate");})
+      .catch(function(err){avviso("Non scaricato: "+err.message);});
+    return;
+  }
+  if(t.closest("[data-met-tuttiluoghi]")){
+    let fatti=0;
+    l.forEach(function(x){
+      chiediMeteo(x,true).then(function(){fatti++;disegnaMeteo();})
+        .catch(function(){});
+    });
+    avviso("Scarico le previsioni\u2026");
+    return;
+  }
+  const ge=t.closest("[data-met-geo]");
+  if(ge){
+    const i=+ge.dataset.metGeo;
+    cercaLuogo(l[i].nome).then(function(r){
+      if(!r.length){avviso("Nome non trovato");return;}
+      l[i].lat=Number(r[0].latitude);l[i].lon=Number(r[0].longitude);
+      delete cacheMeteo()[l[i].id];
+      salva();disegnaMeteo();avviso("Coordinate aggiornate da Open-Meteo");
+    }).catch(function(err){avviso("Ricerca non riuscita: "+err.message);});
+    return;
+  }
+  if(t.closest("[data-met-cerca]")){
+    const q=($("#met-q")?$("#met-q").value:"").trim();
+    METEO_STATO.q=q;
+    if(!q){avviso("Scrivi un nome");return;}
+    METEO_STATO.lav=true;METEO_STATO.msg="";METEO_STATO.ris=[];disegnaMeteo();
+    cercaLuogo(q).then(function(r){
+      METEO_STATO.lav=false;METEO_STATO.ris=r;
+      METEO_STATO.msg=r.length?"":"Nessun luogo con questo nome. Prova un comune vicino, oppure inserisci le coordinate a mano.";
+      disegnaMeteo();
+    }).catch(function(err){
+      METEO_STATO.lav=false;METEO_STATO.ris=[];
+      METEO_STATO.msg="Ricerca non riuscita ("+err.message+"). Senza rete puoi comunque inserire le coordinate a mano.";
+      disegnaMeteo();
+    });
+    return;
+  }
+  const pk=t.closest("[data-met-pick]");
+  if(pk){
+    const r=METEO_STATO.ris[+pk.dataset.metPick];if(!r)return;
+    const nome=r.name;
+    l.push({id:nuovoIdLuogo(nome),nome:nome,lat:Number(r.latitude),lon:Number(r.longitude),
+      def:false,slug:slugLuogo(nome)});
+    METEO_STATO.ris=[];METEO_STATO.q="";METEO_STATO.msg="";
+    salva();disegnaMeteo();avviso("\u00ab"+nome+"\u00bb aggiunto. Mettilo predefinito se lo vuoi in ogni ricetta.");
+    chiediMeteo(l[l.length-1],true).then(disegnaMeteo).catch(function(){});
+    return;
+  }
+  if(t.closest("[data-met-mano]")){
+    const nome="Nuovo luogo";
+    l.push({id:nuovoIdLuogo(nome),nome:nome,lat:37.5,lon:15,def:false,slug:""});
+    METEO_STATO.mod=l.length-1;METEO_STATO.ris=[];
+    salva();disegnaMeteo();
+    return;
+  }
+});
+$("#p-meteo").addEventListener("input",function(e){
+  const el=e.target;
+  if(el.id==="met-q"){METEO_STATO.q=el.value;return;}
+  const k=el.dataset.ml;
+  if(!k)return;
+  const i=+el.dataset.i,l=luoghiMeteo()[i];
+  if(!l)return;
+  if(k==="lat"||k==="lon"){
+    const n=Number(String(el.value).replace(",","."));
+    if(!isNaN(n)&&el.value.trim()!==""){l[k]=n;delete cacheMeteo()[l.id];}
+  }else l[k]=el.value;
+  salva();
+});
+$("#p-meteo").addEventListener("keydown",function(e){
+  if(e.key==="Enter"&&e.target.id==="met-q"){
+    e.preventDefault();
+    const b=$("#p-meteo [data-met-cerca]");if(b)b.click();
+  }
+});
 $("#p-ricetta").addEventListener("keydown",function(e){
   if(e.key!=="Enter")return;
   const el=e.target;
@@ -3177,6 +3820,12 @@ function caricaRicetteBase(){
 function migra(){
   DB.noteSchede=DB.noteSchede||{};DB.prodotti=DB.prodotti||[];DB.aziende=DB.aziende||[];
   DB.colture=DB.colture||[];DB.avversita=DB.avversita||[];DB.voci=DB.voci||[];
+  DB.prodotti.forEach(function(p){
+    if(!p.note)p.note=(p.nota?[p.nota]:[]);
+    delete p.nota;
+    if(!p.categorie)p.categorie=(p.categoria?[p.categoria]:[]);
+    delete p.categoria;
+  });
   const base=catalogoIniziale();
   if(!DB.colture.length)DB.colture=base.colture;
   base.colture.forEach(function(c){if(!DB.colture.some(x=>x.id===c.id))DB.colture.push(c);});
@@ -3199,6 +3848,7 @@ function migra(){
     (v.prodotti||[]).forEach(function(p){if(p.ok===undefined)p.ok=true;});
     if(!v.modo&&(v.prodotti||[]).filter(p=>p.nome).length){v.modo="fogliare";v.base="1000";}
     if(!v.titolo)v.titolo="Voce del "+dataIt(v.data);
+    if(!Array.isArray(v.meteo))v.meteo=[];
   });
   caricaRicetteBase();
   DB.voci.forEach(registraProdotti);
@@ -3220,13 +3870,17 @@ function migra(){
    normale. Selettore volutamente ampio: bottoni, select, link con
    data-vai-scheda, righe .scheda, .prod, .ri-edit, .cal-tap.
    ============================================================ */
-const SEL_BLOCCHI="button, select, a[data-vai-scheda], .scheda, .prod, .ri-edit, .cal-tap";
+const SEL_BLOCCHI="button, select, a[data-vai-scheda], .scheda, .prod, .ri-edit, .cal-tap, .met-riga, .met-luogo";
 let BLOCCHI_ON=false, OSS_BLOCCHI=null;
 function rinumeraBlocchi(){
   if(!BLOCCHI_ON)return;
   if(OSS_BLOCCHI)OSS_BLOCCHI.disconnect();
   document.querySelectorAll(".blocco-badge").forEach(function(b){b.remove();});
   document.querySelectorAll(".has-blocco").forEach(function(b){b.classList.remove("has-blocco");});
+  document.querySelectorAll(".blocco-wrap").forEach(function(w){
+    const inner=w.firstElementChild;
+    if(inner&&w.parentNode){w.parentNode.insertBefore(inner,w);w.remove();}
+  });
   const radici=[];
   const header=document.querySelector("header.top");if(header)radici.push(header);
   const tabBasso=document.querySelector("#tab-basso");if(tabBasso)radici.push(tabBasso);
@@ -3237,10 +3891,18 @@ function rinumeraBlocchi(){
   radici.forEach(function(root){
     root.querySelectorAll(SEL_BLOCCHI).forEach(function(el){
       n++;
-      el.classList.add("has-blocco");
-      const s=document.createElement("span");
-      s.className="blocco-badge";s.textContent=n;
-      el.appendChild(s);
+      const badge=document.createElement("span");
+      badge.className="blocco-badge";badge.textContent=n;
+      if(el.tagName==="SELECT"){
+        const wrap=document.createElement("span");
+        wrap.className="blocco-wrap has-blocco";
+        el.parentNode.insertBefore(wrap,el);
+        wrap.appendChild(el);
+        wrap.appendChild(badge);
+      }else{
+        el.classList.add("has-blocco");
+        el.appendChild(badge);
+      }
     });
   });
   if(OSS_BLOCCHI)OSS_BLOCCHI.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:["hidden"]});
@@ -3250,9 +3912,292 @@ $("#btn-blocchi").addEventListener("click",function(){
   document.body.classList.toggle("modalita-blocchi",BLOCCHI_ON);
   $("#btn-blocchi").classList.toggle("on",BLOCCHI_ON);
   if(BLOCCHI_ON)rinumeraBlocchi();
-  else{document.querySelectorAll(".blocco-badge").forEach(function(b){b.remove();});document.querySelectorAll(".has-blocco").forEach(function(b){b.classList.remove("has-blocco");});}
+  else{
+    document.querySelectorAll(".blocco-badge").forEach(function(b){b.remove();});
+    document.querySelectorAll(".has-blocco").forEach(function(b){b.classList.remove("has-blocco");});
+    document.querySelectorAll(".blocco-wrap").forEach(function(w){
+      const inner=w.firstElementChild;
+      if(inner&&w.parentNode){w.parentNode.insertBefore(inner,w);w.remove();}
+    });
+  }
 });
 OSS_BLOCCHI=new MutationObserver(function(){clearTimeout(window.__bT);window.__bT=setTimeout(rinumeraBlocchi,80);});
+
+/* ============================================================
+   17. NOTE SUL PUNTO — la chiocciola in basso a destra
+   Serve ad Alfio per indicare una modifica toccando il punto dello
+   schermo invece di descriverlo a parole. Acceso il tasto @, ogni
+   tocco apre una nuvoletta: la nota viene salvata insieme al numero
+   di blocco, al nome della schermata e a una descrizione
+   dell'elemento toccato. Dall'elenco si copia tutto in un colpo.
+   La numerazione blocchi si accende da sola: e' l'ancora della nota.
+   Il tasto "Naviga" sospende la cattura dei tocchi, cosi' si puo'
+   cambiare schermata senza spegnere la modalita'.
+   ============================================================ */
+let NOTE_ON=false, NOTE_NAVIGA=false, NOTA_APERTA=null, NOTE_RITORNO=null;
+
+function noteApp(){DB.noteApp=DB.noteApp||[];return DB.noteApp;}
+
+function nomeSchermata(){
+  const pan=$$(".pannello").filter(function(x){return !x.hidden;});
+  if(pan.length){
+    const id=pan[pan.length-1].id;
+    const nomi={"p-lettura":"Lettura voce","p-editor":"Appunto","p-impostazioni":"Impostazioni",
+      "p-scheda":"Scheda del consultorio","p-ricetta":"Ricetta","p-info":"Ordine di miscela",
+      "p-genera":"Genera ricetta","p-appunto":"Appunto","p-meteo":"Meteo","p-note":"Note"};
+    let n=nomi[id]||id;
+    if(id==="p-ricetta")n+=" \u00b7 passo "+PASSO+" "+((PASSI[PASSO-1]||{}).t||"");
+    if(id==="p-impostazioni")n+=" \u00b7 "+IMP.vista;
+    return n;
+  }
+  const nomi={home:"Home",storico:"Storico / QDCA",suggerimenti:"Suggerimenti del mese",
+    consultorio:"Consultorio",prodotti:"Banca Dati"};
+  return nomi[sezione]||sezione;
+}
+function testoPulito(el){
+  const c=el.cloneNode(true);
+  c.querySelectorAll(".blocco-badge, .bm-n, .n-conta").forEach(function(x){x.remove();});
+  return (c.textContent||"").replace(/\s+/g," ").trim();
+}
+function descriviElemento(el){
+  if(!el||el===document.body)return "sfondo della pagina";
+  const t=el.tagName.toLowerCase();
+  let txt=(el.getAttribute("aria-label")||el.getAttribute("placeholder")||
+    (el.value!==undefined&&t!=="select"?el.value:"")||testoPulito(el)).replace(/\s+/g," ").trim();
+  if(t==="select"&&el.options&&el.selectedIndex>=0)txt=el.options[el.selectedIndex].text;
+  if(txt.length>70)txt=txt.slice(0,70)+"\u2026";
+  const cls=(el.className&&typeof el.className==="string")
+    ?el.className.split(/\s+/).filter(function(c){return c&&c.indexOf("has-blocco")<0&&c.indexOf("blocco-")<0;}).slice(0,2).join(".")
+    :"";
+  return t+(cls?"."+cls:"")+(txt?' \u00ab'+txt+'\u00bb':"");
+}
+function bloccoDi(el){
+  if(!el||!el.closest)return null;
+  function leggi(){
+    const b=el.closest(".has-blocco");
+    if(!b)return null;
+    const badge=b.querySelector(":scope > .blocco-badge");
+    return badge?badge.textContent:null;
+  }
+  let n=leggi();
+  if(n===null&&BLOCCHI_ON){rinumeraBlocchi();n=leggi();}
+  return n;
+}
+function chiudiBolla(){
+  NOTA_APERTA=null;
+  const v=$(".nota-velo");if(v)v.remove();
+  const b=$(".nota-bolla");if(b)b.remove();
+  const m=$(".nota-mirino");if(m)m.remove();
+}
+function apriBolla(x,y,el,esistente){
+  chiudiBolla();
+  const blocco=esistente?esistente.blocco:bloccoDi(el);
+  const dove=esistente?esistente.schermata:nomeSchermata();
+  const elDesc=esistente?esistente.elemento:descriviElemento(el);
+  NOTA_APERTA={id:esistente?esistente.id:null,blocco:blocco,schermata:dove,elemento:elDesc};
+
+  const velo=document.createElement("div");velo.className="nota-velo";
+  document.body.appendChild(velo);
+
+  const mir=document.createElement("div");mir.className="nota-mirino";
+  mir.style.left=x+"px";mir.style.top=y+"px";
+  document.body.appendChild(mir);
+
+  const bolla=document.createElement("div");bolla.className="nota-bolla";
+  bolla.innerHTML=
+    '<div class="nb-dove">'+esc(dove)+(blocco?" \u00b7 blocco "+esc(blocco):"")+'</div>'+
+    '<div class="nb-el">'+esc(elDesc)+'</div>'+
+    '<textarea id="nota-testo" placeholder="Cosa vuoi che cambi qui\u2026"></textarea>'+
+    '<div class="nb-az">'+
+      (esistente?'<button class="rm" data-nota-elimina>Elimina</button>':"")+
+      '<button data-nota-annulla>Annulla</button>'+
+      '<button class="ok" data-nota-salva>Salva</button>'+
+    '</div>';
+  document.body.appendChild(bolla);
+  const w=bolla.offsetWidth,h=bolla.offsetHeight;
+  let bx=Math.min(Math.max(8,x-w/2),window.innerWidth-w-8);
+  let by=y+22;
+  if(by+h>window.innerHeight-8)by=Math.max(8,y-h-22);
+  bolla.style.left=bx+"px";bolla.style.top=by+"px";
+  const ta=$("#nota-testo");
+  if(ta){ta.value=esistente?esistente.testo:"";setTimeout(function(){ta.focus();},60);}
+}
+function salvaNota(){
+  const ta=$("#nota-testo");
+  const testo=ta?ta.value.trim():"";
+  if(!testo){avviso("Scrivi qualcosa, o tocca Annulla");return;}
+  const l=noteApp();
+  if(NOTA_APERTA.id){
+    const n=l.find(function(x){return x.id===NOTA_APERTA.id;});
+    if(n){n.testo=testo;n.modificato=Date.now();}
+  }else{
+    l.push({id:nuovoId(),t:Date.now(),schermata:NOTA_APERTA.schermata,
+      blocco:NOTA_APERTA.blocco,elemento:NOTA_APERTA.elemento,testo:testo});
+  }
+  salva();chiudiBolla();aggiornaContaNote();
+  avviso(NOTA_APERTA&&NOTA_APERTA.blocco?"Nota salvata sul blocco "+NOTA_APERTA.blocco:"Nota salvata");
+}
+function aggiornaContaNote(){
+  const b=$("#btn-note");if(!b)return;
+  const n=noteApp().length;
+  b.innerHTML="@"+(n?'<span class="n-conta">'+n+'</span>':"");
+  const bar=$(".nota-barra .nb-t");
+  if(bar)bar.textContent="Note sul punto \u00b7 "+n;
+}
+function barraNote(){
+  let bar=$(".nota-barra");
+  if(!NOTE_ON){if(bar)bar.remove();return;}
+  if(!bar){
+    bar=document.createElement("div");bar.className="nota-barra";
+    document.body.appendChild(bar);
+  }
+  bar.innerHTML='<span class="nb-t">Note sul punto \u00b7 '+noteApp().length+'</span>'+
+    '<button class="'+(NOTE_NAVIGA?"":"att")+'" data-nota-modo="annota">Annota</button>'+
+    '<button class="'+(NOTE_NAVIGA?"att":"")+'" data-nota-modo="naviga">Naviga</button>'+
+    '<button data-nota-elenco>Elenco</button>'+
+    '<button data-nota-esci>Esci</button>';
+}
+function accendiNote(v){
+  NOTE_ON=v;NOTE_NAVIGA=false;
+  document.body.classList.toggle("modalita-note",NOTE_ON);
+  document.body.classList.remove("naviga");
+  $("#btn-note").classList.toggle("on",NOTE_ON);
+  if(NOTE_ON&&!BLOCCHI_ON)$("#btn-blocchi").click();
+  if(!NOTE_ON)chiudiBolla();
+  barraNote();aggiornaContaNote();
+  if(NOTE_ON)avviso("Tocca un punto dello schermo per scrivere una nota");
+}
+function testoNote(){
+  const l=noteApp();
+  if(!l.length)return "";
+  const r=["NOTE SUL QUADERNO \u2014 "+VERSIONE_APP,
+    "Scritte da Alfio toccando i punti dello schermo. Il numero di blocco",
+    "\u00e8 quello che compare con il tasto # acceso.",""];
+  const gruppi={};
+  l.forEach(function(n){(gruppi[n.schermata]=gruppi[n.schermata]||[]).push(n);});
+  let i=0;
+  Object.keys(gruppi).forEach(function(k){
+    r.push("### "+k);
+    gruppi[k].forEach(function(n){
+      i++;
+      r.push(i+") "+(n.blocco?"blocco "+n.blocco+" \u2014 ":"")+n.elemento);
+      r.push("   "+n.testo.split("\n").join("\n   "));
+    });
+    r.push("");
+  });
+  return r.join("\n");
+}
+function disegnaNote(){
+  const l=noteApp().slice().sort(function(a,b){return a.t-b.t;});
+  const gruppi={};
+  l.forEach(function(n){(gruppi[n.schermata]=gruppi[n.schermata]||[]).push(n);});
+  $("#p-note").innerHTML=
+  '<div class="barra-p"><button class="indietro" data-nota-chiudi>\u2039 Indietro</button>'+
+  '<span class="titolo-p">Note</span><span style="width:60px"></span></div>'+
+  '<div class="wrap"><div class="testata"><div class="tipo-d">'+l.length+' '+(l.length===1?"nota":"note")+'</div>'+
+  '<h2>Quello che hai segnato</h2>'+
+  '<p class="suggerimento" style="font-size:13px">Tocca «Copia tutto» e incolla nella chat: ricevo schermata, numero di blocco, elemento toccato e il tuo testo, cos\u00ec so esattamente dove intervenire.</p></div>'+
+  (l.length?Object.keys(gruppi).map(function(k){
+    return '<div class="imp-sez">'+esc(k)+'</div>'+gruppi[k].map(function(n){
+      return '<div class="nota-c" data-id="'+esc(n.id)+'">'+
+        '<div class="nc-h">'+(n.blocco?"blocco "+esc(n.blocco):"punto libero")+'</div>'+
+        '<div class="nc-el">'+esc(n.elemento)+'</div>'+
+        '<div class="nc-t">'+esc(n.testo)+'</div>'+
+        '<div class="nc-az"><button class="mini" data-nota-mod="'+esc(n.id)+'">Modifica</button>'+
+        '<button class="mini" data-nota-rm="'+esc(n.id)+'">Elimina</button></div></div>';
+    }).join("");
+  }).join(""):'<p class="suggerimento" style="margin:16px 0">Nessuna nota. Accendi la chiocciola in basso a destra e tocca il punto che vuoi commentare.</p>')+
+  (l.length?'<div class="met-az" style="margin-top:16px">'+
+    '<button class="mini" data-nota-copia>Copia tutto</button>'+
+    '<button class="mini" data-nota-condividi>Condividi</button>'+
+    '<button class="mini" data-nota-svuota>Cancella tutte</button></div>'+
+    '<p class="suggerimento" style="margin-top:14px">Se il tasto Copia non funziona, tieni premuto qui sotto e copia a mano.</p>'+
+    '<textarea id="nota-export" readonly>'+esc(testoNote())+'</textarea>':"")+
+  '<div style="height:44px"></div></div>';
+}
+function apriNote(){disegnaNote();mostraPannello($("#p-note"));}
+function chiudiNote(){
+  if(NOTE_RITORNO==="imp"){NOTE_RITORNO=null;apriImp("menu");return;}
+  chiudiPannelli();vaiA(sezione||"home");
+}
+
+/* ---- cattura dei tocchi ---- */
+const NOTE_LIBERI="#btn-note, #btn-blocchi, .nota-bolla, .nota-barra, .nota-velo, #p-note, .toast";
+document.addEventListener("click",function(e){
+  if(!NOTE_ON||NOTE_NAVIGA)return;
+  const t=e.target;
+  if(t.closest&&t.closest(NOTE_LIBERI))return;
+  e.preventDefault();e.stopPropagation();
+  apriBolla(e.clientX||Math.round(window.innerWidth/2),
+            e.clientY||Math.round(window.innerHeight/2),t,null);
+},true);
+document.addEventListener("mousedown",function(e){
+  if(!NOTE_ON||NOTE_NAVIGA)return;
+  if(e.target.closest&&e.target.closest(NOTE_LIBERI))return;
+  e.preventDefault();e.stopPropagation();
+},true);
+
+$("#btn-note").addEventListener("click",function(e){
+  e.stopPropagation();
+  accendiNote(!NOTE_ON);
+});
+document.addEventListener("click",function(e){
+  const t=e.target;
+  if(t.closest("[data-nota-salva]")){salvaNota();return;}
+  if(t.closest("[data-nota-annulla]")){chiudiBolla();return;}
+  if(t.closest("[data-nota-elimina]")){
+    if(NOTA_APERTA&&NOTA_APERTA.id){
+      DB.noteApp=noteApp().filter(function(x){return x.id!==NOTA_APERTA.id;});
+      salva();
+    }
+    chiudiBolla();aggiornaContaNote();
+    if(!$("#p-note").hidden)disegnaNote();
+    return;
+  }
+  if(t.classList&&t.classList.contains("nota-velo")){chiudiBolla();return;}
+  const md=t.closest("[data-nota-modo]");
+  if(md){
+    NOTE_NAVIGA=(md.dataset.notaModo==="naviga");
+    document.body.classList.toggle("naviga",NOTE_NAVIGA);
+    barraNote();
+    avviso(NOTE_NAVIGA?"Naviga liberamente, la modalit\u00e0 resta accesa":"Tocca un punto per annotarlo");
+    return;
+  }
+  if(t.closest("[data-nota-elenco]")){NOTE_RITORNO=null;apriNote();return;}
+  if(t.closest("[data-nota-esci]")){accendiNote(false);return;}
+  if(t.closest("[data-nota-chiudi]")){chiudiNote();return;}
+  const nm=t.closest("[data-nota-mod]");
+  if(nm){
+    const n=noteApp().find(function(x){return x.id===nm.dataset.notaMod;});
+    if(n)apriBolla(Math.round(window.innerWidth/2),Math.round(window.innerHeight/3),null,n);
+    return;
+  }
+  const nr=t.closest("[data-nota-rm]");
+  if(nr){
+    DB.noteApp=noteApp().filter(function(x){return x.id!==nr.dataset.notaRm;});
+    salva();disegnaNote();aggiornaContaNote();return;
+  }
+  if(t.closest("[data-nota-copia]")){
+    const txt=testoNote();
+    const fatto=function(){avviso("Note copiate: incollale nella chat");};
+    if(navigator.clipboard&&navigator.clipboard.writeText)
+      navigator.clipboard.writeText(txt).then(fatto).catch(function(){
+        const ta=$("#nota-export");if(ta){ta.select();avviso("Copia a mano dal riquadro");}
+      });
+    else{const ta=$("#nota-export");if(ta){ta.select();avviso("Copia a mano dal riquadro");}}
+    return;
+  }
+  if(t.closest("[data-nota-condividi]")){
+    const txt=testoNote();
+    if(navigator.share)navigator.share({title:"Note sul Quaderno",text:txt}).catch(function(){});
+    else{const ta=$("#nota-export");if(ta){ta.select();avviso("Condivisione non disponibile: copia a mano");}}
+    return;
+  }
+  if(t.closest("[data-nota-svuota]")){
+    if(!confirm("Cancellare tutte le note?"))return;
+    DB.noteApp=[];salva();disegnaNote();aggiornaContaNote();return;
+  }
+});
 
 (function(){
   Archivio.leggi().then(function(s){
@@ -3261,6 +4206,7 @@ OSS_BLOCCHI=new MutationObserver(function(){clearTimeout(window.__bT);window.__b
     Archivio.scrivi(DB);
     disegnaColture();
     vaiA("home");
+    aggiornaContaNote();
   });
 })();
 </script>
