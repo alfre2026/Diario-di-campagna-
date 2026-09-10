@@ -477,6 +477,21 @@ body.modalita-blocchi .blocco-badge{display:flex;align-items:center;justify-cont
   background:#2f6f6b;color:#fff;font:700 9.5px/1 var(--mono,monospace);z-index:9999;
   box-shadow:0 0 0 2px var(--carta,#fff);pointer-events:none}
 
+/* ============ GLOSSARIO E PUBBLICAZIONI ============ */
+#p-biblio input[type=text]{width:100%;padding:11px 12px;background:var(--carta-2);
+  border:1px solid var(--riga-forte);border-radius:10px;font-size:16px}
+.glo-v{border-bottom:1px solid var(--riga);padding:11px 0}
+.glo-v:last-of-type{border-bottom:none}
+.glo-v h4{margin:0 0 4px;font-family:var(--serif);font-size:17px;font-weight:400;
+  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.glo-c{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--inchiostro-2)}
+.glo-d{font-size:14.5px;line-height:1.5;color:var(--inchiostro)}
+.pub-v{border:1px solid var(--riga);border-radius:12px;padding:12px 13px;margin-bottom:10px;background:var(--carta)}
+.pub-v h4{margin:0 0 5px;font-family:var(--serif);font-size:16.5px;font-weight:400;line-height:1.3}
+.pub-a{font-size:13px;color:var(--inchiostro-2);line-height:1.4}
+.pub-m{font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);margin-top:4px}
+
 /* ============ NOTE SUL PUNTO (chiocciola) ============ */
 #btn-note{position:fixed;right:10px;bottom:112px;z-index:9998;width:38px;height:38px;border-radius:999px;
   border:1px solid rgba(28,35,33,.3);background:var(--carta,#fff);color:var(--inchiostro,#1c2321);
@@ -657,6 +672,7 @@ body{padding-bottom:64px}
 <section class="pannello" id="p-appunto" hidden></section>
 <section class="pannello" id="p-meteo" hidden></section>
 <section class="pannello" id="p-note" hidden></section>
+<section class="pannello" id="p-biblio" hidden></section>
 <div class="toast" id="toast" hidden></div>
 <nav class="tab-basso" id="tab-basso" aria-label="Navigazione principale">
   <button data-tab-vai="home"><span class="tab-ic">📋</span><span class="tab-t">Ricette</span></button>
@@ -1293,6 +1309,8 @@ function impMenu(){
   impVoce("note-prod","Note sui prodotti","Equivalenze e precisazioni",c.noteProd.length)+
   '<div class="imp-sez">Consultorio</div>'+
   impVoce("calendari","Calendari delle avversit\u00e0","Tara i periodi critici sulla tua zona",SCHEDE.length)+
+  '<div class="imp-sez">Consultazione</div>'+
+  impVoce("glossario","Glossario e pubblicazioni","Termini tecnici e documenti del portale Patagrumi",GLOSSARIO.length)+
   '<div class="imp-sez">Note per Claude</div>'+
   impVoce("note","Note sul punto","Quello che hai segnato con la chiocciola",(DB.noteApp||[]).length)+
   '<div class="imp-sez">Meteo</div>'+
@@ -1687,10 +1705,114 @@ function linkScheda(s){
 }
 
 /* ============================================================
+   3bis-bis. PATAGRUMI — portale delle fitopatologie degli agrumi
+   del Parco Scientifico e Tecnologico della Sicilia.
+   Testi e fotografie sono loro (© PSTS): nell'app NON ne viene
+   copiato nulla. Da qui partono soltanto collegamenti al portale,
+   dove le foto si guardano sul sito di chi le ha fatte.
+   Serve connessione: sono link esterni, non contenuti offline.
+   ============================================================ */
+const PATAGRUMI_BASE="http://www.patagrumi.pstsicilia.it";
+function linkPatagrumi(t){
+  return PATAGRUMI_BASE+"?s="+encodeURIComponent(t).replace(/%20/g,"+")+"&post_type=portfolio";
+}
+// termine di ricerca sul portale, per scheda del consultorio.
+// Solo agrumi: il portale non tratta olivo e fico d'India.
+const PATAGRUMI_SCHEDE={
+  "planococcus-citri":"Cotonello degli agrumi",
+  "aonidiella-aurantii":"Cocciniglia rossa forte",
+  "ceratitis-capitata":"Mosca mediterranea della frutta",
+  "phyllocnistis-citrella":"Minatrice serpentina",
+  "pezothrips-kellyanus":"Tripide degli agrumi",
+  "afidi-agrumi":"Afide",
+  "aleurothrixus-floccosus":"fioccoso",
+  "saissetia-oleae":"Cocciniglia mezzo grano di pepe",
+  "aspidiotus-nerii":"Cocciniglia bianca",
+  "aculops-pelekassi":"Acaro",
+  "tetranychus-panonychus":"Ragnetto rosso",
+  "aceria-sheldoni":"Acaro delle meraviglie",
+  "phytophthora-agrumi":"Gommosi",
+  "allupatura":"allupatura",
+  "mal-secco":"Mal secco",
+  "botrite-agrumi":"Botrite",
+  "antracnosi-agrumi":"Antracnosi",
+  "fumaggine":"Fumaggine",
+  "ctv-tristeza":"Tristeza",
+  "clorosi-ferrica":"Squilibri nutrizionali",
+  "carenza-magnesio":"Carenza di magnesio",
+  "carenza-boro":"Squilibri nutrizionali",
+  "microcarenze-zn-mn":"Squilibri nutrizionali",
+  "spacco-frutto":"Spaccatura dei frutti",
+  "allisciamento":"Creasing",
+  "salinita":"Eccessiva salinit\u00e0",
+  "ipossia":"anossia"
+};
+
+/* Pubblicazioni scaricabili dal portale.
+   Qui stanno solo i riferimenti bibliografici — titolo, autori, anno,
+   indirizzo — non il contenuto dei documenti. Il bottone apre la
+   pagina del portale, da cui si scarica il PDF. */
+const PATAGRUMI_PUB=[
+ {t:"HLB (huanglongbing), nuova minaccia per gli agrumi",
+  a:"V. Catara, R. D'Anna, S. Davino, P. Bella, R. La Rosa, R. Fisicaro, F. Conti",
+  d:"Informatore Agrario 2-2015", y:"2015", tag:"batteri",
+  u:PATAGRUMI_BASE+"/hlb-huanglongbing-nuova-minaccia-per-gli-agrumi/"},
+ {t:"Il \u00abmarciume secco delle radici\u00bb degli agrumi: sintomi, cause e suscettibilit\u00e0 dei portinnesti",
+  a:"Antonino Catara, Giancarlo Polizzi", d:"", y:"2014", tag:"funghi",
+  u:PATAGRUMI_BASE+"/il-marciume-secco-delle-radici-degli-agrumi-sintomi-cause-e-suscettibilita-dei-portinnesti/"},
+ {t:"'Candidatus Liberibacter' spp.: Emerging Threats for Agriculture in the European and Mediterranean Region",
+  a:"Vincenza Ilardi, Vittoria Catara", d:"in inglese", y:"2014", tag:"batteri",
+  u:PATAGRUMI_BASE+"/candidatus-liberibacter-spp-emerging-threats-for-agriculture-in-the-european-and-mediterranean-region/"},
+ {t:"Effetti fitotossici di acque ad elevato contenuto di boro",
+  a:"Mario Pacetto", d:"", y:"2014", tag:"nutrizione",
+  u:PATAGRUMI_BASE+"/effetti-fitotossici-di-acque-ad-elevato-contenuto-di-boro/"},
+ {t:"Osservazioni su intumescenze gommose delle foglie di agrumi",
+  a:"Salvatore Grasso, Antonino Catara", d:"", y:"2014", tag:"fisiopatie",
+  u:PATAGRUMI_BASE+"/osservazioni-su-intumescenze-gommose-delle-foglie-di-agrumi/"},
+ {t:"Intumescenze gommose parassitarie e defogliazioni in piante di agrumi",
+  a:"S. Grasso, F. M. Grasso, M. Cannatella, F. Iachelli, S. La Rocca, S. Zagarella, A. Catara",
+  d:"", y:"2014", tag:"fisiopatie",
+  u:PATAGRUMI_BASE+"/intumescenze-gommose-parassitarie-e-defogliazioni-in-piante-di-agrumi/"},
+ {t:"New or re-emerging fungal Citrus diseases in the Mediterranean",
+  a:"Francesco Maria Grasso, Patrizia Bella, Salvatore Grasso, Antonino Catara",
+  d:"in inglese", y:"2014", tag:"funghi",
+  u:PATAGRUMI_BASE+"/new-or-re-emerging-fungal-citrus-diseases-in-the-mediterranean/"},
+ {t:"Abstracts del convegno sulla tristeza \u2014 23 giugno 2014",
+  a:"", d:"Gestione della malattia e rilancio dell'agrumicoltura", y:"2014", tag:"virus",
+  u:PATAGRUMI_BASE+"/abstracts-convegno-tristeza-23-giugno-2014/"},
+ {t:"Vademecum mandarino", a:"", d:"", y:"2014", tag:"generale",
+  u:PATAGRUMI_BASE+"/vademecum-mandarino/"},
+ {t:"Manuale Assopromand", a:"", d:"Manuale tecnico applicativo", y:"2014", tag:"generale",
+  u:PATAGRUMI_BASE+"/manuale-assopromand/"},
+ {t:"Guida alla gestione delle avversit\u00e0 parassitarie e non parassitarie degli agrumi",
+  a:"", d:"Avversit\u00e0 da fitofagi, funghi, batteri, fattori ambientali e squilibri nutrizionali",
+  y:"2014", tag:"generale",
+  u:PATAGRUMI_BASE+"/guida-alla-gestione-delle-avversita-parassitarie-e-non-parassitarie-degli-agrumi-2/"},
+ {t:"La sostituzione dell'arancio amaro: gli aspetti fitopatologici da non sottovalutare",
+  a:"Matilde Tessitori, Antonino Catara", d:"", y:"2014", tag:"portinnesti",
+  u:PATAGRUMI_BASE+"/la-sostituzione-dellarancio-amaro-gli-aspetti-fitopatologici-da-non-sottovalutare/"},
+ {t:"Il caso \u00abtristeza\u00bb degli agrumi",
+  a:"Antonino Catara, Sebastiano Barbagallo, Maria Saponari", d:"", y:"2014", tag:"virus",
+  u:PATAGRUMI_BASE+"/il-caso-tristeza-degli-agrumi/"},
+ {t:"Virus, viroidi e procarioti endogeni degli agrumi",
+  a:"Antonino Catara, Serena Rizza, Matilde Tessitori", d:"", y:"2014", tag:"virus",
+  u:PATAGRUMI_BASE+"/virus-viroidi-e-procarioti-endogeni-degli-agrumi/"},
+ {t:"Characterization of isolates of Citrus tristeza virus by sequential analyses of enzyme immunoassays and capillary electrophoresis",
+  a:"G. Licciardello, D. Raspagliesi, M. Bar-Joseph, A. Catara", d:"in inglese", y:"2014", tag:"virus",
+  u:PATAGRUMI_BASE+"/characterization-of-isolates-of-citrus-tristeza-virus-by-sequential-analyses-of-enzyme-immunoassays-and-capillary-electrophoresis-single-strand-conformation-polymorphisms/"},
+ {t:"Tecnologie a supporto della gestione del virus della tristeza degli agrumi (CTV) in \u00abzone d'insediamento\u00bb",
+  a:"A. Bertuccio, M. Tomasello, S. Fassari, A. Catara", d:"", y:"2014", tag:"virus",
+  u:PATAGRUMI_BASE+"/tecnologie-a-supporto-della-gestione-del-virus-della-tristeza-degli-agrumi-ctv-in-zone-dinsediamento/"},
+ {t:"Nuovi approcci di contenimento della maculatura bruna degli agrumi",
+  a:"P. Bella, M. Russo, M. Tomasello, V. Catara, A. Catara", d:"", y:"2014", tag:"funghi",
+  u:PATAGRUMI_BASE+"/nuovi-approcci-di-contenimento-della-maculatura-bruna-degli-agrumi/"}
+];
+
+/* ============================================================
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
-const VERSIONE_APP="v7.2 \u2014 05/09/2026";
+const VERSIONE_APP="v7.3 \u2014 05/09/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -1744,7 +1866,8 @@ const DEF_MENU=[
   {k:"storico",t:"Storico",s:"Tutte le voci, con filtri e ricerca",forte:false},
   {k:"consultorio",t:"Consultorio",s:"Schede tecniche delle avversit\u00e0",forte:false},
   {k:"prodotti",t:"Prodotti",s:"Anagrafica di prodotti e formulati",forte:false},
-  {k:"meteo",t:"Meteo",s:"Luoghi e temperature che finiscono nelle ricette",forte:false}
+  {k:"meteo",t:"Meteo",s:"Luoghi e temperature che finiscono nelle ricette",forte:false},
+  {k:"glossario",t:"Glossario e pubblicazioni",s:"Termini tecnici e documenti da scaricare",forte:false}
 ];
 function cfg(){
   DB.cfg=DB.cfg||{};
@@ -2310,6 +2433,171 @@ function disegnaMeteo(){
 }
 
 /* ============================================================
+   7quater. GLOSSARIO E PUBBLICAZIONI
+   Il glossario e' redatto da un modello linguistico (Claude) con
+   definizioni scritte apposta per questa app e orientate al lavoro
+   in campo su agrumi, olivo e fico d'India in Sicilia. NON e' la
+   trascrizione del glossario di Patagrumi, che resta opera del PSTS
+   e si consulta sul loro sito dal collegamento in fondo.
+   ============================================================ */
+const GLOS_CAT={sin:"Sintomi e alterazioni",bio:"Biologia e patogeni",
+  dif:"Difesa e fitoiatria",nut:"Nutrizione e suolo",dis:"Distribuzione e attrezzatura"};
+const GLOSSARIO=[
+/* --- sintomi --- */
+{c:"sin",t:"Abscissione",d:"Distacco di un organo per formazione di uno strato di cellule che cede alla base del picciolo. E' un processo normale; diventa un problema quando riguarda in massa fiori o frutticini, e allora si chiama cascola."},
+{c:"sin",t:"Accartocciamento",d:"Foglia arrotolata su se stessa lungo la nervatura centrale. Sugli agrumi lo si vede con gli afidi sui getti teneri, ma anche per stress idrico o per fitotossicit\u00e0 da diserbante."},
+{c:"sin",t:"Alone clorotico",d:"Bordo giallastro attorno a una macchia o a una necrosi. Segnala che il tessuto sano attorno alla lesione sta reagendo, e aiuta a distinguere una macchia parassitaria da un danno meccanico o chimico, che di solito l'alone non ce l'ha."},
+{c:"sin",t:"Argentatura",d:"Riflesso metallico grigiastro su foglia o buccia, dovuto allo scollamento della cuticola dai tessuti sottostanti. Tipica degli attacchi di tripidi e di alcuni acari."},
+{c:"sin",t:"Avvizzimento",d:"Perdita di turgore che non si recupera pi\u00f9, nemmeno irrigando. Indica un danno gi\u00e0 fatto ai vasi o alle radici, a differenza dell'appassimento."},
+{c:"sin",t:"Appassimento",d:"Perdita di turgore reversibile: la pianta si riprende col fresco della sera o dopo un'irrigazione. E' un segnale, non ancora un danno."},
+{c:"sin",t:"Butteratura del legno",d:"Scanalature e alveoli sul legno sotto la corteccia, che si vedono scortecciando un rametto. Sui ceppi severi di tristeza \u00e8 un elemento diagnostico. In inglese stem pitting."},
+{c:"sin",t:"Cascola",d:"Caduta anticipata di fiori o frutti. Sugli agrumi c'\u00e8 una cascola fisiologica di giugno che \u00e8 normale; quella che conta \u00e8 il di pi\u00f9 rispetto all'andamento dell'anno."},
+{c:"sin",t:"Clorosi",d:"Ingiallimento del lembo fogliare per ridotta formazione di clorofilla. La distribuzione dice molto: internervale sulle foglie giovani orienta al ferro, internervale sulle vecchie al magnesio, uniforme all'azoto."},
+{c:"sin",t:"Creasing",d:"Incrinature dell'albedo sotto una buccia che resta liscia in superficie ma cede alla pressione delle dita. Detto anche allisciamento. Fisiopatia, non malattia."},
+{c:"sin",t:"Disaffinit\u00e0 d'innesto",d:"Incompatibilit\u00e0 fra nesto e portinnesto. Si riconosce dal rigonfiamento o dal gradino al punto d'innesto e da un deperimento lento senza cause parassitarie evidenti."},
+{c:"sin",t:"Essudato gommoso",d:"Fuoriuscita di gomma ambrata da corteccia o legno. E' una reazione aspecifica: pu\u00f2 seguire una ferita, una gelata o un'infezione, quindi da sola non fa diagnosi."},
+{c:"sin",t:"Fumaggine",d:"Patina nera di funghi saprofiti che vivono sulla melata. Non penetra nei tessuti, ma riduce la fotosintesi e sporca i frutti fino al declassamento. Se c'\u00e8 fumaggine, il problema vero \u00e8 l'insetto che produce melata."},
+{c:"sin",t:"Maculatura",d:"Presenza di macchie. Da sola non dice nulla: contano forma, contorno, colore, posizione sull'organo e se sono depresse o rilevate."},
+{c:"sin",t:"Melata",d:"Sostanza zuccherina escreta da afidi, cocciniglie e aleurodidi. Attira formiche, innesca la fumaggine e rende appiccicose foglie e frutti."},
+{c:"sin",t:"Mosaico",d:"Alternanza irregolare di aree verdi e clorotiche sul lembo, senza contorni netti. Quadro tipicamente virale."},
+{c:"sin",t:"Necrosi",d:"Morte del tessuto, che imbrunisce e dissecca. A differenza della clorosi non \u00e8 reversibile."},
+{c:"sin",t:"Oleocellosi",d:"Danno da rottura delle ghiandole oleifere della buccia: l'olio essenziale esce e ustiona i tessuti attorno, lasciando aree verdi depresse su fondo che ingiallisce. Si produce raccogliendo frutti bagnati o troppo turgidi, o maneggiandoli con poca cura."},
+{c:"sin",t:"Piticchia",d:"Punteggiatura scura sulla buccia. Esiste una forma batterica, legata a Pseudomonas dopo periodi freddi e umidi, e una non parassitaria; si distinguono sul decorso, non sull'aspetto della singola macchia."},
+{c:"sin",t:"Suberificazione",d:"Trasformazione in sughero di un tessuto lesionato. E' una cicatrizzazione: dice che il danno \u00e8 vecchio e si \u00e8 fermato."},
+{c:"sin",t:"Vein clearing",d:"Schiarimento traslucido delle nervature sulle foglie giovani, visibile in controluce. Sintomo di alcune virosi degli agrumi."},
+{c:"sin",t:"Spigatura",d:"Germoglio che cresce esile e allungato con foglie piccole e distanziate. Segnale di squilibrio, spesso ombreggiamento o carenza."},
+/* --- biologia --- */
+{c:"bio",t:"Acervulo",d:"Cuscinetto di ife e conidi che erompe dalla superficie del tessuto infetto. Nell'antracnosi \u00e8 quello che d\u00e0 alla macchia l'aspetto punteggiato di rosa o arancio con l'umidit\u00e0."},
+{c:"bio",t:"Appressorio",d:"Rigonfiamento con cui l'ifa fungina aderisce alla superficie della pianta prima di penetrare. E' lo stadio contro cui lavorano i fungicidi di copertura."},
+{c:"bio",t:"Ascospora",d:"Spora prodotta dentro un asco, tipica della forma sessuata di molti funghi. Spesso responsabile delle infezioni primarie di inizio stagione."},
+{c:"bio",t:"Conidio",d:"Spora della forma agamica dei funghi, prodotta in gran numero. E' quella che moltiplica l'infezione durante la stagione."},
+{c:"bio",t:"Diapausa",d:"Sospensione programmata dello sviluppo di un insetto, che gli fa attraversare la stagione sfavorevole. Non basta il ritorno del caldo per interromperla, e questo sposta le date dei primi voli."},
+{c:"bio",t:"Fitoplasma",d:"Batterio privo di parete che vive nel floema e si trasmette con insetti vettori e con il materiale di propagazione. Non si coltiva in vitro e non si cura in campo."},
+{c:"bio",t:"Generazione",d:"Ciclo completo da uovo a uovo. Quando le generazioni si sovrappongono, in campo si trovano tutti gli stadi insieme e la finestra utile per un trattamento si perde."},
+{c:"bio",t:"Inoculo",d:"La quantit\u00e0 di patogeno presente e pronta a infettare. Ridurlo con potatura, raccolta dei residui e drenaggio conta spesso pi\u00f9 del trattamento."},
+{c:"bio",t:"Incubazione",d:"Tempo fra l'infezione e la comparsa dei sintomi. Quando lo vedi, l'infezione \u00e8 di giorni o settimane prima: \u00e8 il motivo per cui i fungicidi preventivi vanno anticipati."},
+{c:"bio",t:"Micelio",d:"L'insieme delle ife che costituiscono il corpo del fungo. Quando è visibile a occhio nudo su un tessuto, l'infezione è già avanzata: i fungicidi preventivi non servono più."},
+{c:"bio",t:"Neanide",d:"Stadio giovanile di un insetto a metamorfosi incompleta, appena uscito dall'uovo. Nelle cocciniglie \u00e8 l'unico stadio mobile e non ancora protetto dallo scudetto: la finestra in cui i trattamenti funzionano."},
+{c:"bio",t:"Ovisacco",d:"Massa cerosa o cotonosa che protegge le uova, tipica di cotonello e cocciniglie cotonose. Respinge i prodotti liquidi."},
+{c:"bio",t:"Parassitoide",d:"Insetto che si sviluppa dentro o sopra un altro insetto uccidendolo. Sugli agrumi buona parte del contenimento naturale di cocciniglie e minatrice dipende da loro, ed \u00e8 il motivo per cui gli insetticidi ad ampio spettro spesso peggiorano la situazione."},
+{c:"bio",t:"Picnidio",d:"Corpo fruttifero a forma di piccola boccia, immerso nel tessuto, che libera conidi dall'ostiolo. Nel mal secco \u00e8 quello che si trova sui rami secchi."},
+{c:"bio",t:"Sclerozio",d:"Ammasso compatto di ife che permette al fungo di sopravvivere a lungo nel terreno o sui residui."},
+{c:"bio",t:"Soglia di intervento",d:"Livello di infestazione oltre il quale conviene intervenire. Va letta sul disciplinare in vigore e riferita al metodo di campionamento previsto: contare in modo diverso rende la soglia inutile."},
+{c:"bio",t:"Sverna",d:"Trascorre l'inverno. Sapere dove sverna un fitofago \u2014 fessure della corteccia, colletto, residui, terreno \u2014 dice dove guardare a fine inverno e dove agire prima che risalga."},
+{c:"bio",t:"Vettore",d:"Organismo che trasporta un patogeno da una pianta all'altra. Con virus e fitoplasmi il controllo del vettore \u00e8 l'unica difesa praticabile."},
+{c:"bio",t:"Viroide",d:"Piccola molecola di RNA nudo, senza involucro proteico, capace di provocare malattia. Si trasmette con innesto e attrezzi di taglio: la disinfezione delle forbici non \u00e8 formalit\u00e0."},
+/* --- difesa --- */
+{c:"dif",t:"Sostanza attiva",d:"Il composto che agisce. Va distinta dal formulato commerciale, che la contiene in una certa concentrazione insieme ai coformulanti."},
+{c:"dif",t:"Formulato",d:"Il prodotto come lo compri: sostanza attiva pi\u00f9 coformulanti. Due formulati con la stessa sostanza attiva possono avere dosi, registrazioni e comportamento in miscela diversi."},
+{c:"dif",t:"WG",d:"Granuli idrodispersibili (water dispersible granules). Solido che si disperde in acqua. Nell'ordine di miscela vanno fra i primi, con agitazione gi\u00e0 avviata."},
+{c:"dif",t:"WP",d:"Polvere bagnabile (wettable powder). Solido in sospensione, tende a sedimentare: richiede agitazione continua."},
+{c:"dif",t:"SC",d:"Sospensione concentrata. Sostanza attiva solida gi\u00e0 dispersa in un liquido."},
+{c:"dif",t:"EC",d:"Concentrato emulsionabile. Sostanza attiva in solvente organico, forma un'emulsione lattiginosa. E' la formulazione pi\u00f9 a rischio di fitotossicit\u00e0 con il caldo e la meno compatibile con gli oli."},
+{c:"dif",t:"SL",d:"Concentrato solubile. Si scioglie davvero in acqua, senza sospensione."},
+{c:"dif",t:"OD",d:"Dispersione oleosa. Migliora adesione e penetrazione, ma va valutata con attenzione in miscela e con le alte temperature."},
+{c:"dif",t:"Sistemico",d:"Prodotto assorbito e traslocato dalla pianta, che protegge anche le parti non bagnate e la vegetazione emessa dopo. Meno dipendente dalla qualit\u00e0 della bagnatura, pi\u00f9 esposto a fenomeni di resistenza."},
+{c:"dif",t:"Citotropico",d:"Penetra nei tessuti superficiali senza girare per tutta la pianta. Sta a met\u00e0 fra copertura e sistemia, e resiste al dilavamento meglio di un prodotto di copertura."},
+{c:"dif",t:"Translaminare",d:"Attraversa il lembo fogliare passando dalla pagina superiore all'inferiore. Utile su fitofagi che stanno sotto la foglia."},
+{c:"dif",t:"Copertura",d:"Prodotto che resta sulla superficie e agisce solo dove arriva la goccia. Richiede bagnatura accurata, va rinnovato dopo la pioggia e sulla vegetazione nuova."},
+{c:"dif",t:"Tempo di carenza",d:"Intervallo minimo fra l'ultimo trattamento e la raccolta, fissato dall'etichetta. Non \u00e8 negoziabile e va verificato sull'etichetta del formulato che stai usando, non su quella di un prodotto simile."},
+{c:"dif",t:"Intervallo di rientro",d:"Tempo che deve passare prima che si possa rientrare nell'appezzamento trattato senza protezioni. Riguarda le persone, non il residuo sul frutto."},
+{c:"dif",t:"Fitotossicit\u00e0",d:"Danno alla pianta causato dal trattamento stesso. Sugli agrumi la fanno soprattutto le alte temperature, gli oli in miscela sbagliata, i rameici sui tessuti giovani e le dosi calcolate su un volume diverso da quello effettivo."},
+{c:"dif",t:"Resistenza",d:"Perdita di efficacia di una sostanza attiva su una popolazione che l'ha selezionata. Si contrasta alternando meccanismi d'azione diversi, non prodotti commerciali diversi con la stessa sostanza attiva."},
+{c:"dif",t:"IRAC / FRAC",d:"Classificazioni internazionali dei meccanismi d'azione, rispettivamente per insetticidi e acaricidi e per fungicidi. Servono a impostare un'alternanza vera: prodotti dello stesso gruppo non alternano niente."},
+{c:"dif",t:"Deriva",d:"Quota di miscela che non arriva al bersaglio e va altrove. Dipende da vento, dimensione delle gocce e velocit\u00e0 di avanzamento. E' un problema di efficacia prima ancora che di vicinato."},
+{c:"dif",t:"Volume di bagnatura",d:"Litri di miscela distribuiti per ettaro o per pianta. Cambiare volume senza ricalcolare la concentrazione \u00e8 l'errore pi\u00f9 comune: la dose per ettaro deve restare quella dell'etichetta."},
+{c:"dif",t:"Bagnante",d:"Coadiuvante che abbassa la tensione superficiale e fa distendere la goccia sulla superficie cerosa della foglia. Sugli agrumi cambia molto il risultato."},
+{c:"dif",t:"Adesivante",d:"Coadiuvante che fa aderire il prodotto alla superficie e ne migliora la resistenza al dilavamento. Utile sui prodotti di copertura quando è attesa pioggia, inutile su un sistemico già assorbito."},
+{c:"dif",t:"Correttore di pH",d:"Prodotto che porta l'acqua di miscela nell'intervallo giusto. Alcune sostanze attive si degradano rapidamente in acqua alcalina, e nella Piana di Catania l'acqua alcalina \u00e8 la regola."},
+{c:"dif",t:"Confusione sessuale",d:"Tecnica che satura l'ambiente con il feromone della femmina, impedendo ai maschi di trovarla. Funziona su superfici ampie e omogenee, va posizionata prima dei voli e non abbatte una popolazione gi\u00e0 alta."},
+{c:"dif",t:"Trappola a feromone",d:"Trappola che cattura i maschi attirandoli col feromone sessuale. Serve a datare i voli, non a stimare quanti individui ci sono."},
+{c:"dif",t:"Trappola cromotropica",d:"Trappola collante colorata, di solito gialla o azzurra, che cattura per attrazione visiva. Utile per aleurodidi, tripidi e ditteri."},
+{c:"dif",t:"Produzione integrata",d:"Sistema che ammette la chimica ma la subordina a monitoraggio, soglie e limiti stabiliti dal disciplinare regionale. In Sicilia \u00e8 il disciplinare della Regione, aggiornato ogni anno."},
+{c:"dif",t:"LMR",d:"Limite massimo di residuo ammesso su un prodotto alimentare. E' fissato per legge e pu\u00f2 essere pi\u00f9 restrittivo nei capitolati della grande distribuzione: due vincoli diversi da controllare separatamente."},
+{c:"dif",t:"Ordine di miscela",d:"Sequenza con cui i prodotti entrano nella botte. Sbagliarla produce flocculazione, ugelli intasati e perdita di efficacia, anche con prodotti singolarmente compatibili."},
+/* --- nutrizione --- */
+{c:"nut",t:"Antagonismo cationico",d:"Competizione fra cationi all'assorbimento radicale: troppo potassio deprime il magnesio, troppo calcio deprime entrambi. Per questo un'analisi fogliare va letta sui rapporti e non sui valori singoli."},
+{c:"nut",t:"Calcare attivo",d:"Frazione fine del calcare, quella che reagisce davvero e blocca il ferro. E' il dato che conta per prevedere una clorosi ferrica, molto pi\u00f9 del calcare totale."},
+{c:"nut",t:"Chelato",d:"Molecola che tiene un microelemento in forma disponibile impedendogli di precipitare. Per il ferro in terreni calcarei l'EDDHA regge a pH alti, mentre EDTA e DTPA perdono efficacia."},
+{c:"nut",t:"CSC",d:"Capacit\u00e0 di scambio cationico: quanti cationi il terreno riesce a trattenere. Alta nei terreni argillosi come quelli della Piana di Catania, il che vuol dire buona riserva ma anche risposte lente alle correzioni."},
+{c:"nut",t:"Conducibilit\u00e0 elettrica",d:"Misura indiretta dei sali disciolti, nell'acqua di irrigazione o nell'estratto di terreno. E' il primo dato da guardare quando si sospetta uno stress salino."},
+{c:"nut",t:"Fertirrigazione",d:"Distribuzione dei concimi con l'acqua di irrigazione. Permette di frazionare secondo la fase fenologica, ma sui terreni argillosi bisogna fare i conti col bulbo bagnato, che \u00e8 pi\u00f9 largo e pi\u00f9 superficiale di quanto si immagini."},
+{c:"nut",t:"Ipossia radicale",d:"Carenza di ossigeno nella zona radicale, tipica dei terreni pesanti dopo un'irrigazione lunga o una pioggia. Le radici fini muoiono e la pianta mostra sintomi che sembrano da carenza, ma nessuna concimazione li risolve."},
+{c:"nut",t:"Sostanza organica",d:"Frazione organica del terreno. Agisce su struttura, ritenzione idrica e attivit\u00e0 biologica: sui vertisuoli \u00e8 la leva pi\u00f9 lenta ma anche la pi\u00f9 duratura."},
+{c:"nut",t:"Vertisuolo",d:"Terreno argilloso che si fessura profondamente seccando e si richiude bagnandosi. Gran parte della Piana di Catania \u00e8 cos\u00ec: le crepe fanno passare l'acqua in profondit\u00e0 senza bagnare il bulbo, e appena si richiudono il drenaggio si ferma."},
+{c:"nut",t:"Biostimolante",d:"Prodotto che agisce sui processi della pianta senza apportare nutrienti in quantit\u00e0 significative. Non ha obblighi di efficacia paragonabili a un fitosanitario: il giudizio va fatto sul campo."},
+{c:"nut",t:"Evapotraspirazione",d:"Acqua persa dal terreno per evaporazione e dalla pianta per traspirazione. Insieme al coefficiente colturale \u00e8 la base per dimensionare l'irrigazione."},
+{c:"nut",t:"Analisi fogliare",d:"Dosaggio degli elementi su un campione di foglie prelevato in una fase e da una posizione precise. Fuori da quelle condizioni i valori di riferimento non valgono."},
+/* --- distribuzione --- */
+{c:"dis",t:"Atomizzatore",d:"Macchina che frantuma la miscela in gocce fini e le trasporta con un flusso d'aria. Sugli agrumi la regolazione del flusso d'aria conta quanto la dose."},
+{c:"dis",t:"Ugello",d:"Componente che determina portata, spettro delle gocce e angolo di distribuzione. Un ugello usurato eroga pi\u00f9 del nominale: va controllato, non guardato."},
+{c:"dis",t:"Taratura",d:"Verifica di quanto la macchina distribuisce davvero per ettaro. Senza taratura la dose scritta sull'etichetta \u00e8 solo un'intenzione."},
+{c:"dis",t:"Punto di sgocciolamento",d:"Momento in cui la vegetazione non trattiene pi\u00f9 miscela e comincia a gocciolare. Superarlo non aumenta la protezione: aumenta solo lo spreco e la deriva al suolo."},
+{c:"dis",t:"Volume normale",d:"Volume di riferimento su cui l'etichetta esprime la concentrazione, di solito 1000 litri per ettaro. Se lavori a volume ridotto la concentrazione va aumentata in proporzione perch\u00e9 la dose per ettaro resti la stessa."}
+];
+
+let BIB_VISTA="glossario", BIB_Q="", BIB_CAT="", BIB_RITORNO=null;
+
+function glossarioFiltrato(){
+  const q=BIB_Q.trim().toLowerCase();
+  return GLOSSARIO.filter(function(g){
+    if(BIB_CAT&&g.c!==BIB_CAT)return false;
+    if(!q)return true;
+    return g.t.toLowerCase().indexOf(q)>=0||g.d.toLowerCase().indexOf(q)>=0;
+  }).sort(function(a,b){return a.t.localeCompare(b.t,"it");});
+}
+function disegnaBiblio(){
+  const g=glossarioFiltrato();
+  let corpo;
+  if(BIB_VISTA==="glossario"){
+    corpo='<div class="blocco"><span class="bl-t"><b>Cerca un termine</b>Scrive nel titolo e nella definizione.</span>'+
+      '<input type="text" id="bib-q" value="'+esc(BIB_Q)+'" placeholder="es. neanide, WG, calcare attivo" autocomplete="off">'+
+      '<div class="riga-f" style="margin-top:10px">'+
+      '<button class="chip'+(BIB_CAT===""?" on":"")+'" data-bib-cat="">Tutti</button>'+
+      Object.keys(GLOS_CAT).map(function(k){
+        return '<button class="chip'+(BIB_CAT===k?" on":"")+'" data-bib-cat="'+k+'">'+esc(GLOS_CAT[k])+'</button>';
+      }).join("")+'</div></div>'+
+      '<p class="suggerimento">'+g.length+' '+(g.length===1?"voce":"voci")+' su '+GLOSSARIO.length+'.</p>'+
+      (g.length?g.map(function(x){
+        return '<div class="glo-v"><h4>'+esc(x.t)+'<span class="glo-c">'+esc(GLOS_CAT[x.c])+'</span></h4>'+
+          '<div class="glo-d">'+esc(x.d)+'</div></div>';
+      }).join(""):'<p class="suggerimento">Nessun termine trovato. Prova il glossario completo del portale, in fondo alla pagina.</p>')+
+      '<div class="blocco-attenzione" style="margin-top:16px"><b>Come \u00e8 stato scritto questo glossario</b>Definizioni redatte da un modello linguistico (Claude) apposta per questa app, orientate al lavoro in campo. Non sono la trascrizione di un dizionario altrui. Per un glossario di fitopatologia molto pi\u00f9 esteso, con centinaia di voci, c\'\u00e8 quello del portale Patagrumi del Parco Scientifico e Tecnologico della Sicilia.</div>'+
+      '<div class="met-az"><a class="mini" href="'+PATAGRUMI_BASE+'/category/glossario-fitopatologie-degli-agrumi/" target="_blank" rel="noopener">Glossario completo su Patagrumi \u2197</a></div>';
+  }else{
+    const tag={};
+    PATAGRUMI_PUB.forEach(function(x){(tag[x.tag]=tag[x.tag]||[]).push(x);});
+    const ord=["generale","virus","batteri","funghi","nutrizione","fisiopatie","portinnesti"];
+    const nomi={generale:"Manuali e guide",virus:"Virus e viroidi",batteri:"Batteri",
+      funghi:"Funghi",nutrizione:"Nutrizione e acqua",fisiopatie:"Fisiopatie",portinnesti:"Portinnesti"};
+    corpo='<p class="suggerimento">'+PATAGRUMI_PUB.length+' pubblicazioni scaricabili dal portale Patagrumi. Il bottone apre la pagina da cui si scarica il documento: serve la connessione.</p>'+
+      ord.filter(function(k){return tag[k];}).map(function(k){
+        return '<div class="imp-sez">'+esc(nomi[k])+'</div>'+tag[k].map(function(x){
+          return '<div class="pub-v"><h4>'+esc(x.t)+'</h4>'+
+            (x.a?'<div class="pub-a">'+esc(x.a)+'</div>':"")+
+            '<div class="pub-m">'+esc(x.y)+(x.d?" \u00b7 "+esc(x.d):"")+'</div>'+
+            '<div class="met-az"><a class="mini" href="'+x.u+'" target="_blank" rel="noopener">Apri sul portale \u2197</a></div></div>';
+        }).join("");
+      }).join("")+
+      '<div class="blocco-attenzione" style="margin-top:16px"><b>Di chi sono</b>Le pubblicazioni sono ospitate dal portale Patagrumi del Parco Scientifico e Tecnologico della Sicilia e restano dei rispettivi autori. Qui dentro ci sono solo i riferimenti \u2014 titolo, autori, anno, indirizzo \u2014 non il contenuto dei documenti.</div>'+
+      '<div class="met-az"><a class="mini" href="'+PATAGRUMI_BASE+'/category/download-pubblicazione/" target="_blank" rel="noopener">Tutte le pubblicazioni \u2197</a></div>';
+  }
+  $("#p-biblio").innerHTML=
+    '<div class="barra-p"><button class="indietro" data-bib-back>\u2039 Indietro</button>'+
+    '<span class="titolo-p">Glossario e pubblicazioni</span><span style="width:60px"></span></div>'+
+    '<div class="wrap"><div class="riga-f" style="margin:12px 0 4px">'+
+    '<button class="chip'+(BIB_VISTA==="glossario"?" on":"")+'" data-bib-vista="glossario">Glossario</button>'+
+    '<button class="chip'+(BIB_VISTA==="pub"?" on":"")+'" data-bib-vista="pub">Pubblicazioni</button></div>'+
+    corpo+'<div style="height:44px"></div></div>';
+}
+function apriBiblio(vista,ritorno){
+  if(vista)BIB_VISTA=vista;
+  BIB_RITORNO=ritorno||null;
+  disegnaBiblio();
+  mostraPannello($("#p-biblio"));
+}
+
+/* ============================================================
    8. NUOVA RICETTA
    ============================================================ */
 let R=null,PASSO=1,PICK=null,RES=false,RIC_TOP=false;
@@ -2856,6 +3144,10 @@ function apriScheda(id){
   '<div class="sez mie-note"><h3>Le mie note su questa avversit\u00e0</h3>'+
     '<textarea id="nota-scheda" data-sid="'+s.id+'" placeholder="Osservazioni tue, aziende dove si presenta, cosa ha funzionato\u2026">'+esc(nota)+'</textarea>'+
     '<p class="suggerimento">Si salvano da sole e restano anche se sostituisci il file dell\u2019app.</p></div>'+
+  (PATAGRUMI_SCHEDE[s.id]?'<div class="sez"><h3>Foto del sintomo</h3>'+
+    '<p class="suggerimento" style="margin:0 0 9px">Le fotografie stanno sul portale Patagrumi del Parco Scientifico e Tecnologico della Sicilia, non dentro questa app: il bottone apre la loro pagina, quindi serve la connessione.</p>'+
+    '<div class="met-az"><a class="mini" href="'+linkPatagrumi(PATAGRUMI_SCHEDE[s.id])+'" target="_blank" rel="noopener">Foto su Patagrumi \u2197</a>'+
+    '<button data-bib-glo>Glossario</button></div></div>':"")+
   '<div class="sez"><h3>Verifica sulle fonti</h3><div class="fonti-r">'+
     linkScheda(s).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener" style="color:var(--sanguigna);display:block;padding:4px 0">\u2192 '+esc(l[0])+'</a>').join("")+'</div>'+
     '<div class="blocco-attenzione" style="margin-top:12px"><b>Come \u00e8 stata scritta questa scheda</b>Testo redatto da un modello linguistico (Claude) sulla base di conoscenze agronomiche ed entomologiche consolidate, non trascritto da una singola pagina web. I link qui sopra sono le banche dati autorevoli su cui verificare.\nPer sostanze ammesse, dosi, soglie ufficiali e tempi di carenza fa fede unicamente il disciplinare di produzione integrata in vigore.</div></div>'+
@@ -2990,6 +3282,7 @@ function vaiA(k){
   chiudiPannelli();
   if(k.indexOf("ric-")===0){apriRicetta(k.slice(4));return;}
   if(k==="meteo"){apriMeteo(null);return;}
+  if(k==="glossario"){apriBiblio("glossario",null);return;}
   let vis=k;
   if(k==="mese")vis="storico";
   sezione=vis;
@@ -3534,6 +3827,7 @@ $("#p-impostazioni").addEventListener("click",function(e){
     if(nav.dataset.imp==="_appunto"){chiudiPannelli();apriAppunto();return;}
     if(nav.dataset.imp==="meteo"){apriMeteo("imp");return;}
     if(nav.dataset.imp==="note"){NOTE_RITORNO="imp";apriNote();return;}
+    if(nav.dataset.imp==="glossario"){apriBiblio("glossario","imp");return;}
     apriImp(nav.dataset.imp);return;
   }
   const su=t.closest("[data-su]"),giu=t.closest("[data-giu]");
@@ -3650,6 +3944,29 @@ $("#p-impostazioni").addEventListener("change",function(e){
       DB=d;migra();cfg();salva();chiudiPannelli();disegnaColture();vaiA("home");avviso("Ripristinato");}
   }catch(err){avviso("File non valido");}};
   r.readAsText(f);e.target.value="";
+});
+$("#p-biblio").addEventListener("click",function(e){
+  const t=e.target;
+  if(t.closest("[data-bib-back]")){
+    if(BIB_RITORNO==="imp"){BIB_RITORNO=null;apriImp("menu");return;}
+    if(BIB_RITORNO==="scheda"){BIB_RITORNO=null;chiudiPannelli();vaiA(sezione||"home");return;}
+    chiudiPannelli();vaiA(sezione||"home");return;
+  }
+  const v=t.closest("[data-bib-vista]");
+  if(v){BIB_VISTA=v.dataset.bibVista;disegnaBiblio();return;}
+  const c=t.closest("[data-bib-cat]");
+  if(c){BIB_CAT=c.dataset.bibCat;disegnaBiblio();return;}
+});
+$("#p-biblio").addEventListener("input",function(e){
+  if(e.target.id!=="bib-q")return;
+  BIB_Q=e.target.value;
+  const pos=e.target.selectionStart;
+  disegnaBiblio();
+  const el=$("#bib-q");
+  if(el){el.focus();try{el.setSelectionRange(pos,pos);}catch(err){}}
+});
+$("#p-scheda").addEventListener("click",function(e){
+  if(e.target.closest("[data-bib-glo]"))apriBiblio("glossario","scheda");
 });
 $("#p-meteo").addEventListener("click",function(e){
   const t=e.target,c=meteoCfg(),l=c.luoghi;
