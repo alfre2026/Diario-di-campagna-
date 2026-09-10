@@ -477,6 +477,16 @@ body.modalita-blocchi .blocco-badge{display:flex;align-items:center;justify-cont
   background:#2f6f6b;color:#fff;font:700 9.5px/1 var(--mono,monospace);z-index:9999;
   box-shadow:0 0 0 2px var(--carta,#fff);pointer-events:none}
 
+/* bottone foto del sintomo: deve saltare all'occhio in cima alla scheda */
+.foto-bar{display:block;text-decoration:none;margin:14px 0 4px;padding:15px 16px;
+  border-radius:3px;background:var(--sanguigna);color:#F7F5EF;
+  box-shadow:0 3px 12px -4px rgba(140,29,47,.55)}
+.foto-bar .fb-t{display:flex;align-items:center;gap:10px;font-family:var(--mono);
+  font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.foto-bar .fb-t .fb-ar{margin-left:auto;font-size:19px;line-height:1}
+.foto-bar .fb-s{margin-top:6px;font-size:12.5px;line-height:1.45;opacity:.88}
+.foto-nota{font-size:11.5px;line-height:1.45;color:var(--inchiostro-2);margin:7px 0 0}
+
 /* ============ GLOSSARIO E PUBBLICAZIONI ============ */
 #p-biblio input[type=text]{width:100%;padding:11px 12px;background:var(--carta-2);
   border:1px solid var(--riga-forte);border-radius:10px;font-size:16px}
@@ -769,7 +779,7 @@ const SCHEDE = [
 
 {id:"pezothrips-kellyanus", n:"Tripide degli agrumi", s:"Pezothrips kellyanus", cat:"insetti", col:["ara","lim","man"], rango:2,
  cal:[0,0,0,2,3,3,1,0,0,0,0,0], gen:"Più generazioni, ma solo quella coincidente con la caduta petali produce danno",
- ric:"Tripide scuro, 1,5-2 mm, presente nei fiori e sui frutticini appena allegati. Il sintomo è specifico e riconoscibile a distanza di mesi: un anello di tessuto cicatriziale rugoso e argenteo attorno alla zona calicina del frutto, che resta e si accentua con l'accrescimento.",
+ ric:"Tripide scuro, 1,5-2 mm, presente nei fiori e sui frutticini appena allegati. Il sintomo è specifico e riconoscibile a distanza di mesi: un anello di tessuto cicatriziale rugoso e argenteo attorno alla zona calicina del frutto, che resta e si accentua con l'accrescimento.\nDa distinguere dal tripide sudafricano (Scirtothrips aurantii), organismo da quarantena segnalato dal 2026 nelle province di Catania e Siracusa: quello è molto più piccolo e chiaro, lascia rugginosità diffuse invece dell'anello calicino e va segnalato, non trattato. Nel dubbio, guarda quella scheda.",
  cic:"L'infestazione dannosa si concentra in una finestra brevissima: dalla caduta dei petali fino a quando il frutticino raggiunge circa 2-2,5 cm di diametro. Le larve si nutrono nello spazio fra il calice e la buccia in formazione, e la cicatrice cresce insieme al frutto. Passata quella fase, i tripidi presenti non fanno più danno alla buccia.",
  dan:"Danno esclusivamente estetico ma economicamente pesante, perché colpisce la buccia e quindi la categoria commerciale. Su limone e su arance destinate al fresco può declassare quote rilevanti di prodotto.",
  mon:"Trappole cromotropiche bianche o azzurre in fioritura, più il controllo diretto di fiori e frutticini: si scuotono i fiori su una superficie chiara e si contano gli individui, oppure si aprono i calici dei frutticini appena allegati.",
@@ -777,6 +787,18 @@ const SCHEDE = [
  aux:"Predatori generalisti (antocoridi, acari fitoseidi) presenti ma raramente sufficienti da soli nella finestra critica.",
  sic:"Problema in crescita negli agrumeti siciliani, spesso confuso con danni da vento o da acaro rugginoso. La distinzione è netta: il tripide fa un anello attorno al calice, l'acaro rugginoso fa una rugginosità diffusa su tutta la superficie, il vento fa lesioni irregolari sul lato esposto.",
  fon:"GIP Cítricos IVIA · EPPO Global Database"},
+
+{id:"scirtothrips-aurantii", n:"Tripide sudafricano degli agrumi", s:"Scirtothrips aurantii", cat:"insetti", col:["ara","lim","man"], rango:1,
+ cal:[0,0,1,2,3,3,2,2,2,1,0,0], gen:"Pi\u00f9 generazioni sovrapposte; si sviluppa solo dove c'\u00e8 tessuto giovane in accrescimento",
+ ric:"Tisanottero molto piccolo, sotto il millimetro, di colore chiaro giallo-arancio: molto pi\u00f9 minuto e pi\u00f9 chiaro del tripide degli agrumi che gi\u00e0 conosci (Pezothrips kellyanus), che \u00e8 scuro e lungo 1,5-2 mm.\nIl riconoscimento a occhio non basta e non fa testo: la determinazione di specie richiede esame morfologico e molecolare in laboratorio. In Sicilia le prime segnalazioni sono state confermate cos\u00ec dal Laboratorio di Entomologia dell'Universit\u00e0 di Catania.\nQuello che puoi riconoscere tu \u00e8 il quadro sospetto: rugginosit\u00e0 e cicatrici diffuse sui frutticini, deformazioni e decolorazioni sui germogli e sulle foglie appena formate, in presenza di molti tripidi minuti sui tessuti in crescita.",
+ cic:"Si alimenta esclusivamente su tessuti giovani in attiva crescita: germogli, foglie appena distese, fiori e giovani frutti. Non colonizza la vegetazione matura, quindi la popolazione segue i flussi vegetativi e non l'andamento stagionale generico.\nE' altamente polifago: oltre agli agrumi \u00e8 stato riscontrato su pi\u00f9 di settanta specie vegetali di famiglie diverse, e in Spagna \u00e8 stato associato anche a melograno, cachi e vite da tavola. In Sicilia \u00e8 stato confermato anche su mirtillo, in serra.\nL'arancio dolce \u00e8 considerato ospite principale.",
+ dan:"Il danno \u00e8 soprattutto qualitativo, non di produzione: le punture di alimentazione sui giovani frutti lasciano rugginosit\u00e0, cicatrici superficiali e deformazioni che restano fino alla raccolta e fanno declassare il frutto. Su un'arancia da mercato fresco questo pesa quanto una perdita di resa.\nSu germogli e foglie giovani produce decolorazioni, aree necrotiche e deformazioni.\nAl danno agronomico si somma quello normativo: la presenza in azienda di un organismo da quarantena comporta misure ufficiali e vincoli alla movimentazione del materiale vegetale.",
+ mon:"Osservazione sui tessuti giovani nei momenti di flusso vegetativo, in particolare sui frutticini dopo l'allegagione e sui germogli. La specie risponde fortemente al giallo, e le trappole collanti gialle fluorescenti sono lo strumento di cattura usato nei paesi dove il fitofago \u00e8 insediato.\nAttenzione per\u00f2: qui non si tratta di stimare una popolazione per decidere un trattamento. Il monitoraggio ufficiale \u00e8 coordinato dal Servizio fitosanitario regionale e la determinazione di specie si fa in laboratorio. Il tuo compito \u00e8 accorgerti del sospetto e segnalarlo, non quantificarlo.",
+ dif:"Non applicare uno schema di difesa aziendale di tua iniziativa.\nE' un organismo da quarantena in lista A1 EPPO e quarantena dell'Unione europea; in Italia lo stato \u00e8 stato aggiornato a \u00abpresente, in fase di eradicazione\u00bb, il che significa che le azioni sono misure ufficiali decise dal Servizio fitosanitario regionale, non scelte tecniche discrezionali.\nOgni sospetto va segnalato al Servizio fitosanitario regionale. Non \u00e8 una cortesia: \u00e8 un obbligo, e trattare senza segnalare pu\u00f2 solo mascherare un focolaio e spostare il problema.\nIn attesa dell'accertamento vale il buon senso: non spostare materiale vegetale dall'appezzamento sospetto, non portare piante o talee ad altre aziende, tieni traccia di cosa \u00e8 entrato e uscito.\nIl disciplinare di produzione integrata non copre questo fitofago: non cercarci dentro dosi o soglie, perch\u00e9 la materia \u00e8 un'altra.",
+ aux:"Nell'areale d'origine non risultano parassitoidi efficaci e i predatori non danno un controllo economicamente rilevante. Non contare su un contenimento naturale.",
+ sic:"Riguarda direttamente la Piana di Catania. Le prime segnalazioni italiane, nel gennaio 2026, sono arrivate proprio dalle aree agrumicole delle province di Catania e Siracusa, su arancio dolce; a giugno 2026 \u00e8 stato confermato un focolaio anche in provincia di Ragusa, ad Acate, in una serra di mirtillo.\nLa fenologia locale non \u00e8 ancora stabilita: il calendario qui sopra segue la disponibilit\u00e0 di tessuto giovane sugli agrumi in Sicilia \u2014 flusso di primavera, allegagione, flussi estivi \u2014 non osservazioni consolidate sul comportamento della specie nel nostro clima. Va preso come indicazione di quando guardare, non come previsione di quando c'\u00e8.\nIl quadro \u00e8 in evoluzione: prima di dire qualsiasi cosa a un'azienda, verifica lo stato aggiornato sulle fonti ufficiali.",
+ att:"Organismo da quarantena (lista A1 EPPO, quarantena UE). In Italia: presente, in fase di eradicazione. In caso di sospetto non trattare di tua iniziativa, non spostare materiale vegetale e segnala al Servizio fitosanitario regionale.",
+ fon:"EPPO Global Database (SCITAU) \u00b7 EPPO Reporting Service 2/2026 \u00b7 EFSA \u00b7 Servizio fitosanitario regionale Sicilia"},
 
 {id:"afidi-agrumi", n:"Afidi degli agrumi", s:"Aphis spiraecola, Toxoptera aurantii, Aphis gossypii", cat:"insetti", col:["ara","lim","man"], rango:2,
  cal:[0,1,2,3,3,2,1,1,1,1,0,0], gen:"Numerose generazioni partenogenetiche durante i flussi vegetativi",
@@ -1660,6 +1682,11 @@ const FONTI_HUB={
     ["UC IPM \u2014 Citrus","https://ipm.ucanr.edu/agriculture/citrus/"]]
 };
 const FONTI_DIRETTE={
+  "scirtothrips-aurantii":[["EPPO \u2014 Scirtothrips aurantii (SCITAU)","https://gd.eppo.int/taxon/SCITAU"],
+    ["EPPO \u2014 scheda tecnica completa","https://gd.eppo.int/taxon/SCITAU/datasheet"],
+    ["EPPO \u2014 prima segnalazione in Sicilia (gennaio 2026)","https://gd.eppo.int/reporting/article-8326"],
+    ["EPPO \u2014 distribuzione mondiale","https://gd.eppo.int/taxon/SCITAU/distribution"],
+    ["Servizio fitosanitario regionale Sicilia","https://www.regione.sicilia.it/istituzioni/regione/strutture-regionali/assessorato-agricoltura-sviluppo-rurale-pesca-mediterranea/dipartimento-agricoltura/organizzazione/servizio-4-servizio-fitosanitario-regionale-lotta-alla"]],
   "aonidiella-aurantii":[["IVIA \u2014 Piojo rojo de California","http://gipcitricos.ivia.es/area/plagas-principales/diaspididos/piojo_rojo_california"],
     ["EPPO \u2014 Aonidiella aurantii (AONDAU)","https://gd.eppo.int/taxon/AONDAU"],
     ["UC IPM \u2014 programma annuale, autunno","https://ipm.ucanr.edu/agriculture/citrus/fall/"],
@@ -1812,7 +1839,7 @@ const PATAGRUMI_PUB=[
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
-const VERSIONE_APP="v7.3 \u2014 05/09/2026";
+const VERSIONE_APP="v7.5 \u2014 10/09/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -3137,6 +3164,11 @@ function apriScheda(id){
     '<h2>'+esc(s.n)+'</h2>'+
     '<div style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--inchiostro-2);margin-top:-4px">'+esc(s.s)+'</div>'+
     '<dl class="dati"><dt>Colture</dt><dd>'+s.col.map(nomeColtura).join(" \u00b7 ")+'</dd><dt>Generazioni</dt><dd>'+esc(s.gen)+'</dd></dl></div>'+
+  (PATAGRUMI_SCHEDE[s.id]?
+    '<a class="foto-bar" href="'+linkPatagrumi(PATAGRUMI_SCHEDE[s.id])+'" target="_blank" rel="noopener">'+
+    '<span class="fb-t">\u25c9 Vedi le foto del sintomo<span class="fb-ar">\u2197</span></span>'+
+    '<span class="fb-s">Fotografie di campo su Patagrumi, il portale del Parco Scientifico e Tecnologico della Sicilia.</span></a>'+
+    '<p class="foto-nota">Si apre il loro sito: serve la connessione. Le foto non sono dentro questa app.</p>':"")+
   '<div class="sez"><h3>Calendario'+((DB.calSchede||{})[s.id]?' \u00b7 tua versione':' indicativo in Sicilia')+'</h3>'+calendarioHTML(calDi(s))+'</div>'+
   (s.att?'<div class="blocco-attenzione"><b>Attenzione</b>'+esc(s.att)+'</div>':"")+
   sez.map(x=>'<div class="sez"><h3>'+x[0]+'</h3><div class="testo">'+esc(x[1])+'</div></div>').join("")+
@@ -3144,14 +3176,11 @@ function apriScheda(id){
   '<div class="sez mie-note"><h3>Le mie note su questa avversit\u00e0</h3>'+
     '<textarea id="nota-scheda" data-sid="'+s.id+'" placeholder="Osservazioni tue, aziende dove si presenta, cosa ha funzionato\u2026">'+esc(nota)+'</textarea>'+
     '<p class="suggerimento">Si salvano da sole e restano anche se sostituisci il file dell\u2019app.</p></div>'+
-  (PATAGRUMI_SCHEDE[s.id]?'<div class="sez"><h3>Foto del sintomo</h3>'+
-    '<p class="suggerimento" style="margin:0 0 9px">Le fotografie stanno sul portale Patagrumi del Parco Scientifico e Tecnologico della Sicilia, non dentro questa app: il bottone apre la loro pagina, quindi serve la connessione.</p>'+
-    '<div class="met-az"><a class="mini" href="'+linkPatagrumi(PATAGRUMI_SCHEDE[s.id])+'" target="_blank" rel="noopener">Foto su Patagrumi \u2197</a>'+
-    '<button data-bib-glo>Glossario</button></div></div>':"")+
   '<div class="sez"><h3>Verifica sulle fonti</h3><div class="fonti-r">'+
     linkScheda(s).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener" style="color:var(--sanguigna);display:block;padding:4px 0">\u2192 '+esc(l[0])+'</a>').join("")+'</div>'+
     '<div class="blocco-attenzione" style="margin-top:12px"><b>Come \u00e8 stata scritta questa scheda</b>Testo redatto da un modello linguistico (Claude) sulla base di conoscenze agronomiche ed entomologiche consolidate, non trascritto da una singola pagina web. I link qui sopra sono le banche dati autorevoli su cui verificare.\nPer sostanze ammesse, dosi, soglie ufficiali e tempi di carenza fa fede unicamente il disciplinare di produzione integrata in vigore.</div></div>'+
   '<div class="azioni-d">'+(a?'<button data-mie="'+s.id+'">Le mie voci'+(n?" ("+n+")":"")+'</button>':"")+
+    '<button data-bib-glo>Glossario</button>'+
     '<button data-cond-scheda="'+s.id+'">Condividi testo</button></div><div style="height:30px"></div></div>';
   mostraPannello($("#p-scheda"));
 }
@@ -4137,6 +4166,13 @@ function caricaRicetteBase(){
 function migra(){
   DB.noteSchede=DB.noteSchede||{};DB.prodotti=DB.prodotti||[];DB.aziende=DB.aziende||[];
   DB.colture=DB.colture||[];DB.avversita=DB.avversita||[];DB.voci=DB.voci||[];
+  // schede aggiunte dopo il primo avvio: creo l'avversita' mancante,
+  // altrimenti negli archivi gia' sul telefono la scheda nuova non compare nei filtri
+  SCHEDE.forEach(function(sc){
+    if(!DB.avversita.some(function(a){return a.schedaId===sc.id;}))
+      DB.avversita.push({id:"s-"+sc.id,nome:sc.n,colture:sc.col.slice(),
+        gruppo:NOMI_CAT[sc.cat]||"Altro",schedaId:sc.id});
+  });
   DB.prodotti.forEach(function(p){
     if(!p.note)p.note=(p.nota?[p.nota]:[]);
     delete p.nota;
