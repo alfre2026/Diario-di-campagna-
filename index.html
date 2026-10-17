@@ -477,113 +477,6 @@ body.modalita-blocchi .blocco-badge{display:flex;align-items:center;justify-cont
   background:#2f6f6b;color:#fff;font:700 9.5px/1 var(--mono,monospace);z-index:9999;
   box-shadow:0 0 0 2px var(--carta,#fff);pointer-events:none}
 
-/* bottone foto del sintomo: deve saltare all'occhio in cima alla scheda */
-.foto-bar{display:block;text-decoration:none;margin:14px 0 4px;padding:15px 16px;
-  border-radius:3px;background:var(--sanguigna);color:#F7F5EF;
-  box-shadow:0 3px 12px -4px rgba(140,29,47,.55)}
-.foto-bar .fb-t{display:flex;align-items:center;gap:10px;font-family:var(--mono);
-  font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.foto-bar .fb-t .fb-ar{margin-left:auto;font-size:19px;line-height:1}
-.foto-bar .fb-s{margin-top:6px;font-size:12.5px;line-height:1.45;opacity:.88}
-.foto-nota{font-size:11.5px;line-height:1.45;color:var(--inchiostro-2);margin:7px 0 0}
-
-/* ============ GLOSSARIO E PUBBLICAZIONI ============ */
-#p-biblio input[type=text]{width:100%;padding:11px 12px;background:var(--carta-2);
-  border:1px solid var(--riga-forte);border-radius:10px;font-size:16px}
-.glo-v{border-bottom:1px solid var(--riga);padding:11px 0}
-.glo-v:last-of-type{border-bottom:none}
-.glo-v h4{margin:0 0 4px;font-family:var(--serif);font-size:17px;font-weight:400;
-  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.glo-c{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--inchiostro-2)}
-.glo-d{font-size:14.5px;line-height:1.5;color:var(--inchiostro)}
-.pub-v{border:1px solid var(--riga);border-radius:12px;padding:12px 13px;margin-bottom:10px;background:var(--carta)}
-.pub-v h4{margin:0 0 5px;font-family:var(--serif);font-size:16.5px;font-weight:400;line-height:1.3}
-.pub-a{font-size:13px;color:var(--inchiostro-2);line-height:1.4}
-.pub-m{font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);margin-top:4px}
-
-/* ============ NOTE SUL PUNTO (chiocciola) ============ */
-#btn-note{position:fixed;right:10px;bottom:112px;z-index:9998;width:38px;height:38px;border-radius:999px;
-  border:1px solid rgba(28,35,33,.3);background:var(--carta,#fff);color:var(--inchiostro,#1c2321);
-  font:700 16px var(--mono,monospace);opacity:.55;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-#btn-note.on{opacity:1;background:#8C1D2F;color:#fff;border-color:#8C1D2F}
-#btn-note .n-conta{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;
-  border-radius:999px;background:#1C2321;color:#fff;font:700 10px/17px var(--mono,monospace);
-  box-shadow:0 0 0 2px var(--carta,#fff)}
-.nota-barra{position:fixed;left:0;right:0;top:0;z-index:10000;display:flex;align-items:center;gap:6px;
-  padding:calc(6px + env(safe-area-inset-top)) 10px 6px;background:#8C1D2F;color:#fff;
-  font:600 11.5px var(--mono,monospace);letter-spacing:.04em}
-.nota-barra .nb-t{margin-right:auto;text-transform:uppercase;font-size:10.5px;opacity:.9}
-.nota-barra button{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4);
-  border-radius:999px;padding:6px 11px;font:600 11px var(--mono,monospace)}
-.nota-barra button.att{background:#fff;color:#8C1D2F;border-color:#fff}
-body.modalita-note{padding-top:46px}
-body.modalita-note.naviga .nota-barra{background:#4A5D3A}
-.nota-mirino{position:fixed;z-index:9999;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:999px;
-  border:2px solid #8C1D2F;background:rgba(140,29,47,.25);pointer-events:none}
-.nota-bolla{position:fixed;z-index:10001;width:min(320px,calc(100vw - 24px));background:var(--carta,#fff);
-  border:1px solid var(--inchiostro,#1c2321);border-radius:14px;padding:12px;
-  box-shadow:0 10px 34px -8px rgba(0,0,0,.45)}
-.nota-bolla .nb-dove{font:600 10px var(--mono,monospace);letter-spacing:.07em;text-transform:uppercase;
-  color:var(--sanguigna,#8C1D2F);margin-bottom:3px}
-.nota-bolla .nb-el{font:11.5px var(--mono,monospace);color:var(--inchiostro-2,#5D6660);
-  margin-bottom:8px;word-break:break-word}
-.nota-bolla textarea{width:100%;min-height:96px;padding:10px;border:1px solid var(--riga-forte,#AFB4A6);
-  border-radius:10px;background:var(--carta-2,#F3F4EE);font-size:16px;line-height:1.4;resize:vertical}
-.nota-bolla .nb-az{display:flex;gap:7px;margin-top:9px}
-.nota-bolla .nb-az button{flex:1;padding:9px;border-radius:9px;font:600 12px var(--mono,monospace);
-  letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--riga-forte,#AFB4A6);
-  background:var(--carta-2,#F3F4EE);color:var(--inchiostro-2,#5D6660)}
-.nota-bolla .nb-az button.ok{background:var(--sanguigna,#8C1D2F);color:#fff;border-color:var(--sanguigna,#8C1D2F)}
-.nota-bolla .nb-az button.rm{color:var(--sanguigna,#8C1D2F)}
-.nota-velo{position:fixed;inset:0;z-index:10000;background:rgba(28,35,33,.28)}
-.nota-c{border:1px solid var(--riga);border-left:3px solid var(--sanguigna);border-radius:10px;
-  padding:11px 12px;margin-bottom:9px;background:var(--carta-2)}
-.nota-c .nc-h{font:600 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;
-  color:var(--sanguigna);margin-bottom:2px}
-.nota-c .nc-el{font:11px var(--mono);color:var(--inchiostro-2);margin-bottom:7px;word-break:break-word}
-.nota-c .nc-t{font-size:14.5px;line-height:1.45;white-space:pre-wrap}
-.nota-c .nc-az{display:flex;gap:7px;margin-top:9px}
-.nota-c .nc-az button{width:auto;text-align:center}
-#p-note textarea{width:100%;min-height:150px;padding:11px;border:1px solid var(--riga-forte);
-  border-radius:10px;background:var(--carta-2);font:12.5px/1.5 var(--mono);margin-top:9px}
-
-/* ============ METEO ============ */
-#p-meteo input[type=text]{width:100%;padding:11px 12px;background:var(--carta-2);
-  border:1px solid var(--riga-forte);border-radius:10px;font-size:16px}
-.met-riga{border:1px solid rgba(175,180,166,.7);border-radius:14px;padding:11px 12px;
-  margin-bottom:9px;background:var(--carta)}
-.met-luogo{border:1px solid rgba(175,180,166,.7);border-radius:14px;padding:12px 13px;
-  margin-bottom:11px;background:var(--carta-2)}
-.met-luogo h4{margin:0;font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.2}
-.met-top{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.met-top select{flex:1;min-width:0}
-.met-x{background:none;border:1px solid var(--riga);border-radius:9px;
-  color:var(--inchiostro-2);font-size:16px;line-height:1;padding:8px 10px}
-.met-campi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.met-c label,.met-lab{display:block;font-family:var(--mono);font-size:10px;font-weight:600;
-  letter-spacing:.09em;text-transform:uppercase;color:var(--inchiostro-2);margin-bottom:4px}
-.met-c input{width:100%}
-.met-coord{font-family:var(--mono);font-size:11.5px;color:var(--inchiostro-2);margin-top:2px}
-.met-fonte{font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);
-  margin-top:9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.met-pill{display:inline-block;border:1px solid var(--riga-forte);border-radius:20px;
-  padding:1px 9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
-.met-pill.auto{color:var(--oliva);border-color:rgba(74,93,58,.5)}
-.met-pill.man{color:var(--ocra);border-color:rgba(169,118,27,.5)}
-.met-prev{display:flex;gap:16px;margin-top:9px;flex-wrap:wrap}
-.met-gg{min-width:66px}
-.met-gg .g{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--inchiostro-2)}
-.met-gg .t{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--inchiostro)}
-.met-az{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.met-az .mini{width:auto;text-align:center}
-.met-az a.mini{text-decoration:none;display:inline-block}
-.met-ris{border:1px solid var(--riga-forte);border-radius:10px;margin-top:9px;overflow:hidden;background:var(--carta)}
-.met-ris button{display:block;width:100%;text-align:left;padding:11px 12px;
-  border-bottom:1px solid var(--riga);font-size:14.5px}
-.met-ris button:last-child{border-bottom:none}
-
 /* ============ BARRA DI NAVIGAZIONE IN BASSO ============ */
 body{padding-bottom:64px}
 .tab-basso{position:fixed;left:0;right:0;bottom:0;z-index:9997;display:flex;
@@ -669,6 +562,7 @@ body{padding-bottom:64px}
 
   <!-- ===== PRODOTTI ===== -->
   <div id="sez-prodotti" hidden></div>
+  <div id="sez-discipl" hidden></div>
 </main>
 
 
@@ -680,18 +574,15 @@ body{padding-bottom:64px}
 <section class="pannello" id="p-info" hidden></section>
 <section class="pannello" id="p-genera" hidden></section>
 <section class="pannello" id="p-appunto" hidden></section>
-<section class="pannello" id="p-meteo" hidden></section>
-<section class="pannello" id="p-note" hidden></section>
-<section class="pannello" id="p-biblio" hidden></section>
 <div class="toast" id="toast" hidden></div>
 <nav class="tab-basso" id="tab-basso" aria-label="Navigazione principale">
   <button data-tab-vai="home"><span class="tab-ic">📋</span><span class="tab-t">Ricette</span></button>
   <button data-tab-vai="consultorio"><span class="tab-ic">🔎</span><span class="tab-t">Consultorio</span></button>
   <button data-tab-vai="prodotti"><span class="tab-ic">🧴</span><span class="tab-t">Banca Dati</span></button>
   <button data-tab-vai="storico"><span class="tab-ic">📒</span><span class="tab-t">QDCA</span></button>
+  <button data-tab-vai="discipl"><span class="tab-ic">📜</span><span class="tab-t">Discipl.</span></button>
 </nav>
 <button id="btn-blocchi" aria-label="Mostra numeri blocco" title="Mostra numeri blocco">#</button>
-<button id="btn-note" aria-label="Note sul punto" title="Note sul punto">@</button>
 
 <script>
 "use strict";
@@ -745,11 +636,11 @@ const SCHEDE = [
  fon:"GIP Cítricos IVIA · EPPO Global Database · CABI"},
 
 {id:"aonidiella-aurantii", n:"Cocciniglia rossa forte", s:"Aonidiella aurantii", cat:"insetti", col:["ara","lim","man"], rango:1,
- cal:[0,0,1,2,3,3,3,3,3,2,1,0], gen:"3-4 generazioni all'anno in Sicilia, in funzione della zona e dell'annata",
+ cal:[0,0,1,2,3,3,3,3,3,2,1,0], gen:"3-4 generazioni all'anno, valore indicativo: numero e calendario dipendono dall'ambiente e per la Sicilia non risultano validati localmente",
  ric:"Diaspidide con scudetto circolare di 1,5-2 mm, rossastro-bruno, aderente al substrato e non staccabile con l'unghia senza rompere l'insetto. Non produce melata: se c'è melata la causa è un'altra. Si insedia su frutti, foglie, rametti e legno vecchio.",
  cic:"Sverna come stadio giovanile o femmina fecondata sul legno. I maschi alati compaiono in voli distinti, rilevabili con trappole a feromone: il primo volo fissa il punto di partenza (biofix) da cui si contano i gradi-giorno. I modelli statunitensi usano soglia 11,7 °C e collocano l'emergenza delle neanidi di prima generazione attorno a 550 gradi-giorno dal biofix, il secondo volo maschile attorno a 1.100 e il quarto attorno a 3.300.\nLa neanide mobile (crawler) è l'unico stadio che si sposta e l'unico realmente vulnerabile: dopo essersi fissata secerne la cera e diventa molto più difficile da colpire.",
  dan:"Infestazione dei frutti con declassamento immediato: per il mercato del fresco pochi scudetti per frutto bastano a far scendere di categoria. Su rametti e foglie provoca disseccamenti e defogliazione; nei casi cronici deperimento della pianta. È fra le poche avversità in grado di compromettere direttamente una partita destinata all'IGP.",
- mon:"Trappole a feromone per i maschi da marzo a ottobre (indicativamente 2-4 trappole ogni 4 ettari, aumentando con la superficie), per individuare i voli e far partire il conteggio dei gradi-giorno.\nNastri collanti attorno ai rametti per intercettare le neanidi mobili e confermare l'emergenza reale.\nControllo visivo dei frutti da agosto a ottobre, camminando su 20 piante per settore e registrando gli scudetti per frutto.\nI gradi-giorno dicono quando guardare, non se trattare: la decisione si prende sulla presenza effettiva di neanidi.",
+ mon:"Trappole a feromone per i maschi da marzo a ottobre (indicativamente 2-4 trappole ogni 4 ettari, aumentando con la superficie), per individuare i voli e far partire il conteggio dei gradi-giorno.\nNastri collanti attorno ai rametti per intercettare le neanidi mobili e confermare l'emergenza reale.\nControllo visivo dei frutti da agosto a ottobre, camminando su 20 piante per settore e registrando gli scudetti per frutto.\nI gradi-giorno dicono quando guardare, non se trattare: la decisione si prende sulla presenza effettiva di neanidi. Per distinguere individui vivi, morti e parassitizzati bisogna rovesciare lo scudetto (UC IPM): la sola presenza degli scudetti non dice se la popolazione è viva. Numero di piante e di trappole sono scelte operative da definire con il tecnico, non soglie ufficiali.",
  dif:"Tutto si gioca sul tempismo: intervento nella finestra di emergenza delle neanidi mobili, con volumi alti e pressione adeguata per bagnare anche il legno interno e la parte bassa della chioma.\nOlio minerale, regolatori di crescita (IGR) e sostanze sistemiche sono le famiglie utilizzate; in California sono state descritte popolazioni resistenti al piriproxifen dopo anni di uso ripetuto, quindi l'alternanza dei meccanismi d'azione non è un dettaglio.\nEvitare i prodotti ad ampio spettro che azzerano Aphytis.",
  aux:"Aphytis melinus (parassitoide chiave, anche con lanci inondativi), Aphytis chrysomphali (indigeno, meno efficiente), Comperiella bifasciata, Encarsia perniciosi, coccinellidi del genere Chilocorus e Rhyzobius lophanthae.",
  sic:"Il modello a gradi-giorno americano è tarato sulla San Joaquin Valley: la struttura del modello è valida, i valori assoluti no. Con i tuoi sensori puoi ricostruire l'accumulo termico locale partendo dal tuo biofix rilevato con le trappole, e ricalibrare le finestre sui tuoi blocchi nel giro di due stagioni di dati.\nDa noi il problema tende a concentrarsi nelle fasce interne della chioma e nelle zone poco raggiunte dalla botte: prima di aumentare le dosi conviene verificare la distribuzione.",
@@ -772,14 +663,14 @@ const SCHEDE = [
  cic:"Il ciclo completo dura da 13 a 52 giorni secondo la temperatura, con quattro età larvali che si sviluppano interamente dentro il tessuto fogliare. Attacca esclusivamente i germogli teneri: senza flusso vegetativo non c'è infestazione. Per questo i picchi coincidono con i flussi estivo e autunnale, da luglio a ottobre, mentre il flusso primaverile sfugge quasi sempre.",
  dan:"Su piante adulte in produzione il danno è per lo più estetico e fisiologicamente sopportabile: la pianta ha superficie fogliare in eccesso e compensa. Su giovani impianti e piante in allevamento il discorso cambia, perché la perdita di superficie fotosintetica sui pochi germogli disponibili rallenta la formazione della chioma in modo misurabile.",
  mon:"Controllo dei germogli in accrescimento: si contano i germogli con mine su un campione di flush e si valuta la percentuale infestata. Ha senso solo nei periodi di flusso attivo e soprattutto sui giovani impianti.",
- dif:"La leva principale è agronomica: governare i flussi vegetativi. Concimazioni azotate e irrigazioni che provocano flussi estivi disordinati creano il cibo dell'insetto; un flusso concentrato e breve riduce l'esposizione. La potatura verde estiva che stimola nuova vegetazione va evitata dove c'è pressione.\nTrattamenti giustificati soprattutto su impianti in allevamento, sul germoglio giovane e con prodotti a basso impatto sui parassitoidi.",
+ dif:"La leva principale è agronomica: governare i flussi vegetativi. Concimazioni azotate e irrigazioni che provocano flussi estivi disordinati creano il cibo dell'insetto; un flusso concentrato e breve riduce l'esposizione. La potatura verde estiva che stimola nuova vegetazione va evitata dove c'è pressione.\nTrattamenti giustificati soprattutto su impianti in allevamento, sul germoglio giovane e con prodotti a basso impatto sui parassitoidi. Non asportare le foglie minate: le parti non danneggiate continuano a produrre nutrimento per la pianta (UC IPM).",
  aux:"Il complesso parassitario indigeno è ricco ed efficace: Citrostichus phyllocnistoides, Semielacher petiolatus, Pnigalio spp. In agrumeti non trattati con ampio spettro la parassitizzazione arriva a livelli molto elevati e da sola tiene il fitofago sotto controllo.",
  sic:"Qui serve un adattamento netto rispetto alla letteratura americana. In Florida la minatrice viene combattuta con decisione perché le gallerie aprono la strada al cancro batterico degli agrumi (Xanthomonas citri): quel batterio in Europa non è presente, quindi la ragione principale di quelle strategie da noi non esiste.\nConclusione pratica: su agrumeto adulto siciliano, in assenza di cancro batterico, la minatrice va tollerata e non inseguita. Trattarla ripetutamente costa e distrugge i parassitoidi che la controllano gratis.",
  fon:"Featured Creatures UF/IFAS · GIP Cítricos IVIA · UC IPM Citrus"},
 
 {id:"pezothrips-kellyanus", n:"Tripide degli agrumi", s:"Pezothrips kellyanus", cat:"insetti", col:["ara","lim","man"], rango:2,
  cal:[0,0,0,2,3,3,1,0,0,0,0,0], gen:"Più generazioni, ma solo quella coincidente con la caduta petali produce danno",
- ric:"Tripide scuro, 1,5-2 mm, presente nei fiori e sui frutticini appena allegati. Il sintomo è specifico e riconoscibile a distanza di mesi: un anello di tessuto cicatriziale rugoso e argenteo attorno alla zona calicina del frutto, che resta e si accentua con l'accrescimento.\nDa distinguere dal tripide sudafricano (Scirtothrips aurantii), organismo da quarantena segnalato dal 2026 nelle province di Catania e Siracusa: quello è molto più piccolo e chiaro, lascia rugginosità diffuse invece dell'anello calicino e va segnalato, non trattato. Nel dubbio, guarda quella scheda.",
+ ric:"Tripide scuro, 1,5-2 mm, presente nei fiori e sui frutticini appena allegati. Il sintomo è specifico e riconoscibile a distanza di mesi: un anello di tessuto cicatriziale rugoso e argenteo attorno alla zona calicina del frutto, che resta e si accentua con l'accrescimento.",
  cic:"L'infestazione dannosa si concentra in una finestra brevissima: dalla caduta dei petali fino a quando il frutticino raggiunge circa 2-2,5 cm di diametro. Le larve si nutrono nello spazio fra il calice e la buccia in formazione, e la cicatrice cresce insieme al frutto. Passata quella fase, i tripidi presenti non fanno più danno alla buccia.",
  dan:"Danno esclusivamente estetico ma economicamente pesante, perché colpisce la buccia e quindi la categoria commerciale. Su limone e su arance destinate al fresco può declassare quote rilevanti di prodotto.",
  mon:"Trappole cromotropiche bianche o azzurre in fioritura, più il controllo diretto di fiori e frutticini: si scuotono i fiori su una superficie chiara e si contano gli individui, oppure si aprono i calici dei frutticini appena allegati.",
@@ -787,18 +678,6 @@ const SCHEDE = [
  aux:"Predatori generalisti (antocoridi, acari fitoseidi) presenti ma raramente sufficienti da soli nella finestra critica.",
  sic:"Problema in crescita negli agrumeti siciliani, spesso confuso con danni da vento o da acaro rugginoso. La distinzione è netta: il tripide fa un anello attorno al calice, l'acaro rugginoso fa una rugginosità diffusa su tutta la superficie, il vento fa lesioni irregolari sul lato esposto.",
  fon:"GIP Cítricos IVIA · EPPO Global Database"},
-
-{id:"scirtothrips-aurantii", n:"Tripide sudafricano degli agrumi", s:"Scirtothrips aurantii", cat:"insetti", col:["ara","lim","man"], rango:1,
- cal:[0,0,1,2,3,3,2,2,2,1,0,0], gen:"Pi\u00f9 generazioni sovrapposte; si sviluppa solo dove c'\u00e8 tessuto giovane in accrescimento",
- ric:"Tisanottero molto piccolo, sotto il millimetro, di colore chiaro giallo-arancio: molto pi\u00f9 minuto e pi\u00f9 chiaro del tripide degli agrumi che gi\u00e0 conosci (Pezothrips kellyanus), che \u00e8 scuro e lungo 1,5-2 mm.\nIl riconoscimento a occhio non basta e non fa testo: la determinazione di specie richiede esame morfologico e molecolare in laboratorio. In Sicilia le prime segnalazioni sono state confermate cos\u00ec dal Laboratorio di Entomologia dell'Universit\u00e0 di Catania.\nQuello che puoi riconoscere tu \u00e8 il quadro sospetto: rugginosit\u00e0 e cicatrici diffuse sui frutticini, deformazioni e decolorazioni sui germogli e sulle foglie appena formate, in presenza di molti tripidi minuti sui tessuti in crescita.",
- cic:"Si alimenta esclusivamente su tessuti giovani in attiva crescita: germogli, foglie appena distese, fiori e giovani frutti. Non colonizza la vegetazione matura, quindi la popolazione segue i flussi vegetativi e non l'andamento stagionale generico.\nE' altamente polifago: oltre agli agrumi \u00e8 stato riscontrato su pi\u00f9 di settanta specie vegetali di famiglie diverse, e in Spagna \u00e8 stato associato anche a melograno, cachi e vite da tavola. In Sicilia \u00e8 stato confermato anche su mirtillo, in serra.\nL'arancio dolce \u00e8 considerato ospite principale.",
- dan:"Il danno \u00e8 soprattutto qualitativo, non di produzione: le punture di alimentazione sui giovani frutti lasciano rugginosit\u00e0, cicatrici superficiali e deformazioni che restano fino alla raccolta e fanno declassare il frutto. Su un'arancia da mercato fresco questo pesa quanto una perdita di resa.\nSu germogli e foglie giovani produce decolorazioni, aree necrotiche e deformazioni.\nAl danno agronomico si somma quello normativo: la presenza in azienda di un organismo da quarantena comporta misure ufficiali e vincoli alla movimentazione del materiale vegetale.",
- mon:"Osservazione sui tessuti giovani nei momenti di flusso vegetativo, in particolare sui frutticini dopo l'allegagione e sui germogli. La specie risponde fortemente al giallo, e le trappole collanti gialle fluorescenti sono lo strumento di cattura usato nei paesi dove il fitofago \u00e8 insediato.\nAttenzione per\u00f2: qui non si tratta di stimare una popolazione per decidere un trattamento. Il monitoraggio ufficiale \u00e8 coordinato dal Servizio fitosanitario regionale e la determinazione di specie si fa in laboratorio. Il tuo compito \u00e8 accorgerti del sospetto e segnalarlo, non quantificarlo.",
- dif:"Non applicare uno schema di difesa aziendale di tua iniziativa.\nE' un organismo da quarantena in lista A1 EPPO e quarantena dell'Unione europea; in Italia lo stato \u00e8 stato aggiornato a \u00abpresente, in fase di eradicazione\u00bb, il che significa che le azioni sono misure ufficiali decise dal Servizio fitosanitario regionale, non scelte tecniche discrezionali.\nOgni sospetto va segnalato al Servizio fitosanitario regionale. Non \u00e8 una cortesia: \u00e8 un obbligo, e trattare senza segnalare pu\u00f2 solo mascherare un focolaio e spostare il problema.\nIn attesa dell'accertamento vale il buon senso: non spostare materiale vegetale dall'appezzamento sospetto, non portare piante o talee ad altre aziende, tieni traccia di cosa \u00e8 entrato e uscito.\nIl disciplinare di produzione integrata non copre questo fitofago: non cercarci dentro dosi o soglie, perch\u00e9 la materia \u00e8 un'altra.",
- aux:"Nell'areale d'origine non risultano parassitoidi efficaci e i predatori non danno un controllo economicamente rilevante. Non contare su un contenimento naturale.",
- sic:"Riguarda direttamente la Piana di Catania. Le prime segnalazioni italiane, nel gennaio 2026, sono arrivate proprio dalle aree agrumicole delle province di Catania e Siracusa, su arancio dolce; a giugno 2026 \u00e8 stato confermato un focolaio anche in provincia di Ragusa, ad Acate, in una serra di mirtillo.\nLa fenologia locale non \u00e8 ancora stabilita: il calendario qui sopra segue la disponibilit\u00e0 di tessuto giovane sugli agrumi in Sicilia \u2014 flusso di primavera, allegagione, flussi estivi \u2014 non osservazioni consolidate sul comportamento della specie nel nostro clima. Va preso come indicazione di quando guardare, non come previsione di quando c'\u00e8.\nIl quadro \u00e8 in evoluzione: prima di dire qualsiasi cosa a un'azienda, verifica lo stato aggiornato sulle fonti ufficiali.",
- att:"Organismo da quarantena (lista A1 EPPO, quarantena UE). In Italia: presente, in fase di eradicazione. In caso di sospetto non trattare di tua iniziativa, non spostare materiale vegetale e segnala al Servizio fitosanitario regionale.",
- fon:"EPPO Global Database (SCITAU) \u00b7 EPPO Reporting Service 2/2026 \u00b7 EFSA \u00b7 Servizio fitosanitario regionale Sicilia"},
 
 {id:"afidi-agrumi", n:"Afidi degli agrumi", s:"Aphis spiraecola, Toxoptera aurantii, Aphis gossypii", cat:"insetti", col:["ara","lim","man"], rango:2,
  cal:[0,1,2,3,3,2,1,1,1,1,0,0], gen:"Numerose generazioni partenogenetiche durante i flussi vegetativi",
@@ -872,19 +751,19 @@ const SCHEDE = [
  ric:"Eriofide non osservabile senza forte ingrandimento. Si riconosce dagli effetti: gemme deformate, fiori malformati, e soprattutto frutti deformi, bitorzoluti, a volte con protuberanze a corno. Rametti con internodi accorciati e vegetazione a cespuglio.",
  cic:"Vive protetto dentro le gemme e sotto il calice, dove i prodotti arrivano con difficoltà. Da lì colonizza i nuovi organi in formazione. La fase di danno coincide con la formazione di gemme e fiori, quindi il periodo utile per intervenire è a monte della fioritura.",
  dan:"Frutti deformi non commercializzabili, riduzione della produzione per aborto fiorale. Più grave su limone, che per rifiorenza offre continuamente organi giovani da colonizzare.",
- mon:"Valutazione della percentuale di frutti deformi alla raccolta precedente come indicatore di rischio per l'anno in corso, più controllo delle gemme in prefioritura.",
+ mon:"Valutazione della percentuale di frutti deformi alla raccolta precedente come indicatore di rischio per l'anno in corso, più controllo delle gemme in prefioritura. I frutti deformi da soli non provano il ruolo dell'acaro: servono il campionamento delle gemme e l'identificazione. Per UC IPM non esiste una soglia stabilita: anche con l'80% di gemme infestate le perdite non sono risultate costanti né prevedibili.",
  dif:"Trattamenti in fase di pre-fioritura e ripresa vegetativa, quando le gemme si aprono e l'acaro è esposto: dopo, la protezione dentro la gemma rende gli interventi inefficaci. Zolfo, olio e acaricidi ammessi.\nAsportazione dei rami più deformati.",
  aux:"Fitoseidi, con efficacia limitata dalla protezione fisica offerta dalla gemma.",
- sic:"Molto più rilevante sul limone che sull'arancio: se lavori blocchi misti, non ha senso applicare la stessa strategia su tutti. Sul Tarocco la frequenza di frutti deformi da questo acaro è normalmente bassa.",
- fon:"GIP Cítricos IVIA · CABI"},
+ sic:"La documentazione riguarda soprattutto il limone; se lavori blocchi misti, non ha senso applicare la stessa strategia su tutti. Osservazione in campo sull'arancio: la presenza dell'acaro e dei suoi danni è in crescita. Si notano molti frutti schiacciati ai poli, quindi dall'aspetto appiattito, e un numero sempre maggiore di frutti con le cosiddette meraviglie. L'acaro è stato riscontrato all'interno delle gemme con un controllo dell'Università di Catania (osservazione in campo).",
+ fon:"GIP Cítricos IVIA · CABI · osservazioni in campo (controllo Università di Catania)"},
 
 /* ---------- AGRUMI · FUNGHI ---------- */
 {id:"phytophthora-agrumi", n:"Gommosi e marciume del colletto", s:"Phytophthora citrophthora, P. nicotianae", cat:"funghi", col:["ara","lim","man"], rango:1,
  cal:[2,2,3,3,2,1,1,1,2,3,3,2], gen:"Infezioni legate ai periodi piovosi, con picchi autunnale e primaverile",
- ric:"Al colletto: essudazioni gommose ambrate, corteccia che si scurisce e si screpola, lembi che si staccano scoprendo legno imbrunito. In chioma: vegetazione rada, foglie clorotiche con nervature ingiallite, deperimento progressivo di un settore della pianta. A livello radicale: radichette assenti o annerite, con corticale che si sfila.",
+ ric:"Al colletto: essudazioni gommose ambrate, corteccia che si scurisce e si screpola, lembi che si staccano scoprendo legno imbrunito. In chioma: vegetazione rada, foglie clorotiche con nervature ingiallite, deperimento progressivo di un settore della pianta. A livello radicale: radichette assenti o annerite, con corticale che si sfila. Phytophthora dà quadri distinti: marciume radicale, gommosi e marciume bruno del frutto; questa scheda tratta colletto e radici.",
  cic:"Oomicete che vive nel terreno e si diffonde con l'acqua. Le zoospore hanno bisogno di acqua libera per muoversi: ogni ristagno, ogni bagnatura prolungata del colletto, ogni scorrimento superficiale è una via di infezione. P. citrophthora è più attiva con temperature moderate (autunno-primavera), P. nicotianae con temperature più elevate.",
  dan:"Il danno più grave e più irreversibile dell'agrumicoltura: cancri al colletto che strozzano progressivamente la pianta, marciume dell'apparato radicale con perdita di efficienza idrica e nutrizionale. Una pianta compromessa al colletto non si recupera in un anno e spesso non si recupera affatto.",
- mon:"Ispezione del colletto in autunno e a fine inverno, scalzando leggermente e ripulendo la zona d'innesto. Verifica dei punti di ristagno dopo le piogge. Controllo delle radichette con piccoli saggi nei settori con vegetazione sofferente.",
+ mon:"Ispezione del colletto in autunno e a fine inverno, scalzando leggermente e ripulendo la zona d'innesto. Verifica dei punti di ristagno dopo le piogge. Controllo delle radichette con piccoli saggi nei settori con vegetazione sofferente. I sintomi sono spesso difficili da distinguere da nematodi, sali o ristagno: solo l'analisi di laboratorio dà l'identificazione certa (UC IPM).",
  dif:"È soprattutto prevenzione strutturale.\nInnesto sufficientemente alto e mai interrato; terra rincalzata contro il tronco è un errore che si paga anni dopo.\nErogatori posizionati lontano dal tronco, mai bagnatura diretta del colletto.\nDrenaggio: nei terreni argillosi vertici l'acqua che non se ne va è il fattore numero uno.\nPortinnesti tolleranti e materiale vivaistico certificato.\nFosfonati e sostanze specifiche dove ammesse, ma su una situazione idrologica sbagliata nessun fungicida tiene.",
  aux:"—",
  sic:"Nei suoli argillosi vertici della Piana di Catania questa è la prima cosa da escludere quando un settore mostra sofferenza generalizzata. Il quadro fogliare della gommosi radicale somiglia molto a una carenza multipla o a una clorosi, e più di una diagnosi nutrizionale sbagliata nasce da un problema di Phytophthora e di asfissia.\nRegola pratica: prima di aggiustare la fertirrigazione su un blocco sofferente, guarda il colletto e scava le radichette.",
@@ -1020,7 +899,7 @@ const SCHEDE = [
  ric:"Fessurazione della buccia, tipicamente longitudinale e a partire dalla zona stilare, che espone l'albedo e poi la polpa. Il frutto cade o marcisce. Nelle ombelicate lo spacco parte spesso dall'ombelico.",
  cic:"Non è una malattia, ed è un fenomeno a due tempi distinti — è il punto che cambia la strategia.\nINIZIAZIONE: il difetto strutturale si forma molto presto, dalla differenziazione a fiore fino a poco dopo la caduta dei petali. In quella finestra, condizioni di alta temperatura, bassa umidità e vento forte (deficit di pressione di vapore elevato) danneggiano il frutticino e lasciano una debolezza all'estremità stilare. Concorrono la nutrizione: calcio, potassio e boro insufficienti in fioritura.\nESPRESSIONE: mesi dopo, quando la polpa si accresce più rapidamente di quanto la buccia riesca ad accompagnare, la debolezza cede. Il passaggio da carenza idrica a reintegro rapido è il grilletto classico.\nContano anche la forma e la genetica: i frutti oblati e quelli con ombelico o con cavità sotto l'estremità stilare sono strutturalmente più esposti, e il portinnesto incide attraverso il calibro dei vasi xilematici del peduncolo.",
  dan:"Perdita diretta di prodotto, che nelle annate sfavorevoli e sulle varietà sensibili raggiunge percentuali molto elevate. Mandarini, arance dolci e limoni sono i più colpiti.\nDanno secondario altrettanto serio: il frutto spaccato è una porta aperta per Alternaria e Penicillium e richiama insetti, aumentando il rischio per i frutti sani vicini. Da qui l'importanza della raccolta dei frutti spaccati.",
- mon:"Sorveglianza dell'omogeneità dell'apporto idrico e monitoraggio dei diametri: un'accelerazione improvvisa della curva di accrescimento dopo un rallentamento è il segnale di rischio più diretto.\nAnalisi fogliare per verificare i livelli degli elementi che contano davvero. I riferimenti pubblicati indicano boro sopra 36 ppm e potassio sopra 1,2% come soglie di sicurezza, con il calcio che deve essere elevato prima della fioritura, perché subito dopo cala fisiologicamente di due o più punti percentuali.\nRegistrare la percentuale di frutti spaccati per blocco e per anno: la ricorrenza dice se il problema è del blocco o dell'annata.",
+ mon:"Sorveglianza dell'omogeneità dell'apporto idrico e monitoraggio dei diametri: un'accelerazione improvvisa della curva di accrescimento dopo un rallentamento è il segnale di rischio più diretto.\nAnalisi fogliare per verificare i livelli degli elementi che contano davvero. I riferimenti pubblicati indicano boro sopra 36 ppm e potassio sopra 1,2% come soglie di sicurezza, con il calcio che deve essere elevato prima della fioritura, perché subito dopo cala fisiologicamente di due o più punti percentuali.\nRegistrare la percentuale di frutti spaccati per blocco e per anno: la ricorrenza dice se il problema è del blocco o dell'annata. Sono valori di riferimento pubblicati altrove: non sono una taratura validata per i cloni siciliani.",
  dif:"La correzione va anticipata alla fioritura, non fatta a fine estate quando il sintomo appare: a quel punto il difetto è già stato creato mesi prima.\nNutrizione pre-fioritura e post-allegagione: calcio, potassio e boro. In prove pubblicate su mandarino, applicazioni fogliari di calcio e di nitrato di potassio nelle fasi giuste hanno ridotto lo spacco in misura molto rilevante; il calcio ha mostrato effetto sia preventivo sia parzialmente curativo anche a qualche mese dalla fioritura.\nAttenzione al fosforo: livelli elevati danno bucce più sottili e lisce, quindi più esposte.\nEquilibrio della carica: sia una carica troppo bassa (frutti sovradimensionati) sia una troppo alta (bucce sottili) aumentano il rischio. Evitare gli estremi.\nRegolarità dell'irrigazione nella fase di accrescimento: non irrigare subito prima o subito dopo una pioggia intensa.\nI fitoregolatori riducono lo spacco, ma la registrazione italiana è diversa da quella statunitense: verifica sempre cosa è ammesso qui prima di considerarli.",
  aux:"—",
  sic:"Nei terreni argillosi vertici il problema è aggravato dal comportamento idrico del suolo, che alterna fasi di scarsa disponibilità a fasi di saturazione. Il monitoraggio dei diametri che stai già facendo è lo strumento diagnostico più utile per anticipare il rischio invece di contare i frutti spaccati dopo.",
@@ -1031,8 +910,8 @@ const SCHEDE = [
  ric:"Buccia che al tatto appare sottile, cedevole e con avvallamenti irregolari; in sezione l'albedo appare collassato e separato in aree. Il frutto perde consistenza e tenuta in post-raccolta, pur restando apparentemente sano.",
  cic:"Deriva dal collasso delle cellule dell'albedo nella fase di maturazione. È favorito da carenza di calcio e potassio nella buccia, da eccesso di azoto, da irrigazione abbondante nella fase finale e da elevata carica in condizioni di forte accrescimento.",
  dan:"Declassamento commerciale e scarsa conservabilità: il frutto non regge la manipolazione né lo stoccaggio. Su prodotto destinato al fresco è un danno di prima grandezza.",
- mon:"Valutazione su campione di frutti nella fase di maturazione, con sezione trasversale per osservare lo stato dell'albedo. Registrazione della percentuale per blocco e correlazione con il piano di concimazione dell'anno.",
- dif:"Equilibrio potassio-calcio-azoto costruito lungo tutta la stagione, con particolare attenzione a non eccedere in azoto nella seconda parte.\nGestione dell'irrigazione nella fase finale, evitando apporti eccessivi in maturazione.\nApplicazioni di calcio nelle fasi utili.\nAnche qui la correzione è preventiva: quando la buccia è già collassata non si recupera.",
+ mon:"Valutazione su campione di frutti nella fase di maturazione, con sezione trasversale per osservare lo stato dell'albedo. Registrazione della percentuale per blocco e correlazione con il piano di concimazione dell'anno. Rilevare anche cultivar, clone, portinnesto, epoca, carico, calibro, posizione del frutto e acqua distribuita: raccogliere questi dati non dimostra che ciascuno sia causa nel singolo episodio.",
+ dif:"Equilibrio potassio-calcio-azoto costruito lungo tutta la stagione, con particolare attenzione a non eccedere in azoto nella seconda parte.\nGestione dell'irrigazione nella fase finale, evitando apporti eccessivi in maturazione.\nApplicazioni di calcio nelle fasi utili.\nAnche qui la correzione è preventiva: quando la buccia è già collassata non si recupera. Calcio, potassio, azoto e acqua sono fattori associati, non cause dimostrate nel singolo episodio: separare correlazioni, prove e misure validate prima di correggere il piano.",
  aux:"—",
  sic:"Va sempre distinto dall'acaro rugginoso, che dà un difetto superficiale della buccia ma non un collasso dell'albedo. La sezione trasversale del frutto risolve il dubbio in dieci secondi ed evita di correggere un piano nutrizionale per un problema che era entomologico.",
  fon:"Letteratura agronomica di fisiologia degli agrumi"},
@@ -1331,12 +1210,6 @@ function impMenu(){
   impVoce("note-prod","Note sui prodotti","Equivalenze e precisazioni",c.noteProd.length)+
   '<div class="imp-sez">Consultorio</div>'+
   impVoce("calendari","Calendari delle avversit\u00e0","Tara i periodi critici sulla tua zona",SCHEDE.length)+
-  '<div class="imp-sez">Consultazione</div>'+
-  impVoce("glossario","Glossario e pubblicazioni","Termini tecnici e documenti del portale Patagrumi",GLOSSARIO.length)+
-  '<div class="imp-sez">Note per Claude</div>'+
-  impVoce("note","Note sul punto","Quello che hai segnato con la chiocciola",(DB.noteApp||[]).length)+
-  '<div class="imp-sez">Meteo</div>'+
-  impVoce("meteo","Luoghi e temperature","Cosa entra da solo nelle ricette",meteoCfg().luoghi.length)+
   '<div class="imp-sez">Dati</div>'+
   impVoce("dati","Backup, ripristino, azzeramento","")+
   '<div style="height:40px"></div></div>';
@@ -1682,12 +1555,8 @@ const FONTI_HUB={
     ["UC IPM \u2014 Citrus","https://ipm.ucanr.edu/agriculture/citrus/"]]
 };
 const FONTI_DIRETTE={
-  "scirtothrips-aurantii":[["EPPO \u2014 Scirtothrips aurantii (SCITAU)","https://gd.eppo.int/taxon/SCITAU"],
-    ["EPPO \u2014 scheda tecnica completa","https://gd.eppo.int/taxon/SCITAU/datasheet"],
-    ["EPPO \u2014 prima segnalazione in Sicilia (gennaio 2026)","https://gd.eppo.int/reporting/article-8326"],
-    ["EPPO \u2014 distribuzione mondiale","https://gd.eppo.int/taxon/SCITAU/distribution"],
-    ["Servizio fitosanitario regionale Sicilia","https://www.regione.sicilia.it/istituzioni/regione/strutture-regionali/assessorato-agricoltura-sviluppo-rurale-pesca-mediterranea/dipartimento-agricoltura/organizzazione/servizio-4-servizio-fitosanitario-regionale-lotta-alla"]],
-  "aonidiella-aurantii":[["IVIA \u2014 Piojo rojo de California","http://gipcitricos.ivia.es/area/plagas-principales/diaspididos/piojo_rojo_california"],
+  "aceria-sheldoni":[["UC IPM \u2014 Citrus bud mite","https://ipm.ucanr.edu/agriculture/citrus/citrus-bud-mite/"]],
+    "aonidiella-aurantii":[["UC IPM \u2014 Cocciniglia rossa della California","https://ipm.ucanr.edu/agriculture/citrus/california-red-scale-and-yellow-scale/"],["UC IPM \u2014 Aphytis melinus","https://ipm.ucanr.edu/natural-enemies/aphytis_melinus.html"],["IVIA \u2014 Piojo rojo de California","http://gipcitricos.ivia.es/area/plagas-principales/diaspididos/piojo_rojo_california"],
     ["EPPO \u2014 Aonidiella aurantii (AONDAU)","https://gd.eppo.int/taxon/AONDAU"],
     ["UC IPM \u2014 programma annuale, autunno","https://ipm.ucanr.edu/agriculture/citrus/fall/"],
     ["UC IPM \u2014 guida completa in PDF","https://ipm.ucanr.edu/pdf/pmg/pmgcitrus.pdf"],
@@ -1699,9 +1568,9 @@ const FONTI_DIRETTE={
   "saissetia-oleae":[["IVIA \u2014 C\u00f3ccidos (caparreta negra)","http://gipcitricos.ivia.es/area/plagas-principales/coccidos"]],
   "aleurothrixus-floccosus":[["IVIA \u2014 Moscas blancas","http://gipcitricos.ivia.es/area/plagas-principales/moscas-blancas"]],
   "ceratitis-capitata":[["IVIA \u2014 Mosca de la fruta: biologia, soglie, controllo","http://gipcitricos.ivia.es/area/plagas-principales/dipteros/mosca-de-la-fruta"]],
-  "phyllocnistis-citrella":[["Featured Creatures UF \u2014 Citrus leafminer","https://entnemdept.ufl.edu/creatures/citrus/citrus_leafminer.htm"],
+  "phyllocnistis-citrella":[["UC IPM \u2014 Citrus leafminer","https://ipm.ucanr.edu/agriculture/citrus/citrus-leafminer/"],["Featured Creatures UF \u2014 Citrus leafminer","https://entnemdept.ufl.edu/creatures/citrus/citrus_leafminer.htm"],
     ["EDIS UF/IFAS \u2014 EENY-038","https://edis.ifas.ufl.edu/in165"]],
-  "phytophthora-agrumi":[["IVIA \u2014 Podredumbre de cuello y gomosis","http://gipcitricos.ivia.es/identificacion-biologia-y-danos-23.html"]],
+  "phytophthora-agrumi":[["UC IPM \u2014 Phytophthora root rot","https://ipm.ucanr.edu/agriculture/citrus/phytophthora-root-rot/"],["IVIA \u2014 Podredumbre de cuello y gomosis","http://gipcitricos.ivia.es/identificacion-biologia-y-danos-23.html"]],
   "allupatura":[["IVIA \u2014 Podredumbre marr\u00f3n o aguado","http://gipcitricos.ivia.es/identificacion-biologia-y-danos-23.html"]],
   "clorosi-ferrica":[["UF/IFAS SL404 \u2014 Ferro e rame negli agrumi","https://ask.ifas.ufl.edu/publication/SS617"],
     ["UF/IFAS SL204 \u2014 Microcarenze","https://ask.ifas.ufl.edu/publication/SS423"],
@@ -1732,114 +1601,10 @@ function linkScheda(s){
 }
 
 /* ============================================================
-   3bis-bis. PATAGRUMI — portale delle fitopatologie degli agrumi
-   del Parco Scientifico e Tecnologico della Sicilia.
-   Testi e fotografie sono loro (© PSTS): nell'app NON ne viene
-   copiato nulla. Da qui partono soltanto collegamenti al portale,
-   dove le foto si guardano sul sito di chi le ha fatte.
-   Serve connessione: sono link esterni, non contenuti offline.
-   ============================================================ */
-const PATAGRUMI_BASE="http://www.patagrumi.pstsicilia.it";
-function linkPatagrumi(t){
-  return PATAGRUMI_BASE+"?s="+encodeURIComponent(t).replace(/%20/g,"+")+"&post_type=portfolio";
-}
-// termine di ricerca sul portale, per scheda del consultorio.
-// Solo agrumi: il portale non tratta olivo e fico d'India.
-const PATAGRUMI_SCHEDE={
-  "planococcus-citri":"Cotonello degli agrumi",
-  "aonidiella-aurantii":"Cocciniglia rossa forte",
-  "ceratitis-capitata":"Mosca mediterranea della frutta",
-  "phyllocnistis-citrella":"Minatrice serpentina",
-  "pezothrips-kellyanus":"Tripide degli agrumi",
-  "afidi-agrumi":"Afide",
-  "aleurothrixus-floccosus":"fioccoso",
-  "saissetia-oleae":"Cocciniglia mezzo grano di pepe",
-  "aspidiotus-nerii":"Cocciniglia bianca",
-  "aculops-pelekassi":"Acaro",
-  "tetranychus-panonychus":"Ragnetto rosso",
-  "aceria-sheldoni":"Acaro delle meraviglie",
-  "phytophthora-agrumi":"Gommosi",
-  "allupatura":"allupatura",
-  "mal-secco":"Mal secco",
-  "botrite-agrumi":"Botrite",
-  "antracnosi-agrumi":"Antracnosi",
-  "fumaggine":"Fumaggine",
-  "ctv-tristeza":"Tristeza",
-  "clorosi-ferrica":"Squilibri nutrizionali",
-  "carenza-magnesio":"Carenza di magnesio",
-  "carenza-boro":"Squilibri nutrizionali",
-  "microcarenze-zn-mn":"Squilibri nutrizionali",
-  "spacco-frutto":"Spaccatura dei frutti",
-  "allisciamento":"Creasing",
-  "salinita":"Eccessiva salinit\u00e0",
-  "ipossia":"anossia"
-};
-
-/* Pubblicazioni scaricabili dal portale.
-   Qui stanno solo i riferimenti bibliografici — titolo, autori, anno,
-   indirizzo — non il contenuto dei documenti. Il bottone apre la
-   pagina del portale, da cui si scarica il PDF. */
-const PATAGRUMI_PUB=[
- {t:"HLB (huanglongbing), nuova minaccia per gli agrumi",
-  a:"V. Catara, R. D'Anna, S. Davino, P. Bella, R. La Rosa, R. Fisicaro, F. Conti",
-  d:"Informatore Agrario 2-2015", y:"2015", tag:"batteri",
-  u:PATAGRUMI_BASE+"/hlb-huanglongbing-nuova-minaccia-per-gli-agrumi/"},
- {t:"Il \u00abmarciume secco delle radici\u00bb degli agrumi: sintomi, cause e suscettibilit\u00e0 dei portinnesti",
-  a:"Antonino Catara, Giancarlo Polizzi", d:"", y:"2014", tag:"funghi",
-  u:PATAGRUMI_BASE+"/il-marciume-secco-delle-radici-degli-agrumi-sintomi-cause-e-suscettibilita-dei-portinnesti/"},
- {t:"'Candidatus Liberibacter' spp.: Emerging Threats for Agriculture in the European and Mediterranean Region",
-  a:"Vincenza Ilardi, Vittoria Catara", d:"in inglese", y:"2014", tag:"batteri",
-  u:PATAGRUMI_BASE+"/candidatus-liberibacter-spp-emerging-threats-for-agriculture-in-the-european-and-mediterranean-region/"},
- {t:"Effetti fitotossici di acque ad elevato contenuto di boro",
-  a:"Mario Pacetto", d:"", y:"2014", tag:"nutrizione",
-  u:PATAGRUMI_BASE+"/effetti-fitotossici-di-acque-ad-elevato-contenuto-di-boro/"},
- {t:"Osservazioni su intumescenze gommose delle foglie di agrumi",
-  a:"Salvatore Grasso, Antonino Catara", d:"", y:"2014", tag:"fisiopatie",
-  u:PATAGRUMI_BASE+"/osservazioni-su-intumescenze-gommose-delle-foglie-di-agrumi/"},
- {t:"Intumescenze gommose parassitarie e defogliazioni in piante di agrumi",
-  a:"S. Grasso, F. M. Grasso, M. Cannatella, F. Iachelli, S. La Rocca, S. Zagarella, A. Catara",
-  d:"", y:"2014", tag:"fisiopatie",
-  u:PATAGRUMI_BASE+"/intumescenze-gommose-parassitarie-e-defogliazioni-in-piante-di-agrumi/"},
- {t:"New or re-emerging fungal Citrus diseases in the Mediterranean",
-  a:"Francesco Maria Grasso, Patrizia Bella, Salvatore Grasso, Antonino Catara",
-  d:"in inglese", y:"2014", tag:"funghi",
-  u:PATAGRUMI_BASE+"/new-or-re-emerging-fungal-citrus-diseases-in-the-mediterranean/"},
- {t:"Abstracts del convegno sulla tristeza \u2014 23 giugno 2014",
-  a:"", d:"Gestione della malattia e rilancio dell'agrumicoltura", y:"2014", tag:"virus",
-  u:PATAGRUMI_BASE+"/abstracts-convegno-tristeza-23-giugno-2014/"},
- {t:"Vademecum mandarino", a:"", d:"", y:"2014", tag:"generale",
-  u:PATAGRUMI_BASE+"/vademecum-mandarino/"},
- {t:"Manuale Assopromand", a:"", d:"Manuale tecnico applicativo", y:"2014", tag:"generale",
-  u:PATAGRUMI_BASE+"/manuale-assopromand/"},
- {t:"Guida alla gestione delle avversit\u00e0 parassitarie e non parassitarie degli agrumi",
-  a:"", d:"Avversit\u00e0 da fitofagi, funghi, batteri, fattori ambientali e squilibri nutrizionali",
-  y:"2014", tag:"generale",
-  u:PATAGRUMI_BASE+"/guida-alla-gestione-delle-avversita-parassitarie-e-non-parassitarie-degli-agrumi-2/"},
- {t:"La sostituzione dell'arancio amaro: gli aspetti fitopatologici da non sottovalutare",
-  a:"Matilde Tessitori, Antonino Catara", d:"", y:"2014", tag:"portinnesti",
-  u:PATAGRUMI_BASE+"/la-sostituzione-dellarancio-amaro-gli-aspetti-fitopatologici-da-non-sottovalutare/"},
- {t:"Il caso \u00abtristeza\u00bb degli agrumi",
-  a:"Antonino Catara, Sebastiano Barbagallo, Maria Saponari", d:"", y:"2014", tag:"virus",
-  u:PATAGRUMI_BASE+"/il-caso-tristeza-degli-agrumi/"},
- {t:"Virus, viroidi e procarioti endogeni degli agrumi",
-  a:"Antonino Catara, Serena Rizza, Matilde Tessitori", d:"", y:"2014", tag:"virus",
-  u:PATAGRUMI_BASE+"/virus-viroidi-e-procarioti-endogeni-degli-agrumi/"},
- {t:"Characterization of isolates of Citrus tristeza virus by sequential analyses of enzyme immunoassays and capillary electrophoresis",
-  a:"G. Licciardello, D. Raspagliesi, M. Bar-Joseph, A. Catara", d:"in inglese", y:"2014", tag:"virus",
-  u:PATAGRUMI_BASE+"/characterization-of-isolates-of-citrus-tristeza-virus-by-sequential-analyses-of-enzyme-immunoassays-and-capillary-electrophoresis-single-strand-conformation-polymorphisms/"},
- {t:"Tecnologie a supporto della gestione del virus della tristeza degli agrumi (CTV) in \u00abzone d'insediamento\u00bb",
-  a:"A. Bertuccio, M. Tomasello, S. Fassari, A. Catara", d:"", y:"2014", tag:"virus",
-  u:PATAGRUMI_BASE+"/tecnologie-a-supporto-della-gestione-del-virus-della-tristeza-degli-agrumi-ctv-in-zone-dinsediamento/"},
- {t:"Nuovi approcci di contenimento della maculatura bruna degli agrumi",
-  a:"P. Bella, M. Russo, M. Tomasello, V. Catara, A. Catara", d:"", y:"2014", tag:"funghi",
-  u:PATAGRUMI_BASE+"/nuovi-approcci-di-contenimento-della-maculatura-bruna-degli-agrumi/"}
-];
-
-/* ============================================================
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
-const VERSIONE_APP="v7.5 \u2014 10/09/2026";
+const VERSIONE_APP="v7.2 \u2014 17/10/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -1892,9 +1657,7 @@ const DEF_MENU=[
   {k:"suggerimenti",t:"Suggerimenti per il mese",s:"Cosa sorvegliare adesso e cosa facevi negli anni scorsi",forte:false},
   {k:"storico",t:"Storico",s:"Tutte le voci, con filtri e ricerca",forte:false},
   {k:"consultorio",t:"Consultorio",s:"Schede tecniche delle avversit\u00e0",forte:false},
-  {k:"prodotti",t:"Prodotti",s:"Anagrafica di prodotti e formulati",forte:false},
-  {k:"meteo",t:"Meteo",s:"Luoghi e temperature che finiscono nelle ricette",forte:false},
-  {k:"glossario",t:"Glossario e pubblicazioni",s:"Termini tecnici e documenti da scaricare",forte:false}
+  {k:"prodotti",t:"Prodotti",s:"Anagrafica di prodotti e formulati",forte:false}
 ];
 function cfg(){
   DB.cfg=DB.cfg||{};
@@ -2183,448 +1946,6 @@ function convertiRicetta(v,litriNuovi){
 }
 
 /* ============================================================
-   7ter. METEO — luoghi salvati e temperature del giorno
-   Fonte automatica: Open-Meteo (api.open-meteo.com), API pubblica
-   senza chiave e con CORS aperto, dati CC BY 4.0. Sono previsioni
-   di modello sulle coordinate indicate, NON misure di una stazione
-   a terra: SIAS e 3bmeteo restano il riscontro da fare a mano.
-   Ogni valore scritto a mano vince e non viene piu' sovrascritto
-   (m.fonte === "manuale").
-   ============================================================ */
-const METEO_URL="https://api.open-meteo.com/v1/forecast";
-const METEO_GEO="https://geocoding-api.open-meteo.com/v1/search";
-const METEO_SIAS="http://www.sias.regione.sicilia.it/frameset_previsioni.htm";
-const METEO_3B="https://www.3bmeteo.com/meteo/";
-const METEO_VAR_PIENE="temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,relative_humidity_2m_mean";
-const METEO_VAR_BASE="temperature_2m_max,temperature_2m_min,precipitation_sum";
-const METEO_CAMPI=["tmax","tmin","pioggia","vento","umid"];
-const DEF_LUOGHI=[
-  {id:"paterno",nome:"Patern\u00f2",lat:37.5667,lon:14.9,def:true,slug:"paterno"},
-  {id:"catania",nome:"Catania",lat:37.5079,lon:15.083,def:true,slug:"catania"}
-];
-let METEO_STATO={q:"",ris:[],msg:"",mod:null,lav:false};
-let METEO_RITORNO=null;
-
-function meteoCfg(){
-  const c=cfg();
-  if(!c.meteo)c.meteo={};
-  if(!Array.isArray(c.meteo.luoghi))c.meteo.luoghi=DEF_LUOGHI.map(function(l){return Object.assign({},l);});
-  if(c.meteo.auto===undefined)c.meteo.auto=true;
-  return c.meteo;
-}
-function luoghiMeteo(){return meteoCfg().luoghi;}
-function luogoMeteo(id){return luoghiMeteo().find(function(l){return l.id===id;})||null;}
-function luoghiDefault(){
-  const l=luoghiMeteo().filter(function(x){return x.def!==false;});
-  return l.length?l:luoghiMeteo().slice(0,1);
-}
-function cacheMeteo(){DB.cacheMeteo=DB.cacheMeteo||{};return DB.cacheMeteo;}
-function metNum(x){
-  if(x===null||x===undefined||x==="")return "";
-  const n=Number(x);
-  return isNaN(n)?"":n;
-}
-function fmtT(x){
-  if(x===null||x===undefined||x==="")return "";
-  const n=Number(x);
-  if(isNaN(n))return String(x);
-  return String(Math.round(n*10)/10).replace(".",",");
-}
-function slugLuogo(n){
-  return String(n||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
-}
-function nuovoIdLuogo(nome){
-  let b=slugLuogo(nome)||("luogo-"+Date.now().toString(36));
-  let k=b,i=2;
-  while(luoghiMeteo().some(function(l){return l.id===k;})){k=b+"-"+i;i++;}
-  return k;
-}
-
-/* ---------- scarico dei dati ---------- */
-function chiediMeteo(l,forza){
-  if(!l||l.lat===undefined||l.lon===undefined||l.lat===""||l.lon==="")
-    return Promise.reject(new Error("coordinate mancanti"));
-  const c=cacheMeteo(),vecchia=c[l.id];
-  const buona=vecchia&&vecchia.giorni&&Number(vecchia.lat)===Number(l.lat)&&
-    Number(vecchia.lon)===Number(l.lon)&&(Date.now()-vecchia.t)<3*3600*1000;
-  if(buona&&!forza)return Promise.resolve(vecchia.giorni);
-  if(typeof navigator!=="undefined"&&navigator.onLine===false)
-    return Promise.reject(new Error("nessuna connessione"));
-  function tenta(vars){
-    const u=METEO_URL+"?latitude="+encodeURIComponent(l.lat)+"&longitude="+encodeURIComponent(l.lon)+
-      "&daily="+vars+"&timezone=Europe%2FRome&past_days=7&forecast_days=16";
-    return fetch(u).then(function(r){
-      if(!r.ok)throw new Error("HTTP "+r.status);
-      return r.json();
-    }).then(function(j){
-      if(!j||!j.daily||!j.daily.time)throw new Error("risposta senza dati");
-      return j;
-    });
-  }
-  return tenta(METEO_VAR_PIENE).catch(function(){return tenta(METEO_VAR_BASE);}).then(function(j){
-    const d=j.daily,g={};
-    d.time.forEach(function(gg,i){
-      g[gg]={
-        tmax:metNum(d.temperature_2m_max&&d.temperature_2m_max[i]),
-        tmin:metNum(d.temperature_2m_min&&d.temperature_2m_min[i]),
-        pioggia:metNum(d.precipitation_sum&&d.precipitation_sum[i]),
-        vento:metNum(d.wind_speed_10m_max&&d.wind_speed_10m_max[i]),
-        umid:metNum(d.relative_humidity_2m_mean&&d.relative_humidity_2m_mean[i])
-      };
-    });
-    c[l.id]={t:Date.now(),lat:Number(l.lat),lon:Number(l.lon),nome:l.nome,giorni:g};
-    salva();
-    return g;
-  });
-}
-function cercaLuogo(q){
-  const u=METEO_GEO+"?name="+encodeURIComponent(q)+"&count=8&language=it&format=json";
-  return fetch(u).then(function(r){
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    return r.json();
-  }).then(function(j){return (j&&j.results)?j.results:[];});
-}
-
-/* ---------- righe meteo dentro la ricetta ---------- */
-function rigaMeteoDa(l){
-  return {luogoId:l.id,nome:l.nome,lat:l.lat,lon:l.lon,
-    tmax:"",tmin:"",pioggia:"",vento:"",umid:"",fonte:"",gg:""};
-}
-function meteoVuoto(){
-  if(!meteoCfg().auto)return [];
-  return luoghiDefault().map(rigaMeteoDa);
-}
-function meteoPieno(m){
-  return METEO_CAMPI.some(function(k){return m[k]!==""&&m[k]!==undefined&&m[k]!==null;});
-}
-function meteoRiassunto(v){
-  return (v.meteo||[]).filter(meteoPieno).map(function(m){
-    const t=[];
-    if(m.tmax!=="")t.push(fmtT(m.tmax)+"\u00b0");
-    if(m.tmin!=="")t.push(fmtT(m.tmin)+"\u00b0");
-    return m.nome+" "+(t.length?t.join(" / "):"\u2014");
-  }).join("  \u00b7  ");
-}
-function compilaMeteoRicetta(forza){
-  if(!R||!Array.isArray(R.meteo)||!R.meteo.length)return;
-  if(!meteoCfg().auto&&!forza)return;
-  const data=R.data||oggiISO(),idRic=R.id;
-  R.meteo.forEach(function(m,i){
-    if(m.fonte==="manuale"&&!forza)return;
-    const l=luogoMeteo(m.luogoId)||{id:m.luogoId||("tmp-"+i),nome:m.nome,lat:m.lat,lon:m.lon};
-    chiediMeteo(l,!!forza).then(function(g){
-      if(!R||R.id!==idRic)return;
-      const m2=R.meteo[i];
-      if(!m2||(m2.fonte==="manuale"&&!forza))return;
-      const v=g[data];
-      if(!v){m2.fonte="fuori";m2.gg=data;aggiornaCampiMeteo();return;}
-      METEO_CAMPI.forEach(function(k){m2[k]=fmtT(v[k]);});
-      m2.fonte="auto";m2.gg=data;
-      aggiornaCampiMeteo();
-    }).catch(function(){
-      if(!R||R.id!==idRic)return;
-      const m2=R.meteo[i];
-      if(m2&&m2.fonte!=="manuale"&&!meteoPieno(m2)){m2.fonte="niente";aggiornaCampiMeteo();}
-    });
-  });
-}
-function aggiornaCampiMeteo(){
-  const box=$("#r-meteo");if(!box||!R||!R.meteo)return;
-  R.meteo.forEach(function(m,i){
-    METEO_CAMPI.forEach(function(k){
-      const el=box.querySelector('[data-met="'+k+'"][data-i="'+i+'"]');
-      if(el&&document.activeElement!==el)el.value=(m[k]===undefined||m[k]===null)?"":m[k];
-    });
-    const f=box.querySelector('[data-met-fonte="'+i+'"]');
-    if(f)f.innerHTML=meteoFonteHTML(m);
-  });
-}
-function meteoFonteHTML(m){
-  if(m.fonte==="manuale")return '<span class="met-pill man">scritto a mano</span>';
-  if(m.fonte==="auto")return '<span class="met-pill auto">Open-Meteo</span><span>'+esc(dataIt(m.gg||""))+'</span>';
-  if(m.fonte==="fuori")return '<span class="met-pill">fuori previsione</span><span>oltre 16 giorni avanti o 7 indietro: scrivi a mano</span>';
-  if(m.fonte==="niente")return '<span class="met-pill">non scaricato</span><span>senza rete: scrivi a mano</span>';
-  return '<span class="met-pill">in attesa\u2026</span>';
-}
-function bloccoMeteo(){
-  const l=luoghiMeteo(),righe=R.meteo||[];
-  const corpo=righe.map(function(m,i){
-    let opt=l.map(function(x){
-      return '<option value="'+esc(x.id)+'"'+(x.id===m.luogoId?" selected":"")+'>'+esc(x.nome)+'</option>';
-    }).join("");
-    if(!l.some(function(x){return x.id===m.luogoId;}))
-      opt='<option value="'+esc(m.luogoId||"")+'" selected>'+esc(m.nome||"\u2014")+'</option>'+opt;
-    return '<div class="met-riga" data-i="'+i+'">'+
-      '<div class="met-top"><select data-met-luogo="'+i+'">'+opt+'</select>'+
-      '<button class="met-x" data-met-agg="'+i+'" title="Riscarica questo luogo">\u21bb</button>'+
-      '<button class="met-x" data-met-del="'+i+'" aria-label="Togli">\u00d7</button></div>'+
-      '<div class="met-campi">'+
-        '<div class="met-c"><label>T max \u00b0C</label><input type="text" inputmode="decimal" data-met="tmax" data-i="'+i+'" value="'+esc(m.tmax||"")+'" placeholder="\u2014"></div>'+
-        '<div class="met-c"><label>T min \u00b0C</label><input type="text" inputmode="decimal" data-met="tmin" data-i="'+i+'" value="'+esc(m.tmin||"")+'" placeholder="\u2014"></div>'+
-        '<div class="met-c"><label>Pioggia mm</label><input type="text" inputmode="decimal" data-met="pioggia" data-i="'+i+'" value="'+esc(m.pioggia||"")+'" placeholder="\u2014"></div>'+
-        '<div class="met-c"><label>Vento max km/h</label><input type="text" inputmode="decimal" data-met="vento" data-i="'+i+'" value="'+esc(m.vento||"")+'" placeholder="\u2014"></div>'+
-        '<div class="met-c"><label>Umidit\u00e0 media %</label><input type="text" inputmode="decimal" data-met="umid" data-i="'+i+'" value="'+esc(m.umid||"")+'" placeholder="\u2014"></div>'+
-      '</div>'+
-      '<div class="met-fonte" data-met-fonte="'+i+'">'+meteoFonteHTML(m)+'</div></div>';
-  }).join("");
-  const liberi=l.filter(function(x){return !righe.some(function(m){return m.luogoId===x.id;});});
-  return '<div class="blocco"><span class="bl-t"><b>Meteo</b>Massima e minima del giorno indicato sopra, riempite da sole per i luoghi predefiniti. '+
-    'Ogni casella resta modificabile: se la tocchi, il valore diventa tuo e non viene pi\u00f9 sovrascritto.</span>'+
-    '<div id="r-meteo">'+(corpo||'<p class="suggerimento" style="margin:0 0 10px">Nessun luogo in questa ricetta.</p>')+'</div>'+
-    (liberi.length?'<div class="met-az">'+liberi.map(function(x){
-      return '<button class="mini" data-met-add="'+esc(x.id)+'">+ '+esc(x.nome)+'</button>';
-    }).join("")+'</div>':"")+
-    '<div class="met-az"><button class="mini" data-met-tutti>\u21bb Riscarica tutto</button>'+
-    '<button class="mini" data-met-pagina>Gestisci i luoghi \u203a</button></div></div>';
-}
-
-/* ---------- pagina Meteo ---------- */
-function apriMeteo(ritorno){
-  METEO_RITORNO=ritorno||null;
-  METEO_STATO.ris=[];METEO_STATO.msg="";METEO_STATO.mod=null;
-  disegnaMeteo();
-  mostraPannello($("#p-meteo"));
-}
-function prevLuogo(l){
-  const c=cacheMeteo()[l.id];
-  if(!c||!c.giorni)return '<p class="suggerimento" style="margin:9px 0 0">Nessuna previsione ancora scaricata per questo luogo.</p>';
-  const oggi=oggiISO();
-  const gg=Object.keys(c.giorni).filter(function(x){return x>=oggi;}).sort().slice(0,4);
-  if(!gg.length)return '<p class="suggerimento" style="margin:9px 0 0">Previsioni vecchie: tocca Aggiorna.</p>';
-  const scar=new Date(c.t);
-  return '<div class="met-prev">'+gg.map(function(x){
-    const v=c.giorni[x],pz=x.split("-");
-    return '<div class="met-gg"><div class="g">'+(x===oggi?"oggi":pz[2]+"/"+pz[1])+'</div>'+
-      '<div class="t">'+(fmtT(v.tmax)||"\u2014")+'\u00b0/'+(fmtT(v.tmin)||"\u2014")+'\u00b0</div></div>';
-  }).join("")+'</div>'+
-  '<p class="suggerimento" style="margin:7px 0 0;font-size:11.5px">Scaricate il '+
-  esc(dataIt(scar.getFullYear()+"-"+String(scar.getMonth()+1).padStart(2,"0")+"-"+String(scar.getDate()).padStart(2,"0")))+
-  ' alle '+String(scar.getHours()).padStart(2,"0")+":"+String(scar.getMinutes()).padStart(2,"0")+'.</p>';
-}
-function schedaLuogo(l,i){
-  const sl=l.slug||slugLuogo(l.nome);
-  return '<div class="met-luogo" data-i="'+i+'">'+
-    '<div class="met-top"><div style="flex:1;min-width:0"><h4>'+esc(l.nome||"(senza nome)")+'</h4>'+
-    '<div class="met-coord">'+esc(String(l.lat))+', '+esc(String(l.lon))+'</div></div>'+
-    '<button class="scelta'+(l.def!==false?" on":"")+'" data-met-def="'+i+'">'+
-    (l.def!==false?"\u25c9 predefinito":"\u25cb non predefinito")+'</button></div>'+
-    prevLuogo(l)+
-    '<div class="met-az">'+
-      '<button class="mini" data-met-scarica="'+i+'">\u21bb Aggiorna</button>'+
-      '<a class="mini" href="'+METEO_3B+encodeURIComponent(sl)+'" target="_blank" rel="noopener">3bmeteo</a>'+
-      '<a class="mini" href="'+METEO_SIAS+'" target="_blank" rel="noopener">SIAS</a>'+
-      '<button class="mini" data-met-mod="'+i+'">'+(METEO_STATO.mod===i?"Chiudi":"Modifica")+'</button>'+
-      '<button class="mini" data-met-rm="'+i+'">Elimina</button>'+
-    '</div>'+
-    (METEO_STATO.mod===i?'<div style="margin-top:12px">'+
-      '<label class="met-lab">Nome</label><input type="text" data-ml="nome" data-i="'+i+'" value="'+esc(l.nome||"")+'">'+
-      '<div class="met-campi" style="margin-top:9px">'+
-      '<div class="met-c"><label>Latitudine</label><input type="text" inputmode="decimal" data-ml="lat" data-i="'+i+'" value="'+esc(String(l.lat))+'"></div>'+
-      '<div class="met-c"><label>Longitudine</label><input type="text" inputmode="decimal" data-ml="lon" data-i="'+i+'" value="'+esc(String(l.lon))+'"></div></div>'+
-      '<div style="margin-top:9px"><label class="met-lab">Nome nell\u2019indirizzo 3bmeteo</label>'+
-      '<input type="text" data-ml="slug" data-i="'+i+'" value="'+esc(l.slug||"")+'" placeholder="'+esc(sl)+'"></div>'+
-      '<p class="suggerimento">Il nome 3bmeteo \u00e8 l\u2019ultimo pezzo dell\u2019indirizzo del loro sito. Se il bottone porta al comune sbagliato \u2014 capita con i nomi ripetuti \u2014 apri 3bmeteo, cerca il posto giusto e copia qui quel pezzo.</p>'+
-      '<div class="met-az"><button class="mini" data-met-geo="'+i+'">Ritrova le coordinate dal nome</button></div></div>':"")+
-  '</div>';
-}
-function disegnaMeteo(){
-  const c=meteoCfg(),l=c.luoghi;
-  $("#p-meteo").innerHTML=
-  '<div class="barra-p"><button class="indietro" data-met-back>\u2039 '+(METEO_RITORNO==="ricetta"?"Ricetta":"Indietro")+'</button>'+
-  '<span class="titolo-p">Meteo</span><span style="width:60px"></span></div>'+
-  '<div class="wrap"><div class="testata"><div class="tipo-d">Luoghi</div>'+
-  '<h2>Le temperature che entrano nelle ricette</h2>'+
-  '<p class="suggerimento" style="font-size:13px">I luoghi segnati come predefiniti compaiono da soli in ogni ricetta nuova, gi\u00e0 riempiti con massima e minima del giorno della ricetta \u2014 oggi, o il giorno previsto se sposti la data. Dentro la ricetta puoi sempre cambiare luogo e correggere ogni numero.</p></div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Compilazione automatica</b>Se la spegni, le ricette nuove nascono senza righe meteo e le aggiungi tu quando servono.</span>'+
-  '<div class="scelte"><button class="scelta'+(c.auto?" on":"")+'" data-met-auto>'+(c.auto?"\u25c9 attiva":"\u25cb spenta")+'</button></div></div>'+
-
-  (l.length?l.map(schedaLuogo).join(""):'<p class="suggerimento" style="margin:14px 0">Nessun luogo salvato. Aggiungine uno qui sotto.</p>')+
-  (l.length?'<div class="met-az" style="margin-bottom:14px"><button class="mini" data-met-tuttiluoghi>\u21bb Aggiorna tutti i luoghi</button></div>':"")+
-
-  '<div class="blocco"><span class="bl-t"><b>Aggiungi un luogo</b>Scrivi il nome del comune e tocca Cerca. Se il posto che ti serve \u00e8 una contrada che non compare, mettine uno vicino oppure inserisci le coordinate a mano.</span>'+
-  '<input type="text" id="met-q" value="'+esc(METEO_STATO.q||"")+'" placeholder="es. Ramacca" autocomplete="off">'+
-  '<div class="met-az"><button class="mini" data-met-cerca>'+(METEO_STATO.lav?"Cerco\u2026":"Cerca")+'</button>'+
-  '<button class="mini" data-met-mano>+ Coordinate a mano</button></div>'+
-  (METEO_STATO.msg?'<p class="suggerimento">'+esc(METEO_STATO.msg)+'</p>':"")+
-  (METEO_STATO.ris.length?'<div class="met-ris">'+METEO_STATO.ris.map(function(r,i){
-    const dove=[r.admin3,r.admin2,r.admin1,r.country].filter(Boolean).join(" \u00b7 ");
-    return '<button data-met-pick="'+i+'"><b>'+esc(r.name)+'</b>'+
-      '<div class="met-coord">'+esc(dove)+' \u00b7 '+Number(r.latitude).toFixed(4)+', '+Number(r.longitude).toFixed(4)+'</div></button>';
-  }).join("")+'</div>':"")+
-  '</div>'+
-
-  '<div class="blocco-attenzione"><b>Da dove arrivano i numeri</b>La compilazione automatica usa Open-Meteo (open-meteo.com), servizio pubblico gratuito che restituisce previsioni di modello per le coordinate indicate: non sono le misure di una stazione a terra vicina al campo. I bottoni SIAS e 3bmeteo su ogni luogo servono al riscontro. Se il numero deve reggere \u2014 un trattamento discusso, una contestazione \u2014 controlla la fonte e correggi a mano nella ricetta.</div>'+
-  '<div style="height:44px"></div></div>';
-}
-
-/* ============================================================
-   7quater. GLOSSARIO E PUBBLICAZIONI
-   Il glossario e' redatto da un modello linguistico (Claude) con
-   definizioni scritte apposta per questa app e orientate al lavoro
-   in campo su agrumi, olivo e fico d'India in Sicilia. NON e' la
-   trascrizione del glossario di Patagrumi, che resta opera del PSTS
-   e si consulta sul loro sito dal collegamento in fondo.
-   ============================================================ */
-const GLOS_CAT={sin:"Sintomi e alterazioni",bio:"Biologia e patogeni",
-  dif:"Difesa e fitoiatria",nut:"Nutrizione e suolo",dis:"Distribuzione e attrezzatura"};
-const GLOSSARIO=[
-/* --- sintomi --- */
-{c:"sin",t:"Abscissione",d:"Distacco di un organo per formazione di uno strato di cellule che cede alla base del picciolo. E' un processo normale; diventa un problema quando riguarda in massa fiori o frutticini, e allora si chiama cascola."},
-{c:"sin",t:"Accartocciamento",d:"Foglia arrotolata su se stessa lungo la nervatura centrale. Sugli agrumi lo si vede con gli afidi sui getti teneri, ma anche per stress idrico o per fitotossicit\u00e0 da diserbante."},
-{c:"sin",t:"Alone clorotico",d:"Bordo giallastro attorno a una macchia o a una necrosi. Segnala che il tessuto sano attorno alla lesione sta reagendo, e aiuta a distinguere una macchia parassitaria da un danno meccanico o chimico, che di solito l'alone non ce l'ha."},
-{c:"sin",t:"Argentatura",d:"Riflesso metallico grigiastro su foglia o buccia, dovuto allo scollamento della cuticola dai tessuti sottostanti. Tipica degli attacchi di tripidi e di alcuni acari."},
-{c:"sin",t:"Avvizzimento",d:"Perdita di turgore che non si recupera pi\u00f9, nemmeno irrigando. Indica un danno gi\u00e0 fatto ai vasi o alle radici, a differenza dell'appassimento."},
-{c:"sin",t:"Appassimento",d:"Perdita di turgore reversibile: la pianta si riprende col fresco della sera o dopo un'irrigazione. E' un segnale, non ancora un danno."},
-{c:"sin",t:"Butteratura del legno",d:"Scanalature e alveoli sul legno sotto la corteccia, che si vedono scortecciando un rametto. Sui ceppi severi di tristeza \u00e8 un elemento diagnostico. In inglese stem pitting."},
-{c:"sin",t:"Cascola",d:"Caduta anticipata di fiori o frutti. Sugli agrumi c'\u00e8 una cascola fisiologica di giugno che \u00e8 normale; quella che conta \u00e8 il di pi\u00f9 rispetto all'andamento dell'anno."},
-{c:"sin",t:"Clorosi",d:"Ingiallimento del lembo fogliare per ridotta formazione di clorofilla. La distribuzione dice molto: internervale sulle foglie giovani orienta al ferro, internervale sulle vecchie al magnesio, uniforme all'azoto."},
-{c:"sin",t:"Creasing",d:"Incrinature dell'albedo sotto una buccia che resta liscia in superficie ma cede alla pressione delle dita. Detto anche allisciamento. Fisiopatia, non malattia."},
-{c:"sin",t:"Disaffinit\u00e0 d'innesto",d:"Incompatibilit\u00e0 fra nesto e portinnesto. Si riconosce dal rigonfiamento o dal gradino al punto d'innesto e da un deperimento lento senza cause parassitarie evidenti."},
-{c:"sin",t:"Essudato gommoso",d:"Fuoriuscita di gomma ambrata da corteccia o legno. E' una reazione aspecifica: pu\u00f2 seguire una ferita, una gelata o un'infezione, quindi da sola non fa diagnosi."},
-{c:"sin",t:"Fumaggine",d:"Patina nera di funghi saprofiti che vivono sulla melata. Non penetra nei tessuti, ma riduce la fotosintesi e sporca i frutti fino al declassamento. Se c'\u00e8 fumaggine, il problema vero \u00e8 l'insetto che produce melata."},
-{c:"sin",t:"Maculatura",d:"Presenza di macchie. Da sola non dice nulla: contano forma, contorno, colore, posizione sull'organo e se sono depresse o rilevate."},
-{c:"sin",t:"Melata",d:"Sostanza zuccherina escreta da afidi, cocciniglie e aleurodidi. Attira formiche, innesca la fumaggine e rende appiccicose foglie e frutti."},
-{c:"sin",t:"Mosaico",d:"Alternanza irregolare di aree verdi e clorotiche sul lembo, senza contorni netti. Quadro tipicamente virale."},
-{c:"sin",t:"Necrosi",d:"Morte del tessuto, che imbrunisce e dissecca. A differenza della clorosi non \u00e8 reversibile."},
-{c:"sin",t:"Oleocellosi",d:"Danno da rottura delle ghiandole oleifere della buccia: l'olio essenziale esce e ustiona i tessuti attorno, lasciando aree verdi depresse su fondo che ingiallisce. Si produce raccogliendo frutti bagnati o troppo turgidi, o maneggiandoli con poca cura."},
-{c:"sin",t:"Piticchia",d:"Punteggiatura scura sulla buccia. Esiste una forma batterica, legata a Pseudomonas dopo periodi freddi e umidi, e una non parassitaria; si distinguono sul decorso, non sull'aspetto della singola macchia."},
-{c:"sin",t:"Suberificazione",d:"Trasformazione in sughero di un tessuto lesionato. E' una cicatrizzazione: dice che il danno \u00e8 vecchio e si \u00e8 fermato."},
-{c:"sin",t:"Vein clearing",d:"Schiarimento traslucido delle nervature sulle foglie giovani, visibile in controluce. Sintomo di alcune virosi degli agrumi."},
-{c:"sin",t:"Spigatura",d:"Germoglio che cresce esile e allungato con foglie piccole e distanziate. Segnale di squilibrio, spesso ombreggiamento o carenza."},
-/* --- biologia --- */
-{c:"bio",t:"Acervulo",d:"Cuscinetto di ife e conidi che erompe dalla superficie del tessuto infetto. Nell'antracnosi \u00e8 quello che d\u00e0 alla macchia l'aspetto punteggiato di rosa o arancio con l'umidit\u00e0."},
-{c:"bio",t:"Appressorio",d:"Rigonfiamento con cui l'ifa fungina aderisce alla superficie della pianta prima di penetrare. E' lo stadio contro cui lavorano i fungicidi di copertura."},
-{c:"bio",t:"Ascospora",d:"Spora prodotta dentro un asco, tipica della forma sessuata di molti funghi. Spesso responsabile delle infezioni primarie di inizio stagione."},
-{c:"bio",t:"Conidio",d:"Spora della forma agamica dei funghi, prodotta in gran numero. E' quella che moltiplica l'infezione durante la stagione."},
-{c:"bio",t:"Diapausa",d:"Sospensione programmata dello sviluppo di un insetto, che gli fa attraversare la stagione sfavorevole. Non basta il ritorno del caldo per interromperla, e questo sposta le date dei primi voli."},
-{c:"bio",t:"Fitoplasma",d:"Batterio privo di parete che vive nel floema e si trasmette con insetti vettori e con il materiale di propagazione. Non si coltiva in vitro e non si cura in campo."},
-{c:"bio",t:"Generazione",d:"Ciclo completo da uovo a uovo. Quando le generazioni si sovrappongono, in campo si trovano tutti gli stadi insieme e la finestra utile per un trattamento si perde."},
-{c:"bio",t:"Inoculo",d:"La quantit\u00e0 di patogeno presente e pronta a infettare. Ridurlo con potatura, raccolta dei residui e drenaggio conta spesso pi\u00f9 del trattamento."},
-{c:"bio",t:"Incubazione",d:"Tempo fra l'infezione e la comparsa dei sintomi. Quando lo vedi, l'infezione \u00e8 di giorni o settimane prima: \u00e8 il motivo per cui i fungicidi preventivi vanno anticipati."},
-{c:"bio",t:"Micelio",d:"L'insieme delle ife che costituiscono il corpo del fungo. Quando è visibile a occhio nudo su un tessuto, l'infezione è già avanzata: i fungicidi preventivi non servono più."},
-{c:"bio",t:"Neanide",d:"Stadio giovanile di un insetto a metamorfosi incompleta, appena uscito dall'uovo. Nelle cocciniglie \u00e8 l'unico stadio mobile e non ancora protetto dallo scudetto: la finestra in cui i trattamenti funzionano."},
-{c:"bio",t:"Ovisacco",d:"Massa cerosa o cotonosa che protegge le uova, tipica di cotonello e cocciniglie cotonose. Respinge i prodotti liquidi."},
-{c:"bio",t:"Parassitoide",d:"Insetto che si sviluppa dentro o sopra un altro insetto uccidendolo. Sugli agrumi buona parte del contenimento naturale di cocciniglie e minatrice dipende da loro, ed \u00e8 il motivo per cui gli insetticidi ad ampio spettro spesso peggiorano la situazione."},
-{c:"bio",t:"Picnidio",d:"Corpo fruttifero a forma di piccola boccia, immerso nel tessuto, che libera conidi dall'ostiolo. Nel mal secco \u00e8 quello che si trova sui rami secchi."},
-{c:"bio",t:"Sclerozio",d:"Ammasso compatto di ife che permette al fungo di sopravvivere a lungo nel terreno o sui residui."},
-{c:"bio",t:"Soglia di intervento",d:"Livello di infestazione oltre il quale conviene intervenire. Va letta sul disciplinare in vigore e riferita al metodo di campionamento previsto: contare in modo diverso rende la soglia inutile."},
-{c:"bio",t:"Sverna",d:"Trascorre l'inverno. Sapere dove sverna un fitofago \u2014 fessure della corteccia, colletto, residui, terreno \u2014 dice dove guardare a fine inverno e dove agire prima che risalga."},
-{c:"bio",t:"Vettore",d:"Organismo che trasporta un patogeno da una pianta all'altra. Con virus e fitoplasmi il controllo del vettore \u00e8 l'unica difesa praticabile."},
-{c:"bio",t:"Viroide",d:"Piccola molecola di RNA nudo, senza involucro proteico, capace di provocare malattia. Si trasmette con innesto e attrezzi di taglio: la disinfezione delle forbici non \u00e8 formalit\u00e0."},
-/* --- difesa --- */
-{c:"dif",t:"Sostanza attiva",d:"Il composto che agisce. Va distinta dal formulato commerciale, che la contiene in una certa concentrazione insieme ai coformulanti."},
-{c:"dif",t:"Formulato",d:"Il prodotto come lo compri: sostanza attiva pi\u00f9 coformulanti. Due formulati con la stessa sostanza attiva possono avere dosi, registrazioni e comportamento in miscela diversi."},
-{c:"dif",t:"WG",d:"Granuli idrodispersibili (water dispersible granules). Solido che si disperde in acqua. Nell'ordine di miscela vanno fra i primi, con agitazione gi\u00e0 avviata."},
-{c:"dif",t:"WP",d:"Polvere bagnabile (wettable powder). Solido in sospensione, tende a sedimentare: richiede agitazione continua."},
-{c:"dif",t:"SC",d:"Sospensione concentrata. Sostanza attiva solida gi\u00e0 dispersa in un liquido."},
-{c:"dif",t:"EC",d:"Concentrato emulsionabile. Sostanza attiva in solvente organico, forma un'emulsione lattiginosa. E' la formulazione pi\u00f9 a rischio di fitotossicit\u00e0 con il caldo e la meno compatibile con gli oli."},
-{c:"dif",t:"SL",d:"Concentrato solubile. Si scioglie davvero in acqua, senza sospensione."},
-{c:"dif",t:"OD",d:"Dispersione oleosa. Migliora adesione e penetrazione, ma va valutata con attenzione in miscela e con le alte temperature."},
-{c:"dif",t:"Sistemico",d:"Prodotto assorbito e traslocato dalla pianta, che protegge anche le parti non bagnate e la vegetazione emessa dopo. Meno dipendente dalla qualit\u00e0 della bagnatura, pi\u00f9 esposto a fenomeni di resistenza."},
-{c:"dif",t:"Citotropico",d:"Penetra nei tessuti superficiali senza girare per tutta la pianta. Sta a met\u00e0 fra copertura e sistemia, e resiste al dilavamento meglio di un prodotto di copertura."},
-{c:"dif",t:"Translaminare",d:"Attraversa il lembo fogliare passando dalla pagina superiore all'inferiore. Utile su fitofagi che stanno sotto la foglia."},
-{c:"dif",t:"Copertura",d:"Prodotto che resta sulla superficie e agisce solo dove arriva la goccia. Richiede bagnatura accurata, va rinnovato dopo la pioggia e sulla vegetazione nuova."},
-{c:"dif",t:"Tempo di carenza",d:"Intervallo minimo fra l'ultimo trattamento e la raccolta, fissato dall'etichetta. Non \u00e8 negoziabile e va verificato sull'etichetta del formulato che stai usando, non su quella di un prodotto simile."},
-{c:"dif",t:"Intervallo di rientro",d:"Tempo che deve passare prima che si possa rientrare nell'appezzamento trattato senza protezioni. Riguarda le persone, non il residuo sul frutto."},
-{c:"dif",t:"Fitotossicit\u00e0",d:"Danno alla pianta causato dal trattamento stesso. Sugli agrumi la fanno soprattutto le alte temperature, gli oli in miscela sbagliata, i rameici sui tessuti giovani e le dosi calcolate su un volume diverso da quello effettivo."},
-{c:"dif",t:"Resistenza",d:"Perdita di efficacia di una sostanza attiva su una popolazione che l'ha selezionata. Si contrasta alternando meccanismi d'azione diversi, non prodotti commerciali diversi con la stessa sostanza attiva."},
-{c:"dif",t:"IRAC / FRAC",d:"Classificazioni internazionali dei meccanismi d'azione, rispettivamente per insetticidi e acaricidi e per fungicidi. Servono a impostare un'alternanza vera: prodotti dello stesso gruppo non alternano niente."},
-{c:"dif",t:"Deriva",d:"Quota di miscela che non arriva al bersaglio e va altrove. Dipende da vento, dimensione delle gocce e velocit\u00e0 di avanzamento. E' un problema di efficacia prima ancora che di vicinato."},
-{c:"dif",t:"Volume di bagnatura",d:"Litri di miscela distribuiti per ettaro o per pianta. Cambiare volume senza ricalcolare la concentrazione \u00e8 l'errore pi\u00f9 comune: la dose per ettaro deve restare quella dell'etichetta."},
-{c:"dif",t:"Bagnante",d:"Coadiuvante che abbassa la tensione superficiale e fa distendere la goccia sulla superficie cerosa della foglia. Sugli agrumi cambia molto il risultato."},
-{c:"dif",t:"Adesivante",d:"Coadiuvante che fa aderire il prodotto alla superficie e ne migliora la resistenza al dilavamento. Utile sui prodotti di copertura quando è attesa pioggia, inutile su un sistemico già assorbito."},
-{c:"dif",t:"Correttore di pH",d:"Prodotto che porta l'acqua di miscela nell'intervallo giusto. Alcune sostanze attive si degradano rapidamente in acqua alcalina, e nella Piana di Catania l'acqua alcalina \u00e8 la regola."},
-{c:"dif",t:"Confusione sessuale",d:"Tecnica che satura l'ambiente con il feromone della femmina, impedendo ai maschi di trovarla. Funziona su superfici ampie e omogenee, va posizionata prima dei voli e non abbatte una popolazione gi\u00e0 alta."},
-{c:"dif",t:"Trappola a feromone",d:"Trappola che cattura i maschi attirandoli col feromone sessuale. Serve a datare i voli, non a stimare quanti individui ci sono."},
-{c:"dif",t:"Trappola cromotropica",d:"Trappola collante colorata, di solito gialla o azzurra, che cattura per attrazione visiva. Utile per aleurodidi, tripidi e ditteri."},
-{c:"dif",t:"Produzione integrata",d:"Sistema che ammette la chimica ma la subordina a monitoraggio, soglie e limiti stabiliti dal disciplinare regionale. In Sicilia \u00e8 il disciplinare della Regione, aggiornato ogni anno."},
-{c:"dif",t:"LMR",d:"Limite massimo di residuo ammesso su un prodotto alimentare. E' fissato per legge e pu\u00f2 essere pi\u00f9 restrittivo nei capitolati della grande distribuzione: due vincoli diversi da controllare separatamente."},
-{c:"dif",t:"Ordine di miscela",d:"Sequenza con cui i prodotti entrano nella botte. Sbagliarla produce flocculazione, ugelli intasati e perdita di efficacia, anche con prodotti singolarmente compatibili."},
-/* --- nutrizione --- */
-{c:"nut",t:"Antagonismo cationico",d:"Competizione fra cationi all'assorbimento radicale: troppo potassio deprime il magnesio, troppo calcio deprime entrambi. Per questo un'analisi fogliare va letta sui rapporti e non sui valori singoli."},
-{c:"nut",t:"Calcare attivo",d:"Frazione fine del calcare, quella che reagisce davvero e blocca il ferro. E' il dato che conta per prevedere una clorosi ferrica, molto pi\u00f9 del calcare totale."},
-{c:"nut",t:"Chelato",d:"Molecola che tiene un microelemento in forma disponibile impedendogli di precipitare. Per il ferro in terreni calcarei l'EDDHA regge a pH alti, mentre EDTA e DTPA perdono efficacia."},
-{c:"nut",t:"CSC",d:"Capacit\u00e0 di scambio cationico: quanti cationi il terreno riesce a trattenere. Alta nei terreni argillosi come quelli della Piana di Catania, il che vuol dire buona riserva ma anche risposte lente alle correzioni."},
-{c:"nut",t:"Conducibilit\u00e0 elettrica",d:"Misura indiretta dei sali disciolti, nell'acqua di irrigazione o nell'estratto di terreno. E' il primo dato da guardare quando si sospetta uno stress salino."},
-{c:"nut",t:"Fertirrigazione",d:"Distribuzione dei concimi con l'acqua di irrigazione. Permette di frazionare secondo la fase fenologica, ma sui terreni argillosi bisogna fare i conti col bulbo bagnato, che \u00e8 pi\u00f9 largo e pi\u00f9 superficiale di quanto si immagini."},
-{c:"nut",t:"Ipossia radicale",d:"Carenza di ossigeno nella zona radicale, tipica dei terreni pesanti dopo un'irrigazione lunga o una pioggia. Le radici fini muoiono e la pianta mostra sintomi che sembrano da carenza, ma nessuna concimazione li risolve."},
-{c:"nut",t:"Sostanza organica",d:"Frazione organica del terreno. Agisce su struttura, ritenzione idrica e attivit\u00e0 biologica: sui vertisuoli \u00e8 la leva pi\u00f9 lenta ma anche la pi\u00f9 duratura."},
-{c:"nut",t:"Vertisuolo",d:"Terreno argilloso che si fessura profondamente seccando e si richiude bagnandosi. Gran parte della Piana di Catania \u00e8 cos\u00ec: le crepe fanno passare l'acqua in profondit\u00e0 senza bagnare il bulbo, e appena si richiudono il drenaggio si ferma."},
-{c:"nut",t:"Biostimolante",d:"Prodotto che agisce sui processi della pianta senza apportare nutrienti in quantit\u00e0 significative. Non ha obblighi di efficacia paragonabili a un fitosanitario: il giudizio va fatto sul campo."},
-{c:"nut",t:"Evapotraspirazione",d:"Acqua persa dal terreno per evaporazione e dalla pianta per traspirazione. Insieme al coefficiente colturale \u00e8 la base per dimensionare l'irrigazione."},
-{c:"nut",t:"Analisi fogliare",d:"Dosaggio degli elementi su un campione di foglie prelevato in una fase e da una posizione precise. Fuori da quelle condizioni i valori di riferimento non valgono."},
-/* --- distribuzione --- */
-{c:"dis",t:"Atomizzatore",d:"Macchina che frantuma la miscela in gocce fini e le trasporta con un flusso d'aria. Sugli agrumi la regolazione del flusso d'aria conta quanto la dose."},
-{c:"dis",t:"Ugello",d:"Componente che determina portata, spettro delle gocce e angolo di distribuzione. Un ugello usurato eroga pi\u00f9 del nominale: va controllato, non guardato."},
-{c:"dis",t:"Taratura",d:"Verifica di quanto la macchina distribuisce davvero per ettaro. Senza taratura la dose scritta sull'etichetta \u00e8 solo un'intenzione."},
-{c:"dis",t:"Punto di sgocciolamento",d:"Momento in cui la vegetazione non trattiene pi\u00f9 miscela e comincia a gocciolare. Superarlo non aumenta la protezione: aumenta solo lo spreco e la deriva al suolo."},
-{c:"dis",t:"Volume normale",d:"Volume di riferimento su cui l'etichetta esprime la concentrazione, di solito 1000 litri per ettaro. Se lavori a volume ridotto la concentrazione va aumentata in proporzione perch\u00e9 la dose per ettaro resti la stessa."}
-];
-
-let BIB_VISTA="glossario", BIB_Q="", BIB_CAT="", BIB_RITORNO=null;
-
-function glossarioFiltrato(){
-  const q=BIB_Q.trim().toLowerCase();
-  return GLOSSARIO.filter(function(g){
-    if(BIB_CAT&&g.c!==BIB_CAT)return false;
-    if(!q)return true;
-    return g.t.toLowerCase().indexOf(q)>=0||g.d.toLowerCase().indexOf(q)>=0;
-  }).sort(function(a,b){return a.t.localeCompare(b.t,"it");});
-}
-function disegnaBiblio(){
-  const g=glossarioFiltrato();
-  let corpo;
-  if(BIB_VISTA==="glossario"){
-    corpo='<div class="blocco"><span class="bl-t"><b>Cerca un termine</b>Scrive nel titolo e nella definizione.</span>'+
-      '<input type="text" id="bib-q" value="'+esc(BIB_Q)+'" placeholder="es. neanide, WG, calcare attivo" autocomplete="off">'+
-      '<div class="riga-f" style="margin-top:10px">'+
-      '<button class="chip'+(BIB_CAT===""?" on":"")+'" data-bib-cat="">Tutti</button>'+
-      Object.keys(GLOS_CAT).map(function(k){
-        return '<button class="chip'+(BIB_CAT===k?" on":"")+'" data-bib-cat="'+k+'">'+esc(GLOS_CAT[k])+'</button>';
-      }).join("")+'</div></div>'+
-      '<p class="suggerimento">'+g.length+' '+(g.length===1?"voce":"voci")+' su '+GLOSSARIO.length+'.</p>'+
-      (g.length?g.map(function(x){
-        return '<div class="glo-v"><h4>'+esc(x.t)+'<span class="glo-c">'+esc(GLOS_CAT[x.c])+'</span></h4>'+
-          '<div class="glo-d">'+esc(x.d)+'</div></div>';
-      }).join(""):'<p class="suggerimento">Nessun termine trovato. Prova il glossario completo del portale, in fondo alla pagina.</p>')+
-      '<div class="blocco-attenzione" style="margin-top:16px"><b>Come \u00e8 stato scritto questo glossario</b>Definizioni redatte da un modello linguistico (Claude) apposta per questa app, orientate al lavoro in campo. Non sono la trascrizione di un dizionario altrui. Per un glossario di fitopatologia molto pi\u00f9 esteso, con centinaia di voci, c\'\u00e8 quello del portale Patagrumi del Parco Scientifico e Tecnologico della Sicilia.</div>'+
-      '<div class="met-az"><a class="mini" href="'+PATAGRUMI_BASE+'/category/glossario-fitopatologie-degli-agrumi/" target="_blank" rel="noopener">Glossario completo su Patagrumi \u2197</a></div>';
-  }else{
-    const tag={};
-    PATAGRUMI_PUB.forEach(function(x){(tag[x.tag]=tag[x.tag]||[]).push(x);});
-    const ord=["generale","virus","batteri","funghi","nutrizione","fisiopatie","portinnesti"];
-    const nomi={generale:"Manuali e guide",virus:"Virus e viroidi",batteri:"Batteri",
-      funghi:"Funghi",nutrizione:"Nutrizione e acqua",fisiopatie:"Fisiopatie",portinnesti:"Portinnesti"};
-    corpo='<p class="suggerimento">'+PATAGRUMI_PUB.length+' pubblicazioni scaricabili dal portale Patagrumi. Il bottone apre la pagina da cui si scarica il documento: serve la connessione.</p>'+
-      ord.filter(function(k){return tag[k];}).map(function(k){
-        return '<div class="imp-sez">'+esc(nomi[k])+'</div>'+tag[k].map(function(x){
-          return '<div class="pub-v"><h4>'+esc(x.t)+'</h4>'+
-            (x.a?'<div class="pub-a">'+esc(x.a)+'</div>':"")+
-            '<div class="pub-m">'+esc(x.y)+(x.d?" \u00b7 "+esc(x.d):"")+'</div>'+
-            '<div class="met-az"><a class="mini" href="'+x.u+'" target="_blank" rel="noopener">Apri sul portale \u2197</a></div></div>';
-        }).join("");
-      }).join("")+
-      '<div class="blocco-attenzione" style="margin-top:16px"><b>Di chi sono</b>Le pubblicazioni sono ospitate dal portale Patagrumi del Parco Scientifico e Tecnologico della Sicilia e restano dei rispettivi autori. Qui dentro ci sono solo i riferimenti \u2014 titolo, autori, anno, indirizzo \u2014 non il contenuto dei documenti.</div>'+
-      '<div class="met-az"><a class="mini" href="'+PATAGRUMI_BASE+'/category/download-pubblicazione/" target="_blank" rel="noopener">Tutte le pubblicazioni \u2197</a></div>';
-  }
-  $("#p-biblio").innerHTML=
-    '<div class="barra-p"><button class="indietro" data-bib-back>\u2039 Indietro</button>'+
-    '<span class="titolo-p">Glossario e pubblicazioni</span><span style="width:60px"></span></div>'+
-    '<div class="wrap"><div class="riga-f" style="margin:12px 0 4px">'+
-    '<button class="chip'+(BIB_VISTA==="glossario"?" on":"")+'" data-bib-vista="glossario">Glossario</button>'+
-    '<button class="chip'+(BIB_VISTA==="pub"?" on":"")+'" data-bib-vista="pub">Pubblicazioni</button></div>'+
-    corpo+'<div style="height:44px"></div></div>';
-}
-function apriBiblio(vista,ritorno){
-  if(vista)BIB_VISTA=vista;
-  BIB_RITORNO=ritorno||null;
-  disegnaBiblio();
-  mostraPannello($("#p-biblio"));
-}
-
-/* ============================================================
    8. NUOVA RICETTA
    ============================================================ */
 let R=null,PASSO=1,PICK=null,RES=false,RIC_TOP=false;
@@ -2634,8 +1955,7 @@ function ricettaVuota(modo){
   const colDef=S.coltura||(DB.colture[0]||{}).id||"";
   return {id:nuovoId(),tipo:"Ricetta",modo:modo,base:(basiDi(modo)[0]||{}).v,data:oggiISO(),
     coltura:colDef,colture:[colDef],varieta:[],aziende:[],avversita:[],fase:"",tag:[],titolo:"",
-    prodotti:[nuovoProdotto()],testo:"",allegati:[],meteo:meteoVuoto(),
-    pin:false,creato:Date.now(),modificato:Date.now()};
+    prodotti:[nuovoProdotto()],testo:"",allegati:[],pin:false,creato:Date.now(),modificato:Date.now()};
 }
 function apriRicetta(modo,id){
   R=id?JSON.parse(JSON.stringify(DB.voci.find(v=>v.id===id))):ricettaVuota(modo);
@@ -2646,11 +1966,9 @@ function apriRicetta(modo,id){
   R.varieta=varietaDi(R);
   if(!R.modo) R.modo=modo||"fogliare";
   if(!R.base) R.base=(basiDi(R.modo)[0]||{}).v;
-  if(!Array.isArray(R.meteo))R.meteo=id?[]:meteoVuoto();
   RES=!!id;PASSO=1;PICK=null;RIC_TOP=true;
   disegnaRicetta();
   mostraPannello($("#p-ricetta"));
-  compilaMeteoRicetta(false);
 }
 function vaiPasso(n){
   leggiRicetta();
@@ -2680,7 +1998,7 @@ function prodottoHTML(p,i){
 const PASSI=[
   {n:1,t:"Prodotti",s:"Cosa entra in botte e in che ordine"},
   {n:2,t:"Campo",s:"Azienda, dose, coltura e variet\u00e0"},
-  {n:3,t:"Finitura",s:"Data, meteo, note, fase e bersaglio"}
+  {n:3,t:"Finitura",s:"Data, note, fase e bersaglio"}
 ];
 const DEF_VARIETA={
   ara:["Tarocco","Tarocco Ippolito","Tarocco Sciara","Tarocco Gallo","Tarocco Meli","Moro","Sanguinello",
@@ -2828,8 +2146,6 @@ function passoTre(){
     '<input type="date" id="r-data" value="'+esc(R.data)+'">'+
     '<div class="data-riga" id="r-data-riga">'+rigaData()+'</div></div>'+
 
-  bloccoMeteo()+
-
   '<div class="blocco"><span class="bl-t"><b>Note</b>Condizioni, macchina, pressione, motivo della scelta, cosa sorvegliare dopo.</span>'+
     '<textarea id="r-note" placeholder="Scrivi qui quello che fra due anni non ricorderesti\u2026">'+esc(R.testo)+'</textarea></div>'+
 
@@ -2867,14 +2183,6 @@ function leggiRicetta(){
   if($("#r-data"))R.data=g("r-data");
   if($("#r-note"))R.testo=$("#r-note").value;
   if($("#r-tit"))R.titolo=g("r-tit").trim();
-  if($("#r-meteo")&&Array.isArray(R.meteo)){
-    R.meteo.forEach(function(m,i){
-      METEO_CAMPI.forEach(function(k){
-        const el=$('#r-meteo [data-met="'+k+'"][data-i="'+i+'"]');
-        if(el)m[k]=el.value.trim();
-      });
-    });
-  }
   R.prodotti.forEach(function(p,i){
     const q=function(s){return $('#r-prod [data-p="'+s+'"][data-i="'+i+'"]');};
     if(q("nome"))p.nome=q("nome").value.trim();
@@ -2979,8 +2287,7 @@ function creaImmagine(){
   }
   let righeNote=[];
   note.forEach(function(n){ if(n.trim()) righeNote=righeNote.concat(wrap(n,W-2*P,"30px Georgia, serif")); else righeNote.push(""); });
-  const metLinea=meteoRiassunto(R);
-  const H=300+conv.length*76+(righeNote.length?70+righeNote.length*42:0)+120+(metLinea?42:0);
+  const H=300+conv.length*76+(righeNote.length?70+righeNote.length*42:0)+120;
   cv.width=W;cv.height=H;
   const c=cv.getContext("2d");
   c.fillStyle="#E9EAE3";c.fillRect(0,0,W,H);
@@ -2997,10 +2304,6 @@ function creaImmagine(){
   let sub=R.colture.map(nomeColtura).join(" \u00b7 ")+(R.varieta.length?" \u2014 "+R.varieta.join(", "):"");
   if(R.aziende.length)sub+="  \u00b7  "+R.aziende.join(", ");
   c.fillText(sub,P,y);y+=46;
-  if(metLinea){
-    c.fillStyle="#5D6660";c.font="24px ui-monospace, Menlo, monospace";
-    c.fillText(wrap(metLinea,W-2*P,"24px ui-monospace, Menlo, monospace")[0],P,y);y+=42;
-  }
   // banda dose
   c.fillStyle=tinta;c.fillRect(P,y-4,W-2*P,62);
   c.fillStyle="#fff";c.font="600 30px ui-monospace, Menlo, monospace";
@@ -3164,11 +2467,6 @@ function apriScheda(id){
     '<h2>'+esc(s.n)+'</h2>'+
     '<div style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--inchiostro-2);margin-top:-4px">'+esc(s.s)+'</div>'+
     '<dl class="dati"><dt>Colture</dt><dd>'+s.col.map(nomeColtura).join(" \u00b7 ")+'</dd><dt>Generazioni</dt><dd>'+esc(s.gen)+'</dd></dl></div>'+
-  (PATAGRUMI_SCHEDE[s.id]?
-    '<a class="foto-bar" href="'+linkPatagrumi(PATAGRUMI_SCHEDE[s.id])+'" target="_blank" rel="noopener">'+
-    '<span class="fb-t">\u25c9 Vedi le foto del sintomo<span class="fb-ar">\u2197</span></span>'+
-    '<span class="fb-s">Fotografie di campo su Patagrumi, il portale del Parco Scientifico e Tecnologico della Sicilia.</span></a>'+
-    '<p class="foto-nota">Si apre il loro sito: serve la connessione. Le foto non sono dentro questa app.</p>':"")+
   '<div class="sez"><h3>Calendario'+((DB.calSchede||{})[s.id]?' \u00b7 tua versione':' indicativo in Sicilia')+'</h3>'+calendarioHTML(calDi(s))+'</div>'+
   (s.att?'<div class="blocco-attenzione"><b>Attenzione</b>'+esc(s.att)+'</div>':"")+
   sez.map(x=>'<div class="sez"><h3>'+x[0]+'</h3><div class="testo">'+esc(x[1])+'</div></div>').join("")+
@@ -3180,7 +2478,6 @@ function apriScheda(id){
     linkScheda(s).map(l=>'<a href="'+l[1]+'" target="_blank" rel="noopener" style="color:var(--sanguigna);display:block;padding:4px 0">\u2192 '+esc(l[0])+'</a>').join("")+'</div>'+
     '<div class="blocco-attenzione" style="margin-top:12px"><b>Come \u00e8 stata scritta questa scheda</b>Testo redatto da un modello linguistico (Claude) sulla base di conoscenze agronomiche ed entomologiche consolidate, non trascritto da una singola pagina web. I link qui sopra sono le banche dati autorevoli su cui verificare.\nPer sostanze ammesse, dosi, soglie ufficiali e tempi di carenza fa fede unicamente il disciplinare di produzione integrata in vigore.</div></div>'+
   '<div class="azioni-d">'+(a?'<button data-mie="'+s.id+'">Le mie voci'+(n?" ("+n+")":"")+'</button>':"")+
-    '<button data-bib-glo>Glossario</button>'+
     '<button data-cond-scheda="'+s.id+'">Condividi testo</button></div><div style="height:30px"></div></div>';
   mostraPannello($("#p-scheda"));
 }
@@ -3216,19 +2513,6 @@ function apriLettura(id){
     '<table class="mix"><thead><tr><th>Prodotto</th><th style="text-align:right">Dose</th></tr></thead><tbody>'+
     v.prodotti.filter(p=>p.nome).map(p=>'<tr><td><a href="'+linkEtichetta(p.nome)+'" target="_blank" rel="noopener" style="color:var(--inchiostro);text-decoration:none;border-bottom:1px dotted var(--sanguigna)">'+esc(p.nome)+'</a>'+(p.formulato?'<div style="font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);margin-top:2px">'+esc(p.formulato)+'</div>':"")+(notaProdotto(p.nome)?'<div class="nota-prod" style="margin-top:4px">'+esc(notaProdotto(p.nome))+'</div>':"")+'</td>'+
     '<td class="dose">'+esc(p.dose)+' '+esc(p.unita||"")+'</td></tr>').join("")+'</tbody></table></div>':"")+
-  ((v.meteo||[]).filter(meteoPieno).length?'<div class="sez"><h3>Meteo</h3>'+
-    '<table class="mix"><tbody>'+(v.meteo||[]).filter(meteoPieno).map(function(m){
-      const d=[];
-      if(m.tmax!=="")d.push("max "+fmtT(m.tmax)+"\u00b0C");
-      if(m.tmin!=="")d.push("min "+fmtT(m.tmin)+"\u00b0C");
-      if(m.pioggia!=="")d.push(fmtT(m.pioggia)+" mm");
-      if(m.vento!=="")d.push("vento "+fmtT(m.vento)+" km/h");
-      if(m.umid!=="")d.push("umid. "+fmtT(m.umid)+"%");
-      return '<tr><td>'+esc(m.nome||"\u2014")+
-        '<div style="font-family:var(--mono);font-size:11px;color:var(--inchiostro-2);margin-top:2px">'+
-        (m.fonte==="manuale"?"scritto a mano":"Open-Meteo")+'</div></td>'+
-        '<td class="dose" style="font-size:13px">'+esc(d.join(" \u00b7 "))+'</td></tr>';
-    }).join("")+'</tbody></table></div>':"")+
   (v.testo?'<div class="sez"><h3>Note</h3><div class="testo">'+esc(v.testo)+'</div></div>':"")+
   '<div class="sez"><h3>Appunti allegati'+((v.allegati||[]).length?' \u00b7 '+v.allegati.length:"")+'</h3>'+
     ((v.allegati||[]).length?v.allegati.map(a=>'<div class="allegato"><div class="a-tit"><span>'+esc(a.titolo||"Appunto")+'</span><span class="a-data">'+dataIt(a.data)+'</span></div><div class="a-testo">'+esc(a.testo)+'</div></div>').join("")
@@ -3251,8 +2535,6 @@ function testoCondivisibile(v){
   if(avv.length)r.push("Avversit\u00e0: "+avv.join(", "));
   if((v.prodotti||[]).filter(p=>p.nome).length){r.push("");r.push("MISCELA \u2014 "+baseTesto(v));
     v.prodotti.filter(p=>p.nome).forEach(p=>r.push("\u2022 "+p.nome+(p.formulato?" ("+p.formulato+")":"")+" \u2014 "+p.dose+" "+(p.unita||"")));}
-  const met=meteoRiassunto(v);
-  if(met){r.push("");r.push("METEO \u2014 "+met);}
   if(v.testo){r.push("");r.push(v.testo);}
   (v.allegati||[]).forEach(function(a){r.push("");r.push("\u21b3 "+(a.titolo||"Appunto")+" ("+dataIt(a.data)+")");r.push(a.testo);});
   return r.join("\n");
@@ -3307,16 +2589,29 @@ function scarica(nome,cont,tipo){
    ============================================================ */
 function mostraPannello(p){$$(".pannello").forEach(function(x){if(x!==p)x.hidden=true;});p.hidden=false;p.scrollTop=0;document.body.style.overflow="hidden";}
 function chiudiPannelli(){$$(".pannello").forEach(function(x){x.hidden=true;});document.body.style.overflow="";}
+function disegnaDiscipl(){
+  const F=[
+    {t:"Difesa integrata \u2014 norme tecniche di difesa e controllo delle infestanti",e:"Edizione 2/2026",a:"D.D.G. n. 3216 del 21/05/2026",n:"Sostituisce, all'art. 4, le norme di difesa del D.D.G. n. 2428 del 16/04/2026 (edizione 1/2026).",l:"https://www.regione.sicilia.it/sites/default/files/2026-05/ddg_n_3216_del_21_maggio.pdf"},
+    {t:"Produzione integrata \u2014 norme tecniche agronomiche",e:"Annualità 2026",a:"D.D.G. n. 1613 del 10/03/2026",n:"Approva le norme tecniche agronomiche 2026 (Allegato A). È un'edizione distinta da quella della difesa: le due parti non hanno la stessa data.",l:"https://www.regione.sicilia.it/sites/default/files/2026-03/DDG%20n%201613_signed.pdf"}
+  ];
+  $("#sez-discipl").innerHTML=
+  '<div class="briciole">Disciplinari \u00b7 Regione Siciliana</div>'+
+  F.map(function(f){
+    return '<div style="margin:10px 0;padding:12px 14px;border:1px solid rgba(128,128,128,.35);border-radius:10px">'+
+    '<b>'+esc(f.t)+'</b><br><span>'+esc(f.e)+' \u00b7 '+esc(f.a)+'</span><br>'+
+    '<span style="opacity:.8;font-size:13px">'+esc(f.n)+'</span><br>'+
+    '<a href="'+f.l+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px">Apri il decreto (PDF) \u203a</a></div>';
+  }).join("")+
+  '<div style="margin:12px 2px;font-size:13px;opacity:.85">Ultima copia verificata il 17/10/2026 sul testo dei decreti. Non sono state trovate edizioni successive, ma la ricerca non è esaustiva e l\'app non controlla da sola: prima di una ricetta riapri la pagina «Difesa fitosanitaria» del sito della Regione. Qui non ci sono dosi né sostanze ammesse: fa fede il disciplinare in vigore e l\'etichetta del formulato.</div>';
+}
 function vaiA(k){
   chiudiPannelli();
   if(k.indexOf("ric-")===0){apriRicetta(k.slice(4));return;}
-  if(k==="meteo"){apriMeteo(null);return;}
-  if(k==="glossario"){apriBiblio("glossario",null);return;}
   let vis=k;
   if(k==="mese")vis="storico";
   sezione=vis;
   aggiornaTabBasso(vis);
-  ["home","storico","suggerimenti","consultorio","prodotti"].forEach(function(x){
+  ["home","storico","suggerimenti","consultorio","prodotti","discipl"].forEach(function(x){
     const el=$("#sez-"+x);if(el)el.hidden=(x!==vis);
   });
   $("#conta").hidden=(vis!=="storico");
@@ -3330,6 +2625,7 @@ function vaiA(k){
   else if(k==="suggerimenti")disegnaSuggerimenti();
   else if(k==="consultorio"){SC.liv="colture";SC.coltura=S.coltura;SC.q="";disegnaConsultorio();}
   else if(k==="prodotti")disegnaProdotti();
+  else if(k==="discipl")disegnaDiscipl();
   else if(k==="home")disegnaHome();
   window.scrollTo(0,0);
 }
@@ -3535,51 +2831,12 @@ $("#p-ricetta").addEventListener("click",function(e){
     avviso(senza.length?senza.length+" senza formulato: controlla":"Riordinati per sequenza di miscela");
     return;
   }
-  const mAgg=t.closest("[data-met-agg]");
-  if(mAgg){
-    leggiRicetta();
-    const i=+mAgg.dataset.metAgg,m=R.meteo[i];
-    if(m){m.fonte="";aggiornaCampiMeteo();
-      const l=luogoMeteo(m.luogoId)||{id:m.luogoId,nome:m.nome,lat:m.lat,lon:m.lon};
-      chiediMeteo(l,true).then(function(g){
-        const v=g[R.data||oggiISO()];
-        if(!v){m.fonte="fuori";m.gg=R.data;aggiornaCampiMeteo();avviso("Giorno fuori dalla previsione");return;}
-        METEO_CAMPI.forEach(function(k){m[k]=fmtT(v[k]);});
-        m.fonte="auto";m.gg=R.data;aggiornaCampiMeteo();avviso("Meteo aggiornato");
-      }).catch(function(e){m.fonte="niente";aggiornaCampiMeteo();avviso("Non scaricato: "+e.message);});
-    }
-    return;
-  }
-  const mDel=t.closest("[data-met-del]");
-  if(mDel){leggiRicetta();R.meteo.splice(+mDel.dataset.metDel,1);disegnaRicetta(false);return;}
-  const mAdd=t.closest("[data-met-add]");
-  if(mAdd){
-    leggiRicetta();
-    const l=luogoMeteo(mAdd.dataset.metAdd);
-    if(l){R.meteo.push(rigaMeteoDa(l));disegnaRicetta(false);compilaMeteoRicetta(true);}
-    return;
-  }
-  if(t.closest("[data-met-tutti]")){leggiRicetta();compilaMeteoRicetta(true);avviso("Riscarico il meteo\u2026");return;}
-  if(t.closest("[data-met-pagina]")){leggiRicetta();apriMeteo("ricetta");return;}
   if(t.closest("[data-info]")){leggiRicetta();infoMiscela();return;}
   if(t.closest("[data-genera]")){apriGenera();return;}
 });
 $("#p-ricetta").addEventListener("change",function(e){
   if(e.target.id==="r-base"){R.base=e.target.value;return;}
-  if(e.target.id==="r-data"){R.data=e.target.value;const rd=$("#r-data-riga");if(rd)rd.innerHTML=rigaData();
-    (R.meteo||[]).forEach(function(m){if(m.fonte!=="manuale")m.fonte="";});
-    aggiornaCampiMeteo();compilaMeteoRicetta(false);return;}
-  const ml=e.target.dataset?e.target.dataset.metLuogo:null;
-  if(ml!==null&&ml!==undefined){
-    leggiRicetta();
-    const i=+ml,l=luogoMeteo(e.target.value);
-    if(l&&R.meteo[i]){
-      R.meteo[i]=rigaMeteoDa(l);
-      disegnaRicetta(false);
-      compilaMeteoRicetta(true);
-    }
-    return;
-  }
+  if(e.target.id==="r-data"){R.data=e.target.value;const rd=$("#r-data-riga");if(rd)rd.innerHTML=rigaData();return;}
   if(e.target.dataset&&e.target.dataset.p==="unita")R.prodotti[+e.target.dataset.i].unita=e.target.value;
 });
 $("#p-ricetta").addEventListener("input",function(e){
@@ -3587,17 +2844,6 @@ $("#p-ricetta").addEventListener("input",function(e){
   if(PICK&&el.id==="r-"+PICK){
     const box=$('#p-ricetta [data-lista="'+PICK+'"]');
     if(box)box.innerHTML=righePick(PICK,el.value.trim());
-    return;
-  }
-  const mk=el.dataset.met;
-  if(mk){
-    const i=+el.dataset.i;
-    if(R.meteo&&R.meteo[i]){
-      R.meteo[i][mk]=el.value.trim();
-      R.meteo[i].fonte="manuale";
-      const f=$('#r-meteo [data-met-fonte="'+i+'"]');
-      if(f)f.innerHTML=meteoFonteHTML(R.meteo[i]);
-    }
     return;
   }
   const p=el.dataset.p;if(!p)return;
@@ -3854,9 +3100,6 @@ $("#p-impostazioni").addEventListener("click",function(e){
   if(nav){
     impApplica();
     if(nav.dataset.imp==="_appunto"){chiudiPannelli();apriAppunto();return;}
-    if(nav.dataset.imp==="meteo"){apriMeteo("imp");return;}
-    if(nav.dataset.imp==="note"){NOTE_RITORNO="imp";apriNote();return;}
-    if(nav.dataset.imp==="glossario"){apriBiblio("glossario","imp");return;}
     apriImp(nav.dataset.imp);return;
   }
   const su=t.closest("[data-su]"),giu=t.closest("[data-giu]");
@@ -3974,132 +3217,6 @@ $("#p-impostazioni").addEventListener("change",function(e){
   }catch(err){avviso("File non valido");}};
   r.readAsText(f);e.target.value="";
 });
-$("#p-biblio").addEventListener("click",function(e){
-  const t=e.target;
-  if(t.closest("[data-bib-back]")){
-    if(BIB_RITORNO==="imp"){BIB_RITORNO=null;apriImp("menu");return;}
-    if(BIB_RITORNO==="scheda"){BIB_RITORNO=null;chiudiPannelli();vaiA(sezione||"home");return;}
-    chiudiPannelli();vaiA(sezione||"home");return;
-  }
-  const v=t.closest("[data-bib-vista]");
-  if(v){BIB_VISTA=v.dataset.bibVista;disegnaBiblio();return;}
-  const c=t.closest("[data-bib-cat]");
-  if(c){BIB_CAT=c.dataset.bibCat;disegnaBiblio();return;}
-});
-$("#p-biblio").addEventListener("input",function(e){
-  if(e.target.id!=="bib-q")return;
-  BIB_Q=e.target.value;
-  const pos=e.target.selectionStart;
-  disegnaBiblio();
-  const el=$("#bib-q");
-  if(el){el.focus();try{el.setSelectionRange(pos,pos);}catch(err){}}
-});
-$("#p-scheda").addEventListener("click",function(e){
-  if(e.target.closest("[data-bib-glo]"))apriBiblio("glossario","scheda");
-});
-$("#p-meteo").addEventListener("click",function(e){
-  const t=e.target,c=meteoCfg(),l=c.luoghi;
-  if(t.closest("[data-met-back]")){
-    if(METEO_RITORNO==="ricetta"){disegnaRicetta(false);mostraPannello($("#p-ricetta"));}
-    else if(METEO_RITORNO==="imp"){apriImp("menu");}
-    else{chiudiPannelli();vaiA("home");}
-    return;
-  }
-  if(t.closest("[data-met-auto]")){c.auto=!c.auto;salva();disegnaMeteo();return;}
-  const d=t.closest("[data-met-def]");
-  if(d){const i=+d.dataset.metDef;l[i].def=(l[i].def===false);salva();disegnaMeteo();return;}
-  const mo=t.closest("[data-met-mod]");
-  if(mo){const i=+mo.dataset.metMod;METEO_STATO.mod=(METEO_STATO.mod===i?null:i);disegnaMeteo();return;}
-  const rm=t.closest("[data-met-rm]");
-  if(rm){
-    const i=+rm.dataset.metRm;
-    if(!confirm("Togliere \u00ab"+(l[i].nome||"questo luogo")+"\u00bb? Le ricette gi\u00e0 salvate non cambiano."))return;
-    delete cacheMeteo()[l[i].id];
-    l.splice(i,1);METEO_STATO.mod=null;salva();disegnaMeteo();
-    return;
-  }
-  const sc=t.closest("[data-met-scarica]");
-  if(sc){
-    const i=+sc.dataset.metScarica;
-    METEO_STATO.msg="";
-    chiediMeteo(l[i],true).then(function(){disegnaMeteo();avviso("Previsioni aggiornate");})
-      .catch(function(err){avviso("Non scaricato: "+err.message);});
-    return;
-  }
-  if(t.closest("[data-met-tuttiluoghi]")){
-    let fatti=0;
-    l.forEach(function(x){
-      chiediMeteo(x,true).then(function(){fatti++;disegnaMeteo();})
-        .catch(function(){});
-    });
-    avviso("Scarico le previsioni\u2026");
-    return;
-  }
-  const ge=t.closest("[data-met-geo]");
-  if(ge){
-    const i=+ge.dataset.metGeo;
-    cercaLuogo(l[i].nome).then(function(r){
-      if(!r.length){avviso("Nome non trovato");return;}
-      l[i].lat=Number(r[0].latitude);l[i].lon=Number(r[0].longitude);
-      delete cacheMeteo()[l[i].id];
-      salva();disegnaMeteo();avviso("Coordinate aggiornate da Open-Meteo");
-    }).catch(function(err){avviso("Ricerca non riuscita: "+err.message);});
-    return;
-  }
-  if(t.closest("[data-met-cerca]")){
-    const q=($("#met-q")?$("#met-q").value:"").trim();
-    METEO_STATO.q=q;
-    if(!q){avviso("Scrivi un nome");return;}
-    METEO_STATO.lav=true;METEO_STATO.msg="";METEO_STATO.ris=[];disegnaMeteo();
-    cercaLuogo(q).then(function(r){
-      METEO_STATO.lav=false;METEO_STATO.ris=r;
-      METEO_STATO.msg=r.length?"":"Nessun luogo con questo nome. Prova un comune vicino, oppure inserisci le coordinate a mano.";
-      disegnaMeteo();
-    }).catch(function(err){
-      METEO_STATO.lav=false;METEO_STATO.ris=[];
-      METEO_STATO.msg="Ricerca non riuscita ("+err.message+"). Senza rete puoi comunque inserire le coordinate a mano.";
-      disegnaMeteo();
-    });
-    return;
-  }
-  const pk=t.closest("[data-met-pick]");
-  if(pk){
-    const r=METEO_STATO.ris[+pk.dataset.metPick];if(!r)return;
-    const nome=r.name;
-    l.push({id:nuovoIdLuogo(nome),nome:nome,lat:Number(r.latitude),lon:Number(r.longitude),
-      def:false,slug:slugLuogo(nome)});
-    METEO_STATO.ris=[];METEO_STATO.q="";METEO_STATO.msg="";
-    salva();disegnaMeteo();avviso("\u00ab"+nome+"\u00bb aggiunto. Mettilo predefinito se lo vuoi in ogni ricetta.");
-    chiediMeteo(l[l.length-1],true).then(disegnaMeteo).catch(function(){});
-    return;
-  }
-  if(t.closest("[data-met-mano]")){
-    const nome="Nuovo luogo";
-    l.push({id:nuovoIdLuogo(nome),nome:nome,lat:37.5,lon:15,def:false,slug:""});
-    METEO_STATO.mod=l.length-1;METEO_STATO.ris=[];
-    salva();disegnaMeteo();
-    return;
-  }
-});
-$("#p-meteo").addEventListener("input",function(e){
-  const el=e.target;
-  if(el.id==="met-q"){METEO_STATO.q=el.value;return;}
-  const k=el.dataset.ml;
-  if(!k)return;
-  const i=+el.dataset.i,l=luoghiMeteo()[i];
-  if(!l)return;
-  if(k==="lat"||k==="lon"){
-    const n=Number(String(el.value).replace(",","."));
-    if(!isNaN(n)&&el.value.trim()!==""){l[k]=n;delete cacheMeteo()[l.id];}
-  }else l[k]=el.value;
-  salva();
-});
-$("#p-meteo").addEventListener("keydown",function(e){
-  if(e.key==="Enter"&&e.target.id==="met-q"){
-    e.preventDefault();
-    const b=$("#p-meteo [data-met-cerca]");if(b)b.click();
-  }
-});
 $("#p-ricetta").addEventListener("keydown",function(e){
   if(e.key!=="Enter")return;
   const el=e.target;
@@ -4166,13 +3283,6 @@ function caricaRicetteBase(){
 function migra(){
   DB.noteSchede=DB.noteSchede||{};DB.prodotti=DB.prodotti||[];DB.aziende=DB.aziende||[];
   DB.colture=DB.colture||[];DB.avversita=DB.avversita||[];DB.voci=DB.voci||[];
-  // schede aggiunte dopo il primo avvio: creo l'avversita' mancante,
-  // altrimenti negli archivi gia' sul telefono la scheda nuova non compare nei filtri
-  SCHEDE.forEach(function(sc){
-    if(!DB.avversita.some(function(a){return a.schedaId===sc.id;}))
-      DB.avversita.push({id:"s-"+sc.id,nome:sc.n,colture:sc.col.slice(),
-        gruppo:NOMI_CAT[sc.cat]||"Altro",schedaId:sc.id});
-  });
   DB.prodotti.forEach(function(p){
     if(!p.note)p.note=(p.nota?[p.nota]:[]);
     delete p.nota;
@@ -4201,7 +3311,6 @@ function migra(){
     (v.prodotti||[]).forEach(function(p){if(p.ok===undefined)p.ok=true;});
     if(!v.modo&&(v.prodotti||[]).filter(p=>p.nome).length){v.modo="fogliare";v.base="1000";}
     if(!v.titolo)v.titolo="Voce del "+dataIt(v.data);
-    if(!Array.isArray(v.meteo))v.meteo=[];
   });
   caricaRicetteBase();
   DB.voci.forEach(registraProdotti);
@@ -4223,7 +3332,7 @@ function migra(){
    normale. Selettore volutamente ampio: bottoni, select, link con
    data-vai-scheda, righe .scheda, .prod, .ri-edit, .cal-tap.
    ============================================================ */
-const SEL_BLOCCHI="button, select, a[data-vai-scheda], .scheda, .prod, .ri-edit, .cal-tap, .met-riga, .met-luogo";
+const SEL_BLOCCHI="button, select, a[data-vai-scheda], .scheda, .prod, .ri-edit, .cal-tap";
 let BLOCCHI_ON=false, OSS_BLOCCHI=null;
 function rinumeraBlocchi(){
   if(!BLOCCHI_ON)return;
@@ -4276,282 +3385,6 @@ $("#btn-blocchi").addEventListener("click",function(){
 });
 OSS_BLOCCHI=new MutationObserver(function(){clearTimeout(window.__bT);window.__bT=setTimeout(rinumeraBlocchi,80);});
 
-/* ============================================================
-   17. NOTE SUL PUNTO — la chiocciola in basso a destra
-   Serve ad Alfio per indicare una modifica toccando il punto dello
-   schermo invece di descriverlo a parole. Acceso il tasto @, ogni
-   tocco apre una nuvoletta: la nota viene salvata insieme al numero
-   di blocco, al nome della schermata e a una descrizione
-   dell'elemento toccato. Dall'elenco si copia tutto in un colpo.
-   La numerazione blocchi si accende da sola: e' l'ancora della nota.
-   Il tasto "Naviga" sospende la cattura dei tocchi, cosi' si puo'
-   cambiare schermata senza spegnere la modalita'.
-   ============================================================ */
-let NOTE_ON=false, NOTE_NAVIGA=false, NOTA_APERTA=null, NOTE_RITORNO=null;
-
-function noteApp(){DB.noteApp=DB.noteApp||[];return DB.noteApp;}
-
-function nomeSchermata(){
-  const pan=$$(".pannello").filter(function(x){return !x.hidden;});
-  if(pan.length){
-    const id=pan[pan.length-1].id;
-    const nomi={"p-lettura":"Lettura voce","p-editor":"Appunto","p-impostazioni":"Impostazioni",
-      "p-scheda":"Scheda del consultorio","p-ricetta":"Ricetta","p-info":"Ordine di miscela",
-      "p-genera":"Genera ricetta","p-appunto":"Appunto","p-meteo":"Meteo","p-note":"Note"};
-    let n=nomi[id]||id;
-    if(id==="p-ricetta")n+=" \u00b7 passo "+PASSO+" "+((PASSI[PASSO-1]||{}).t||"");
-    if(id==="p-impostazioni")n+=" \u00b7 "+IMP.vista;
-    return n;
-  }
-  const nomi={home:"Home",storico:"Storico / QDCA",suggerimenti:"Suggerimenti del mese",
-    consultorio:"Consultorio",prodotti:"Banca Dati"};
-  return nomi[sezione]||sezione;
-}
-function testoPulito(el){
-  const c=el.cloneNode(true);
-  c.querySelectorAll(".blocco-badge, .bm-n, .n-conta").forEach(function(x){x.remove();});
-  return (c.textContent||"").replace(/\s+/g," ").trim();
-}
-function descriviElemento(el){
-  if(!el||el===document.body)return "sfondo della pagina";
-  const t=el.tagName.toLowerCase();
-  let txt=(el.getAttribute("aria-label")||el.getAttribute("placeholder")||
-    (el.value!==undefined&&t!=="select"?el.value:"")||testoPulito(el)).replace(/\s+/g," ").trim();
-  if(t==="select"&&el.options&&el.selectedIndex>=0)txt=el.options[el.selectedIndex].text;
-  if(txt.length>70)txt=txt.slice(0,70)+"\u2026";
-  const cls=(el.className&&typeof el.className==="string")
-    ?el.className.split(/\s+/).filter(function(c){return c&&c.indexOf("has-blocco")<0&&c.indexOf("blocco-")<0;}).slice(0,2).join(".")
-    :"";
-  return t+(cls?"."+cls:"")+(txt?' \u00ab'+txt+'\u00bb':"");
-}
-function bloccoDi(el){
-  if(!el||!el.closest)return null;
-  function leggi(){
-    const b=el.closest(".has-blocco");
-    if(!b)return null;
-    const badge=b.querySelector(":scope > .blocco-badge");
-    return badge?badge.textContent:null;
-  }
-  let n=leggi();
-  if(n===null&&BLOCCHI_ON){rinumeraBlocchi();n=leggi();}
-  return n;
-}
-function chiudiBolla(){
-  NOTA_APERTA=null;
-  const v=$(".nota-velo");if(v)v.remove();
-  const b=$(".nota-bolla");if(b)b.remove();
-  const m=$(".nota-mirino");if(m)m.remove();
-}
-function apriBolla(x,y,el,esistente){
-  chiudiBolla();
-  const blocco=esistente?esistente.blocco:bloccoDi(el);
-  const dove=esistente?esistente.schermata:nomeSchermata();
-  const elDesc=esistente?esistente.elemento:descriviElemento(el);
-  NOTA_APERTA={id:esistente?esistente.id:null,blocco:blocco,schermata:dove,elemento:elDesc};
-
-  const velo=document.createElement("div");velo.className="nota-velo";
-  document.body.appendChild(velo);
-
-  const mir=document.createElement("div");mir.className="nota-mirino";
-  mir.style.left=x+"px";mir.style.top=y+"px";
-  document.body.appendChild(mir);
-
-  const bolla=document.createElement("div");bolla.className="nota-bolla";
-  bolla.innerHTML=
-    '<div class="nb-dove">'+esc(dove)+(blocco?" \u00b7 blocco "+esc(blocco):"")+'</div>'+
-    '<div class="nb-el">'+esc(elDesc)+'</div>'+
-    '<textarea id="nota-testo" placeholder="Cosa vuoi che cambi qui\u2026"></textarea>'+
-    '<div class="nb-az">'+
-      (esistente?'<button class="rm" data-nota-elimina>Elimina</button>':"")+
-      '<button data-nota-annulla>Annulla</button>'+
-      '<button class="ok" data-nota-salva>Salva</button>'+
-    '</div>';
-  document.body.appendChild(bolla);
-  const w=bolla.offsetWidth,h=bolla.offsetHeight;
-  let bx=Math.min(Math.max(8,x-w/2),window.innerWidth-w-8);
-  let by=y+22;
-  if(by+h>window.innerHeight-8)by=Math.max(8,y-h-22);
-  bolla.style.left=bx+"px";bolla.style.top=by+"px";
-  const ta=$("#nota-testo");
-  if(ta){ta.value=esistente?esistente.testo:"";setTimeout(function(){ta.focus();},60);}
-}
-function salvaNota(){
-  const ta=$("#nota-testo");
-  const testo=ta?ta.value.trim():"";
-  if(!testo){avviso("Scrivi qualcosa, o tocca Annulla");return;}
-  const l=noteApp();
-  if(NOTA_APERTA.id){
-    const n=l.find(function(x){return x.id===NOTA_APERTA.id;});
-    if(n){n.testo=testo;n.modificato=Date.now();}
-  }else{
-    l.push({id:nuovoId(),t:Date.now(),schermata:NOTA_APERTA.schermata,
-      blocco:NOTA_APERTA.blocco,elemento:NOTA_APERTA.elemento,testo:testo});
-  }
-  salva();chiudiBolla();aggiornaContaNote();
-  avviso(NOTA_APERTA&&NOTA_APERTA.blocco?"Nota salvata sul blocco "+NOTA_APERTA.blocco:"Nota salvata");
-}
-function aggiornaContaNote(){
-  const b=$("#btn-note");if(!b)return;
-  const n=noteApp().length;
-  b.innerHTML="@"+(n?'<span class="n-conta">'+n+'</span>':"");
-  const bar=$(".nota-barra .nb-t");
-  if(bar)bar.textContent="Note sul punto \u00b7 "+n;
-}
-function barraNote(){
-  let bar=$(".nota-barra");
-  if(!NOTE_ON){if(bar)bar.remove();return;}
-  if(!bar){
-    bar=document.createElement("div");bar.className="nota-barra";
-    document.body.appendChild(bar);
-  }
-  bar.innerHTML='<span class="nb-t">Note sul punto \u00b7 '+noteApp().length+'</span>'+
-    '<button class="'+(NOTE_NAVIGA?"":"att")+'" data-nota-modo="annota">Annota</button>'+
-    '<button class="'+(NOTE_NAVIGA?"att":"")+'" data-nota-modo="naviga">Naviga</button>'+
-    '<button data-nota-elenco>Elenco</button>'+
-    '<button data-nota-esci>Esci</button>';
-}
-function accendiNote(v){
-  NOTE_ON=v;NOTE_NAVIGA=false;
-  document.body.classList.toggle("modalita-note",NOTE_ON);
-  document.body.classList.remove("naviga");
-  $("#btn-note").classList.toggle("on",NOTE_ON);
-  if(NOTE_ON&&!BLOCCHI_ON)$("#btn-blocchi").click();
-  if(!NOTE_ON)chiudiBolla();
-  barraNote();aggiornaContaNote();
-  if(NOTE_ON)avviso("Tocca un punto dello schermo per scrivere una nota");
-}
-function testoNote(){
-  const l=noteApp();
-  if(!l.length)return "";
-  const r=["NOTE SUL QUADERNO \u2014 "+VERSIONE_APP,
-    "Scritte da Alfio toccando i punti dello schermo. Il numero di blocco",
-    "\u00e8 quello che compare con il tasto # acceso.",""];
-  const gruppi={};
-  l.forEach(function(n){(gruppi[n.schermata]=gruppi[n.schermata]||[]).push(n);});
-  let i=0;
-  Object.keys(gruppi).forEach(function(k){
-    r.push("### "+k);
-    gruppi[k].forEach(function(n){
-      i++;
-      r.push(i+") "+(n.blocco?"blocco "+n.blocco+" \u2014 ":"")+n.elemento);
-      r.push("   "+n.testo.split("\n").join("\n   "));
-    });
-    r.push("");
-  });
-  return r.join("\n");
-}
-function disegnaNote(){
-  const l=noteApp().slice().sort(function(a,b){return a.t-b.t;});
-  const gruppi={};
-  l.forEach(function(n){(gruppi[n.schermata]=gruppi[n.schermata]||[]).push(n);});
-  $("#p-note").innerHTML=
-  '<div class="barra-p"><button class="indietro" data-nota-chiudi>\u2039 Indietro</button>'+
-  '<span class="titolo-p">Note</span><span style="width:60px"></span></div>'+
-  '<div class="wrap"><div class="testata"><div class="tipo-d">'+l.length+' '+(l.length===1?"nota":"note")+'</div>'+
-  '<h2>Quello che hai segnato</h2>'+
-  '<p class="suggerimento" style="font-size:13px">Tocca «Copia tutto» e incolla nella chat: ricevo schermata, numero di blocco, elemento toccato e il tuo testo, cos\u00ec so esattamente dove intervenire.</p></div>'+
-  (l.length?Object.keys(gruppi).map(function(k){
-    return '<div class="imp-sez">'+esc(k)+'</div>'+gruppi[k].map(function(n){
-      return '<div class="nota-c" data-id="'+esc(n.id)+'">'+
-        '<div class="nc-h">'+(n.blocco?"blocco "+esc(n.blocco):"punto libero")+'</div>'+
-        '<div class="nc-el">'+esc(n.elemento)+'</div>'+
-        '<div class="nc-t">'+esc(n.testo)+'</div>'+
-        '<div class="nc-az"><button class="mini" data-nota-mod="'+esc(n.id)+'">Modifica</button>'+
-        '<button class="mini" data-nota-rm="'+esc(n.id)+'">Elimina</button></div></div>';
-    }).join("");
-  }).join(""):'<p class="suggerimento" style="margin:16px 0">Nessuna nota. Accendi la chiocciola in basso a destra e tocca il punto che vuoi commentare.</p>')+
-  (l.length?'<div class="met-az" style="margin-top:16px">'+
-    '<button class="mini" data-nota-copia>Copia tutto</button>'+
-    '<button class="mini" data-nota-condividi>Condividi</button>'+
-    '<button class="mini" data-nota-svuota>Cancella tutte</button></div>'+
-    '<p class="suggerimento" style="margin-top:14px">Se il tasto Copia non funziona, tieni premuto qui sotto e copia a mano.</p>'+
-    '<textarea id="nota-export" readonly>'+esc(testoNote())+'</textarea>':"")+
-  '<div style="height:44px"></div></div>';
-}
-function apriNote(){disegnaNote();mostraPannello($("#p-note"));}
-function chiudiNote(){
-  if(NOTE_RITORNO==="imp"){NOTE_RITORNO=null;apriImp("menu");return;}
-  chiudiPannelli();vaiA(sezione||"home");
-}
-
-/* ---- cattura dei tocchi ---- */
-const NOTE_LIBERI="#btn-note, #btn-blocchi, .nota-bolla, .nota-barra, .nota-velo, #p-note, .toast";
-document.addEventListener("click",function(e){
-  if(!NOTE_ON||NOTE_NAVIGA)return;
-  const t=e.target;
-  if(t.closest&&t.closest(NOTE_LIBERI))return;
-  e.preventDefault();e.stopPropagation();
-  apriBolla(e.clientX||Math.round(window.innerWidth/2),
-            e.clientY||Math.round(window.innerHeight/2),t,null);
-},true);
-document.addEventListener("mousedown",function(e){
-  if(!NOTE_ON||NOTE_NAVIGA)return;
-  if(e.target.closest&&e.target.closest(NOTE_LIBERI))return;
-  e.preventDefault();e.stopPropagation();
-},true);
-
-$("#btn-note").addEventListener("click",function(e){
-  e.stopPropagation();
-  accendiNote(!NOTE_ON);
-});
-document.addEventListener("click",function(e){
-  const t=e.target;
-  if(t.closest("[data-nota-salva]")){salvaNota();return;}
-  if(t.closest("[data-nota-annulla]")){chiudiBolla();return;}
-  if(t.closest("[data-nota-elimina]")){
-    if(NOTA_APERTA&&NOTA_APERTA.id){
-      DB.noteApp=noteApp().filter(function(x){return x.id!==NOTA_APERTA.id;});
-      salva();
-    }
-    chiudiBolla();aggiornaContaNote();
-    if(!$("#p-note").hidden)disegnaNote();
-    return;
-  }
-  if(t.classList&&t.classList.contains("nota-velo")){chiudiBolla();return;}
-  const md=t.closest("[data-nota-modo]");
-  if(md){
-    NOTE_NAVIGA=(md.dataset.notaModo==="naviga");
-    document.body.classList.toggle("naviga",NOTE_NAVIGA);
-    barraNote();
-    avviso(NOTE_NAVIGA?"Naviga liberamente, la modalit\u00e0 resta accesa":"Tocca un punto per annotarlo");
-    return;
-  }
-  if(t.closest("[data-nota-elenco]")){NOTE_RITORNO=null;apriNote();return;}
-  if(t.closest("[data-nota-esci]")){accendiNote(false);return;}
-  if(t.closest("[data-nota-chiudi]")){chiudiNote();return;}
-  const nm=t.closest("[data-nota-mod]");
-  if(nm){
-    const n=noteApp().find(function(x){return x.id===nm.dataset.notaMod;});
-    if(n)apriBolla(Math.round(window.innerWidth/2),Math.round(window.innerHeight/3),null,n);
-    return;
-  }
-  const nr=t.closest("[data-nota-rm]");
-  if(nr){
-    DB.noteApp=noteApp().filter(function(x){return x.id!==nr.dataset.notaRm;});
-    salva();disegnaNote();aggiornaContaNote();return;
-  }
-  if(t.closest("[data-nota-copia]")){
-    const txt=testoNote();
-    const fatto=function(){avviso("Note copiate: incollale nella chat");};
-    if(navigator.clipboard&&navigator.clipboard.writeText)
-      navigator.clipboard.writeText(txt).then(fatto).catch(function(){
-        const ta=$("#nota-export");if(ta){ta.select();avviso("Copia a mano dal riquadro");}
-      });
-    else{const ta=$("#nota-export");if(ta){ta.select();avviso("Copia a mano dal riquadro");}}
-    return;
-  }
-  if(t.closest("[data-nota-condividi]")){
-    const txt=testoNote();
-    if(navigator.share)navigator.share({title:"Note sul Quaderno",text:txt}).catch(function(){});
-    else{const ta=$("#nota-export");if(ta){ta.select();avviso("Condivisione non disponibile: copia a mano");}}
-    return;
-  }
-  if(t.closest("[data-nota-svuota]")){
-    if(!confirm("Cancellare tutte le note?"))return;
-    DB.noteApp=[];salva();disegnaNote();aggiornaContaNote();return;
-  }
-});
-
 (function(){
   Archivio.leggi().then(function(s){
     if(s&&s.voci){DB=s;migra();}
@@ -4559,7 +3392,6 @@ document.addEventListener("click",function(e){
     Archivio.scrivi(DB);
     disegnaColture();
     vaiA("home");
-    aggiornaContaNote();
   });
 })();
 </script>
