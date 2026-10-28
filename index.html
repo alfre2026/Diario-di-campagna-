@@ -242,6 +242,10 @@ table.mix td.dose{font-family:var(--mono);white-space:nowrap;text-align:right}
 .b-menu.forte{background:var(--inchiostro);border-color:var(--inchiostro);border-left-color:var(--c)}
 .b-menu.forte .bm-t{color:var(--carta)}
 .b-menu.forte .bm-s{color:rgba(233,234,227,.66)}
+.b-menu.grande{padding:28px 18px}
+.b-menu.grande .bm-t{font-size:24px}
+.b-menu.grande .bm-s{font-size:13.5px;margin-top:5px}
+.sez-tit{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.15;margin:16px 0 2px}
 .coltura-attiva{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--inchiostro-2);padding:2px 0 0}
 .coltura-attiva b{color:var(--c);font-weight:600}
@@ -507,6 +511,12 @@ body{padding-bottom:64px}
   <!-- ===== HOME ===== -->
   <div id="sez-home">
     <div class="menu-home" id="menu-home"></div>
+  </div>
+
+  <!-- ===== NUOVA RICETTA: scelta del trattamento ===== -->
+  <div id="sez-nuova" hidden>
+    <h2 class="sez-tit">Nuova ricetta</h2>
+    <div class="menu-home" id="menu-nuova"></div>
   </div>
 
   <!-- ===== STORICO ===== -->
@@ -1194,7 +1204,6 @@ function impMenu(){
   const c=cfg();
   return impBarra("Impostazioni","chiudi")+'<div class="wrap">'+
   '<div class="imp-sez">Schermata iniziale</div>'+
-  impVoce("home","Menu iniziale","Ordine, nomi e cosa mostrare",c.menu.filter(x=>x.vis!==false).length)+
   impVoce("colture-home","Filtro colture","Quali colture in alto e in che ordine",c.coltureHome.length)+
   '<div class="imp-sez">Il tuo vocabolario</div>'+
   impVoce("colture","Colture","Nome, colore, fasi fenologiche",DB.colture.length)+
@@ -1604,7 +1613,7 @@ function linkScheda(s){
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
-const VERSIONE_APP="v7.2 \u2014 17/10/2026";
+const VERSIONE_APP="v7.3 \u2014 28/10/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -1861,21 +1870,27 @@ function disegnaLista(extra){
    6. HOME
    ============================================================ */
 function disegnaHome(){
+  /* v7.3: home fissa a due bottoni. I tre trattamenti stanno in «Nuova ricetta»
+     (disegnaNuova). cfg().menu resta nei dati ma la home non lo usa pi\u00f9. */
   const c=coltura(S.coltura),col=c?c.colore:"#1C2321";
-  const m=new Date().getMonth(),a=new Date().getFullYear();
-  const nMese=DB.voci.filter(v=>(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)&&meseDi(v)===m&&annoDi(v)===a).length;
   const nTot=DB.voci.filter(v=>!S.coltura||coltureDi(v).indexOf(S.coltura)>=0).length;
-  const nSch=SCHEDE.filter(s=>!S.coltura||s.col.indexOf(S.coltura)>=0).length;
-  function B(k,t,s,n,forte){
-    return '<button class="b-menu'+(forte?" forte":"")+'" data-vai="'+k+'" style="--c:'+col+'">'+
-      '<span><span class="bm-t">'+t+'</span><span class="bm-s">'+s+'</span></span>'+
-      (n!==null?'<span class="bm-n">'+n+'</span>':"")+'</button>';
-  }
-  const CN={mese:nMese,storico:nTot,consultorio:nSch,prodotti:(DB.prodotti||[]).length};
-  $("#menu-home").innerHTML=cfg().menu.filter(x=>x.vis!==false).map(function(x){
-    let s=x.s;
-    if(x.k==="mese")s=MESI_LUNGHI[m]+" "+a;
-    return B(x.k,esc(x.t),esc(s),(CN[x.k]!==undefined?CN[x.k]:null),x.forte);
+  $("#menu-home").innerHTML=
+    '<button class="b-menu grande forte" data-vai="nuova" style="--c:'+col+'">'+
+      '<span><span class="bm-t">Nuova ricetta</span><span class="bm-s">Fogliare, radicale o diserbo</span></span></button>'+
+    '<button class="b-menu grande" data-vai="cerca" style="--c:'+col+'">'+
+      '<span><span class="bm-t">Cerca ricette</span><span class="bm-s">Dalla pi\u00f9 recente alla pi\u00f9 vecchia</span></span>'+
+      '<span class="bm-n">'+nTot+'</span></button>';
+}
+function disegnaNuova(){
+  const c=coltura(S.coltura),col=c?c.colore:"#1C2321";
+  const T=[
+    ["ric-fogliare","Trattamento fogliare","Dose riferita al volume di miscela"],
+    ["ric-radicale","Trattamento radicale","Dose riferita alla superficie o alla pianta"],
+    ["ric-diserbante","Diserbo","Dose riferita al volume di miscela"]
+  ];
+  $("#menu-nuova").innerHTML=T.map(function(x){
+    return '<button class="b-menu grande" data-vai="'+x[0]+'" style="--c:'+col+'">'+
+      '<span><span class="bm-t">'+x[1]+'</span><span class="bm-s">'+x[2]+'</span></span></button>';
   }).join("");
 }
 
@@ -2608,15 +2623,22 @@ function vaiA(k){
   chiudiPannelli();
   if(k.indexOf("ric-")===0){apriRicetta(k.slice(4));return;}
   let vis=k;
-  if(k==="mese")vis="storico";
+  if(k==="mese"||k==="cerca")vis="storico";
   sezione=vis;
   aggiornaTabBasso(vis);
-  ["home","storico","suggerimenti","consultorio","prodotti","discipl"].forEach(function(x){
+  ["home","nuova","storico","suggerimenti","consultorio","prodotti","discipl"].forEach(function(x){
     const el=$("#sez-"+x);if(el)el.hidden=(x!==vis);
   });
   $("#conta").hidden=(vis!=="storico");
   $("#h-titolo").innerHTML=(vis==="home")?'Quaderno<em>.</em>':'<button data-home style="font-family:var(--serif);font-size:22px">\u2039 Quaderno</button>';
   if(k==="storico"){filtroStorico=null;S.mese=null;disegnaNastro();disegnaFiltriStorico();disegnaLista(null);}
+  else if(k==="cerca"){
+    /* «Cerca ricette»: tutte le voci, senza filtri, in ordine cronologico dalla pi\u00f9 recente */
+    filtroStorico=null;S.mese=null;S.q="";S.avversita=[];S.fasi=[];S.g1="";S.g2="";
+    $("#cerca").value="";$("#cerca-x").hidden=true;$("#g1").value="";$("#g2").value="";
+    disegnaNastro();disegnaFiltriStorico();disegnaLista(null);
+  }
+  else if(k==="nuova")disegnaNuova();
   else if(k==="mese"){
     const m=new Date().getMonth(),a=new Date().getFullYear();
     S.mese=m;filtroStorico=function(v){return annoDi(v)===a;};
@@ -2657,6 +2679,7 @@ $("#f-colture").addEventListener("click",function(e){
   if(!S.coltura){S.g1="coltura";const selG1=$("#g1");if(selG1)selG1.value="coltura";}
   disegnaColture();
   if(sezione==="home")disegnaHome();
+  else if(sezione==="nuova")disegnaNuova();
   else if(sezione==="storico"){disegnaNastro();disegnaFiltriStorico();disegnaLista(filtroStorico);}
   else if(sezione==="suggerimenti")disegnaSuggerimenti();
   else if(sezione==="consultorio"){
@@ -2666,6 +2689,7 @@ $("#f-colture").addEventListener("click",function(e){
 });
 $("#h-titolo").addEventListener("click",function(e){if(e.target.closest("[data-home]"))vaiA("home");});
 $("#menu-home").addEventListener("click",function(e){const b=e.target.closest("[data-vai]");if(b)vaiA(b.dataset.vai);});
+$("#menu-nuova").addEventListener("click",function(e){const b=e.target.closest("[data-vai]");if(b)vaiA(b.dataset.vai);});
 $("#btn-imp").addEventListener("click",function(){apriImp("menu");});
 function aggiornaTabBasso(vis){
   const nav=$("#tab-basso");if(!nav)return;
