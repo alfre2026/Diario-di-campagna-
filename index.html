@@ -96,6 +96,11 @@ header.top{position:sticky;top:0;z-index:40;background:linear-gradient(var(--car
 .meta{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;color:var(--inchiostro-2);text-transform:uppercase;margin-bottom:3px;flex-wrap:wrap}
 .meta .tipo{color:var(--inchiostro);font-weight:600}
 .meta .pin{color:var(--ocra)}
+.meta .rif{color:var(--carta);background:var(--oliva);padding:1px 6px;border-radius:2px;font-weight:600}
+.rif-d{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--carta);background:var(--oliva);padding:3px 8px;border-radius:2px;margin:2px 0 6px}
+.chip.rif.on{background:var(--oliva);border-color:var(--oliva)}
+.azioni-d button.rif-on{background:var(--oliva);border-color:var(--oliva);color:var(--carta)}
 .tit-s{font-family:var(--serif);font-size:17px;line-height:1.25;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .estratto{font-size:13.5px;color:var(--inchiostro-2);line-height:1.4;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tag-riga{display:flex;flex-wrap:wrap;gap:4px}
@@ -526,6 +531,7 @@ body{padding-bottom:64px}
       <input class="cerca" id="cerca" type="text" inputmode="search" placeholder="Cerca in tutto il quaderno…" autocomplete="off">
       <button class="cerca-x" id="cerca-x" hidden aria-label="Cancella">✕</button>
     </div>
+    <div class="riga-f" id="riga-rif"><button class="chip rif" id="f-rif"></button></div>
     <div class="nastro" id="nastro" role="group" aria-label="Filtra per mese"></div>
     <div class="filtri">
       <div class="etichetta-f" id="lbl-avv">Avversità / argomento</div>
@@ -1613,7 +1619,7 @@ function linkScheda(s){
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
-const VERSIONE_APP="v7.3 \u2014 28/10/2026";
+const VERSIONE_APP="v7.4 \u2014 13/11/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -1694,7 +1700,7 @@ function COL_HOME(){return cfg().coltureHome;}
    4. STATO
    ============================================================ */
 let DB={v:3,colture:[],avversita:[],voci:[],prodotti:[],aziende:[],noteSchede:{}};
-let S={q:"",coltura:"ara",avversita:[],fasi:[],mese:null,g1:"mese",g2:""};
+let S={q:"",coltura:"ara",avversita:[],fasi:[],mese:null,g1:"mese",g2:"",rif:false};
 let SC={liv:"colture",coltura:"",cat:"",q:""};
 let sezione="home";
 let filtroStorico=null;
@@ -1755,6 +1761,7 @@ function filtra(extra){
     if(S.mese!==null&&meseDi(v)!==S.mese) return false;
     if(S.avversita.length&&!S.avversita.every(a=>(v.avversita||[]).indexOf(a)>=0)) return false;
     if(S.fasi.length&&S.fasi.indexOf(v.fase)<0) return false;
+    if(S.rif&&!v.rif) return false;
     if(parole.length){const t=testoIndicizzato(v);if(!parole.every(p=>t.indexOf(p)>=0)) return false;}
     return true;
   }).sort(function(a,b){
@@ -1787,7 +1794,7 @@ function estratto(v,q){
 function schedaHTML(v){
   const col=coloreColtura(coltureDi(v)[0]),avv=(v.avversita||[]).map(avvNome).filter(Boolean),az=aziendeDi(v);
   return '<button class="scheda" data-id="'+v.id+'"><span class="spina" style="--c:'+col+'"></span><span class="corpo-s">'+
-  '<span class="meta">'+(v.pin?'<span class="pin">\u2726</span>':"")+'<span class="tipo">'+esc(v.tipo)+'</span><span>\u00b7</span><span>'+dataIt(v.data)+'</span>'+
+  '<span class="meta">'+(v.rif?'<span class="rif">Riferimento</span>':"")+(v.pin?'<span class="pin">\u2726</span>':"")+'<span class="tipo">'+esc(v.tipo)+'</span><span>\u00b7</span><span>'+dataIt(v.data)+'</span>'+
   (az.length?'<span>\u00b7</span><span>'+esc(az.join(", "))+'</span>':"")+
   ((v.allegati||[]).length?'<span>\u00b7</span><span>'+v.allegati.length+' appunt'+(v.allegati.length===1?"o":"i")+'</span>':"")+'</span>'+
   '<span class="tit-s">'+evidenzia(v.titolo||"(senza titolo)",S.q)+'</span>'+
@@ -1833,14 +1840,17 @@ function disegnaFiltriStorico(){
     const n=DB.voci.filter(v=>v.fase===f&&(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)).length;
     return '<button class="chip'+(S.fasi.indexOf(f)>=0?" on":"")+'" data-f="'+esc(f)+'">'+esc(f)+(n?'<span class="n">'+n+'</span>':"")+'</button>';
   }).join("");
-  $("#azzera").hidden=!(S.avversita.length||S.fasi.length||S.mese!==null||S.q);
+  const nRif=DB.voci.filter(v=>v.rif&&(!S.coltura||coltureDi(v).indexOf(S.coltura)>=0)).length;
+  $("#f-rif").className="chip rif"+(S.rif?" on":"");
+  $("#f-rif").innerHTML='Solo trattamenti di riferimento<span class="n">'+nRif+'</span>';
+  $("#azzera").hidden=!(S.avversita.length||S.fasi.length||S.mese!==null||S.q||S.rif);
 }
 function disegnaLista(extra){
   const voci=filtra(extra);
   $("#conta").textContent=voci.length+" voci";
   const cont=$("#lista");
   if(!voci.length){
-    cont.innerHTML='<div class="vuoto"><p>Nessuna voce.</p><small>'+(DB.voci.length?"Prova ad allargare i filtri.":"Registra la prima ricetta dalla schermata iniziale.")+'</small></div>';
+    cont.innerHTML='<div class="vuoto"><p>Nessuna voce.</p><small>'+(S.rif&&!DB.voci.some(v=>v.rif)?"Apri una ricetta e tocca \u00abSegna come riferimento\u00bb.":(DB.voci.length?"Prova ad allargare i filtri.":"Registra la prima ricetta dalla schermata iniziale."))+'</small></div>';
     return;
   }
   if(!S.g1){cont.innerHTML=voci.map(schedaHTML).join("");return;}
@@ -2516,6 +2526,7 @@ function apriLettura(id){
   '<button class="salva" data-modifica="'+v.id+'">Modifica</button></div>'+
   '<div class="wrap"><div class="testata" style="border-color:'+col+'">'+
     '<div class="tipo-d" style="color:'+col+'">'+esc(v.tipo)+(v.modo?' \u00b7 '+esc(baseTesto(v)):"")+'</div>'+
+    (v.rif?'<div class="rif-d">Trattamento di riferimento</div>':"")+
     '<h2>'+esc(v.titolo||"(senza titolo)")+'</h2><dl class="dati">'+
     '<dt>Data</dt><dd>'+dataIt(v.data)+'</dd>'+
     '<dt>Coltur'+(coltureDi(v).length>1?"e":"a")+'</dt><dd>'+esc(nomiColture(v))+(varietaDi(v).length?"<br><i style='color:var(--inchiostro-2)'>"+esc(varietaDi(v).join(", "))+"</i>":"")+'</dd>'+
@@ -2534,6 +2545,7 @@ function apriLettura(id){
      :'<p class="suggerimento" style="margin:0 0 10px">Nessun appunto allegato. Usali per annotare com\u2019\u00e8 andata, senza riscrivere la voce.</p>')+
     '<button class="mini" data-nuovo-alleg="'+v.id+'">+ Aggiungi appunto</button></div>'+
   '<div class="azioni-d">'+
+    (v.modo?'<button data-rif="'+v.id+'"'+(v.rif?' class="rif-on"':"")+'>'+(v.rif?"Togli dai riferimenti":"Segna come riferimento")+'</button>':"")+
     '<button data-pin="'+v.id+'">'+(v.pin?"Togli evidenza":"Metti in evidenza")+'</button>'+
     '<button data-duplica="'+v.id+'">Duplica</button>'+
     (v.modo?'<button data-rigenera="'+v.id+'">Genera immagine</button>':"")+
@@ -2634,7 +2646,7 @@ function vaiA(k){
   if(k==="storico"){filtroStorico=null;S.mese=null;disegnaNastro();disegnaFiltriStorico();disegnaLista(null);}
   else if(k==="cerca"){
     /* «Cerca ricette»: tutte le voci, senza filtri, in ordine cronologico dalla pi\u00f9 recente */
-    filtroStorico=null;S.mese=null;S.q="";S.avversita=[];S.fasi=[];S.g1="";S.g2="";
+    filtroStorico=null;S.mese=null;S.q="";S.avversita=[];S.fasi=[];S.rif=false;S.g1="";S.g2="";
     $("#cerca").value="";$("#cerca-x").hidden=true;$("#g1").value="";$("#g2").value="";
     disegnaNastro();disegnaFiltriStorico();disegnaLista(null);
   }
@@ -2714,7 +2726,8 @@ $("#f-fasi").addEventListener("click",function(e){const b=e.target.closest("[dat
   disegnaFiltriStorico();disegnaLista(filtroStorico);});
 $("#g1").addEventListener("change",function(e){S.g1=e.target.value;disegnaLista(filtroStorico);});
 $("#g2").addEventListener("change",function(e){S.g2=e.target.value;disegnaLista(filtroStorico);});
-$("#azzera").addEventListener("click",function(){S.q="";S.avversita=[];S.fasi=[];S.mese=null;filtroStorico=null;
+$("#f-rif").addEventListener("click",function(){S.rif=!S.rif;disegnaFiltriStorico();disegnaLista(filtroStorico);});
+$("#azzera").addEventListener("click",function(){S.q="";S.avversita=[];S.fasi=[];S.mese=null;S.rif=false;filtroStorico=null;
   $("#cerca").value="";$("#cerca-x").hidden=true;disegnaNastro();disegnaFiltriStorico();disegnaLista(null);});
 $("#lista").addEventListener("click",function(e){const b=e.target.closest(".scheda");if(b)apriLettura(b.dataset.id);});
 
@@ -3022,12 +3035,16 @@ $("#p-lettura").addEventListener("click",function(e){
     if(v.modo)apriRicetta(v.modo,v.id);else apriAppunto(v.id);return;}
   const na=t.closest("[data-nuovo-alleg]");
   if(na){apriAppunto(null,na.dataset.nuovoAlleg);return;}
+  const rf=t.closest("[data-rif]");
+  if(rf){const v=DB.voci.find(x=>x.id===rf.dataset.rif);v.rif=!v.rif;salva();apriLettura(v.id);
+    if(sezione==="storico"){disegnaFiltriStorico();disegnaLista(filtroStorico);}
+    avviso(v.rif?"Segnato come trattamento di riferimento":"Tolto dai riferimenti");return;}
   const pin=t.closest("[data-pin]");
   if(pin){const v=DB.voci.find(x=>x.id===pin.dataset.pin);v.pin=!v.pin;salva();apriLettura(v.id);return;}
   const du=t.closest("[data-duplica]");
   if(du){const o=DB.voci.find(x=>x.id===du.dataset.duplica);
     const v=JSON.parse(JSON.stringify(o));
-    v.id=nuovoId();v.data=oggiISO();v.allegati=[];v.pin=false;v.creato=Date.now();
+    v.id=nuovoId();v.data=oggiISO();v.allegati=[];v.pin=false;v.rif=false;v.creato=Date.now();
     (v.prodotti||[]).forEach(function(p){if(p.dose){p.ok=false;p.auto=true;}});
     if(v.modo){R=v;RES=false;PASSO=1;PICK=null;RIC_TOP=true;disegnaRicetta();mostraPannello($("#p-ricetta"));avviso("Copia: conferma le dosi in rosso");}
     return;}
