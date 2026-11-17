@@ -514,6 +514,133 @@ body{padding-bottom:64px}
 .par-ord .par-t{font-family:var(--serif);font-size:19px;line-height:1.2}
 .par-fr{width:42px;height:42px;border:1px solid var(--riga-forte);border-radius:10px;background:var(--carta);font-size:14px}
 .par-fr:disabled{opacity:.3}
+/* ============ FOGLI DI CARTA — compilazione e ricetta finale (v7.7) ============ */
+#p-ricetta,#p-genera{background:#E4E0D4;color:#1E2733}
+#p-ricetta .barra-p,#p-genera .barra-p{background:rgba(228,224,212,.96);border-bottom:1px solid rgba(30,39,51,.12)}
+.scrivania{padding-top:14px}
+/* linguette dell'agenda: una per foglio */
+.linguette{display:flex;gap:4px;padding:0 8px;position:relative;z-index:1}
+.lingua{display:flex;align-items:center;gap:6px;padding:8px 11px 9px;border-radius:10px 10px 0 0;
+  background:#D6D1C3;color:#5C6064;font-family:var(--sans);font-size:12.5px;line-height:1}
+.lingua .ln{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:10px;
+  background:rgba(255,255,255,.55);color:#5C6064}
+.lingua.fatto .ln{background:#4A5D3A;color:#fff}
+.lingua.on{background:#FBF8EF;color:#1E2733;font-weight:600}
+.lingua.on .ln{background:#1E2733;color:#FBF8EF}
+/* il foglio: carta, niente righe, niente riquadri; sotto si intravedono i fogli successivi */
+.foglio{position:relative;background:#FBF8EF;border-radius:3px;padding:20px 18px 44px;min-height:56vh;
+  font-family:var(--serif);font-size:17px;line-height:1.5;color:#1E2733;
+  box-shadow:3px 4px 0 -1px #F1ECDF,3px 4px 0 0 rgba(70,60,40,.13),6px 8px 0 -1px #EAE4D5,6px 8px 0 0 rgba(70,60,40,.10),
+    0 14px 30px -18px rgba(70,60,40,.55)}
+.foglio.entra-av{animation:fogAv .34s cubic-bezier(.2,.7,.2,1)}
+.foglio.entra-ind{animation:fogInd .34s cubic-bezier(.2,.7,.2,1)}
+@keyframes fogAv{from{opacity:0;transform:translateX(28px) rotate(.5deg)}to{opacity:1;transform:none}}
+@keyframes fogInd{from{opacity:0;transform:translateX(-28px) rotate(-.5deg)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.foglio.entra-av,.foglio.entra-ind{animation:none}}
+.f-hint{margin:0 0 14px;font-family:var(--sans);font-size:12.5px;line-height:1.4;font-style:italic;color:rgba(30,39,51,.5)}
+.f-pag{position:absolute;right:16px;bottom:13px;font-size:12.5px;font-style:italic;color:rgba(30,39,51,.4)}
+/* si scrive direttamente sul foglio: il campo attivo si colora appena, come un evidenziatore */
+#p-ricetta .foglio input[type=text],#p-ricetta .foglio input[type=date],#p-ricetta .foglio select,#p-ricetta .foglio textarea{
+  background:transparent;border:none;border-radius:4px;box-shadow:none;margin:0;padding:3px 4px;min-height:0;
+  font-family:var(--serif);font-size:17px;line-height:1.45;color:#1E2733;-webkit-appearance:none;appearance:none}
+#p-ricetta .foglio input:focus,#p-ricetta .foglio select:focus,#p-ricetta .foglio textarea:focus{outline:none;background-color:rgba(255,224,120,.30)}
+#p-ricetta .foglio input::placeholder,#p-ricetta .foglio textarea::placeholder{color:rgba(30,39,51,.33);font-style:italic}
+#p-ricetta .foglio select.f-sel{padding-right:15px;
+  background-image:linear-gradient(45deg,transparent 50%,rgba(30,39,51,.45) 50%),linear-gradient(135deg,rgba(30,39,51,.45) 50%,transparent 50%);
+  background-position:calc(100% - 8px) 58%,calc(100% - 4px) 58%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+#p-ricetta .foglio input[type=date]::-webkit-calendar-picker-indicator{opacity:.3;margin-left:2px}
+#p-ricetta .foglio .sugg-box{top:calc(100% + 3px);min-width:210px;max-height:260px;background:#FFFDF7;
+  border:1px solid rgba(30,39,51,.16);border-radius:10px;box-shadow:0 16px 32px -14px rgba(30,39,51,.55)}
+#p-ricetta .foglio .sugg-box button{font-family:var(--serif);font-size:16px;padding:11px 12px;border-bottom:1px solid rgba(30,39,51,.07)}
+/* foglio 1 — intestazione */
+.f-intest-ed{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:2px;row-gap:2px}
+.f-sep{margin-right:4px}
+#p-ricetta .foglio #r-data{width:7.8em}
+.f-az{position:relative;display:inline-block}
+#p-ricetta .foglio #r-az{field-sizing:content;min-width:6.5em;max-width:100%}
+.f-dose{white-space:nowrap}
+.f-elenco-ed{list-style:none;margin:10px 0 0;padding:0}
+.f-var{position:relative;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:6px;padding:1px 0 1px 22px;min-height:32px}
+.f-var::before{content:"\2022";position:absolute;left:6px;top:4px}
+.f-var.f-agg::before{content:"+";color:rgba(30,39,51,.35)}
+.f-col{white-space:nowrap}
+.f-inl{position:relative;display:inline-block;flex:1 1 7em;min-width:7em}
+#p-ricetta .foglio .f-inl input{width:100%}
+.f-x{margin-left:auto;padding:2px 6px;font-size:19px;line-height:1;color:rgba(140,29,47,.55)}
+.f-aggcol{margin-top:8px}
+.f-link{font-family:var(--sans);font-size:13.5px;color:#8C1D2F;padding:7px 0}
+.f-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.f-chip{font-family:var(--serif);font-size:15.5px;padding:7px 13px;border-radius:999px;background:rgba(30,39,51,.06);color:#1E2733}
+.f-chip::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c,#4A5D3A);margin-right:7px;vertical-align:1px}
+.f-chip.f-chip-x{background:transparent;color:rgba(30,39,51,.5);font-family:var(--sans);font-size:13px}
+.f-chip.f-chip-x::before{display:none}
+/* foglio 2 — prodotti: riga 1 come sul foglio finale, riga 2 solo in compilazione */
+#r-prod{margin-top:2px}
+#p-ricetta .foglio .prod{border:none;background:transparent;border-radius:0;box-shadow:none;margin:0;padding:3px 0 7px}
+.pr-1{display:flex;align-items:baseline;gap:2px}
+.pr-n{flex:0 0 24px}
+.pr-nome{position:relative;flex:1 1 auto;min-width:0}
+#p-ricetta .foglio .pr-nome input{width:100%}
+.pr-dose{position:relative;flex:0 0 62px}
+#p-ricetta .foglio .pr-dose input{width:100%;text-align:right;font-weight:600}
+#p-ricetta .foglio select.pr-u{flex:0 0 auto;width:auto;min-width:44px;font-size:15.5px}
+.pr-2{display:flex;align-items:center;gap:6px;padding-left:24px}
+#p-ricetta .foglio input[type=text].pr-form{flex:1 1 auto;min-width:0;width:auto;font-family:var(--mono);font-size:12.5px;color:rgba(30,39,51,.62);padding-top:1px;padding-bottom:1px}
+.pr-az{display:flex;gap:2px;flex:0 0 auto}
+.f-btn{width:34px;height:30px;border-radius:7px;font-size:12px;line-height:1;color:rgba(30,39,51,.55)}
+.f-btn:active{background:rgba(30,39,51,.08)}
+.f-btn:disabled{opacity:.22}
+.f-btn.f-x{margin:0;padding:0;font-size:19px;color:rgba(140,29,47,.6)}
+.prod.vuota .pr-dose,.prod.vuota .pr-u{visibility:hidden}
+.prod.vuota .pr-2{display:none}
+.prod.mosso{animation:mosso 1s ease}
+@keyframes mosso{0%{background:rgba(255,224,120,.6)}100%{background:rgba(255,224,120,0)}}
+#p-ricetta .foglio .dose-wrap input.dubbia{border:none;color:#8C1D2F;background-color:rgba(140,29,47,.10)}
+#p-ricetta .foglio .pr-dose .dose-tag{top:auto;bottom:-13px;right:4px;transform:none;font-size:8.5px}
+#p-ricetta .foglio .blocco-attenzione,#p-ricetta .foglio .avviso-dose{background:transparent;border:none;border-radius:0;
+  padding:0;margin:0 0 14px!important;font-family:var(--sans);font-size:13px;line-height:1.45;color:#5A1320}
+#p-ricetta .foglio .avviso-ordine,#p-ricetta .foglio .avviso-ordine b{color:#6E4E10}
+.f-strumenti{display:flex;flex-wrap:wrap;gap:2px 18px;margin-top:10px}
+/* foglio 3 — note */
+.f-nota{display:flex;align-items:flex-start;gap:4px;padding:1px 0}
+.f-nlab{flex:0 0 auto;padding-top:3px;font-style:italic;font-weight:600;white-space:nowrap}
+#p-ricetta .foglio .f-nota textarea{flex:1 1 auto;min-width:0;width:auto;resize:none;overflow:hidden;field-sizing:content;min-height:1.6em}
+.f-facolt{margin-top:24px;font-family:var(--sans)}
+.f-facolt summary{list-style:none;cursor:pointer;font-size:13px;color:rgba(30,39,51,.55);padding:6px 0}
+.f-facolt summary::-webkit-details-marker{display:none}
+.f-facolt summary::before{content:"\203a";display:inline-block;margin-right:8px;transition:transform .15s}
+.f-facolt[open] summary::before{transform:rotate(90deg)}
+.f-facolt .bl-t{display:block;font-size:12.5px;line-height:1.4;color:rgba(30,39,51,.6);margin:14px 0 6px}
+.f-facolt .bl-t b{display:block;font-family:var(--serif);font-size:16px;font-weight:400;color:#1E2733}
+#p-ricetta .foglio .pick-b{border:none;background:transparent;padding:6px 0;font-size:14px;color:#8C1D2F}
+#p-ricetta .foglio .pick-b .pk-i{background:transparent;color:#8C1D2F;width:auto;height:auto;font-size:16px}
+#p-ricetta .foglio .pick-menu{background:#FFFDF7;border-color:rgba(30,39,51,.16)}
+#p-ricetta .foglio .pick-menu input{width:100%;padding:10px 12px}
+#p-ricetta .foglio .pillola{background:rgba(30,39,51,.07);color:#1E2733}
+#p-ricetta .foglio .pillola.rossa{background:rgba(140,29,47,.10);color:#8C1D2F}
+#p-ricetta .foglio .pillola.ocra{background:rgba(169,118,27,.13);color:#6E4E10}
+#p-ricetta .foglio .pillola button{color:rgba(140,29,47,.7)}
+#p-ricetta .foglio #r-tit{width:100%}
+#p-ricetta .scrivania .b-avanti,#p-ricetta .scrivania .b-genera{margin-top:24px}
+/* foglio finale (anteprima e immagine) */
+.foglio.finale{min-height:0;padding:26px 22px 22px;font-size:17.5px;line-height:1.5}
+.f-intest{margin:0;font-weight:600}
+.f-intest .nw{white-space:nowrap}
+.f-elenco{list-style:none;margin:4px 0 0;padding:0}
+.f-elenco li{position:relative;padding-left:20px}
+.f-elenco li::before{content:"\2022";position:absolute;left:5px}
+.f-prodotti{list-style:none;margin:18px 0 0;padding:0;counter-reset:fp}
+.f-prodotti li{position:relative;padding-left:26px;counter-increment:fp}
+.f-prodotti li::before{content:counter(fp) ".";position:absolute;left:0}
+.f-prodotti b{white-space:nowrap}
+.f-note{margin-top:18px}
+.f-note p{margin:0 0 5px}
+.f-note i{font-weight:600}
+.f-piede{margin:26px 0 0;font-family:var(--sans);font-size:10.5px;color:rgba(30,39,51,.42)}
+#p-genera .testata{border-bottom:none}
+#p-genera .scelta-vol button{background:#FBF8EF;border-color:rgba(30,39,51,.15)}
+#p-genera .scelta-vol button.on{background:#FBF8EF;border-color:#4A5D3A}
+#p-genera .img-out{border:none;border-radius:3px;box-shadow:0 14px 30px -16px rgba(70,60,40,.6)}
 </style>
 </head>
 <body>
@@ -1647,7 +1774,7 @@ function linkScheda(s){
    3ter. ETICHETTE MINISTERO DELLA SALUTE
    ============================================================ */
 const BANCA_FITO="https://www.fitosanitari.salute.gov.it/fitosanitariws_new/FitosanitariServlet";
-const VERSIONE_APP="v7.6 \u2014 16/11/2026";
+const VERSIONE_APP="v7.7 \u2014 17/11/2026";
 function linkEtichetta(nome){
   return "https://www.google.com/search?q="+encodeURIComponent(String(nome).replace(/\s*\(.*?\)/g,"").trim()+" etichetta fitosanitari salute gov pdf");
 }
@@ -2012,16 +2139,15 @@ function ricettaVuota(modo){
 }
 function apriRicetta(modo,id){
   R=id?JSON.parse(JSON.stringify(DB.voci.find(v=>v.id===id))):ricettaVuota(modo);
-  if(!R.prodotti||!R.prodotti.length) R.prodotti=[nuovoProdotto()];
-  R.prodotti.forEach(function(p){if(p.ok===undefined)p.ok=true;});
-  if(!R.aziende) R.aziende=aziendeDi(R);
-  R.colture=coltureDi(R);if(!R.colture.length)R.colture=[S.coltura];
-  R.varieta=varietaDi(R);
   if(!R.modo) R.modo=modo||"fogliare";
-  if(!R.base) R.base=(basiDi(R.modo)[0]||{}).v;
-  RES=!!id;PASSO=1;PICK=null;RIC_TOP=true;
-  disegnaRicetta();
+  preparaRicetta(R);
+  RES=!!id;
+  avviaEditor();
+}
+function avviaEditor(){
+  PASSO=1;PASSO_PREC=0;DIR=1;PICK=null;AGGCOL=false;MOSSO=-1;RIC_TOP=true;
   mostraPannello($("#p-ricetta"));
+  disegnaRicetta();
 }
 function vaiPasso(n){
   leggiRicetta();
@@ -2029,34 +2155,151 @@ function vaiPasso(n){
     const i=$("#r-"+PICK),v=i?i.value.trim():"";
     if(v)aggiungiScelta(PICK,v);
   }
-  PASSO=n;PICK=null;RIC_TOP=true;disegnaRicetta();
+  confermaPendenti();
+  DIR=n>=PASSO?1:-1;
+  PASSO=n;PICK=null;AGGCOL=false;RIC_TOP=true;disegnaRicetta();
 }
 function prodottoHTML(p,i){
-  return '<div class="prod" data-i="'+i+'"><span class="p-num">'+(i+1)+'</span>'+
-  (i>0?'<button class="p-x" data-del-prod="'+i+'" aria-label="Togli">\u00d7</button>':"")+
-  '<div class="p-riga-top" style="margin-top:6px">'+
-    '<div class="p-campo rel"><label>Nome</label>'+
-      '<input type="text" data-p="nome" data-i="'+i+'" value="'+esc(p.nome)+'" placeholder="Prodotto" autocomplete="off">'+
-      '<div class="sugg-box" data-sug="'+i+'" hidden></div></div>'+
-    '<div class="p-campo"><label>Formulato</label>'+
-      '<input type="text" data-p="formulato" data-i="'+i+'" value="'+esc(p.formulato)+'" placeholder="WG, SL\u2026" list="l-form" autocomplete="off"></div>'+
-  '</div><div class="p-riga3">'+
-    '<div class="p-campo dose-wrap"><label>Dose'+(p.auto?" \u00b7 dall'anagrafica":"")+'</label>'+
-      '<input type="text" inputmode="decimal" data-p="dose" data-i="'+i+'" value="'+esc(p.dose)+'" class="'+(p.dose&&!p.ok?"dubbia":(p.dose?"certa":""))+'" placeholder="0">'+
-      (p.dose?'<span class="dose-tag '+(p.ok?"verde":"rosso")+'">'+(p.ok?"\u2713":"tocca")+'</span>':"")+'</div>'+
-    '<div class="p-campo"><label>Unit\u00e0</label>'+
-      '<select data-p="unita" data-i="'+i+'"><option value=""></option>'+UNITA().map(u=>'<option value="'+u+'"'+(p.unita===u?" selected":"")+'>'+u+'</option>').join("")+'</select></div>'+
-  '</div></div>';
+  const ult=i>=R.prodotti.length-2;
+  const unita=UNITA().slice();
+  if(p.unita&&unita.indexOf(p.unita)<0)unita.push(p.unita);
+  return '<div class="prod'+((p.nome||p.dose)?"":" vuota")+(i===MOSSO?" mosso":"")+'" data-i="'+i+'">'+
+    '<div class="pr-1"><span class="pr-n">'+(i+1)+'.</span>'+
+      '<span class="rel pr-nome"><input type="text" class="f-in" data-p="nome" data-i="'+i+'" value="'+esc(p.nome)+'" placeholder="'+(i?"altro prodotto":"nome del prodotto")+'" autocomplete="off" enterkeyhint="next">'+
+        '<div class="sugg-box" data-sug="'+i+'" hidden></div></span>'+
+      '<span class="pr-dose dose-wrap"><input type="text" inputmode="decimal" class="f-in'+(p.dose&&!p.ok?" dubbia":"")+'" data-p="dose" data-i="'+i+'" value="'+esc(p.dose)+'" placeholder="dose" autocomplete="off" enterkeyhint="next">'+
+        (p.dose&&!p.ok?'<span class="dose-tag rosso">tocca</span>':"")+'</span>'+
+      '<select class="f-in f-sel pr-u" data-p="unita" data-i="'+i+'" aria-label="Unità"><option value=""></option>'+
+        unita.map(u=>'<option value="'+esc(u)+'"'+(p.unita===u?" selected":"")+'>'+esc(u)+'</option>').join("")+'</select>'+
+    '</div>'+
+    '<div class="pr-2">'+
+      '<input type="text" class="f-in pr-form" data-p="formulato" data-i="'+i+'" value="'+esc(p.formulato)+'" placeholder="formulato (WG, SL…)" list="l-form" autocomplete="off" enterkeyhint="done">'+
+      '<span class="pr-az">'+
+        '<button class="f-btn" data-su="'+i+'"'+(i===0?" disabled":"")+' aria-label="Sposta su">▲</button>'+
+        '<button class="f-btn" data-giu="'+i+'"'+(ult?" disabled":"")+' aria-label="Sposta giù">▼</button>'+
+        '<button class="f-btn f-x" data-del-prod="'+i+'" aria-label="Togli il prodotto">×</button>'+
+      '</span></div>'+
+  '</div>';
 }
 const PASSI=[
-  {n:1,t:"Prodotti",s:"Cosa entra in botte e in che ordine"},
-  {n:2,t:"Campo",s:"Azienda, dose, coltura e variet\u00e0"},
-  {n:3,t:"Finitura",s:"Data, note, fase e bersaglio"}
+  {n:1,t:"Intestazione",s:"Data, azienda e dose. Sotto, una riga per ogni coltura o varietà."},
+  {n:2,t:"Prodotti",s:"Uno per riga, nell’ordine in cui entrano in botte. Con le frecce li sposti."},
+  {n:3,t:"Note",s:"Una nota per riga: con Invio passi alla nota successiva."}
 ];
+let PASSO_PREC=0,DIR=1,AGGCOL=false,MOSSO=-1,RG=null;
+
+/* ---------- colture e varietà sul foglio ---------- */
+function nomeBreve(id){return nomeColtura(id).replace(/\s+e\s+simili$/i,"");}
+function varietaPer(id){
+  const t=[];
+  const add=function(x){if(x&&!t.some(y=>norm(y)===norm(x)))t.push(x);};
+  (DEF_VARIETA[id]||[]).forEach(add);
+  DB.voci.forEach(function(v){
+    const col=coltureDi(v),vc=v.varCol||{};
+    varietaDi(v).forEach(function(x){if(vc[x]===id||(!vc[x]&&col.length===1&&col[0]===id))add(x);});
+  });
+  return t;
+}
+// coltura di una varietà nelle ricette salvate prima che le varietà fossero legate alla coltura
+function colturaDiVarieta(x,col){
+  for(let i=0;i<col.length;i++)if((DEF_VARIETA[col[i]]||[]).some(y=>norm(y)===norm(x)))return col[i];
+  for(let i=0;i<col.length;i++){const c=col[i];if(DB.voci.some(v=>v.varCol&&v.varCol[x]===c))return c;}
+  return col[0]||"";
+}
+function vistaVarieta(v){
+  const col=coltureDi(v).slice(),vv=varietaDi(v),vc={};
+  vv.forEach(function(x){
+    let c=v.varCol&&v.varCol[x];
+    if(!c||col.indexOf(c)<0)c=colturaDiVarieta(x,col);
+    if(!c)c=S.coltura||(DB.colture[0]||{}).id||"";
+    if(c&&col.indexOf(c)<0)col.push(c);
+    vc[x]=c;
+  });
+  return {colture:col,varieta:vv,varCol:vc};
+}
+// righe dell'elenco: una per varietà, oppure la sola coltura se non ha varietà
+function righeVarieta(v){
+  const w=vistaVarieta(v),out=[];
+  w.colture.forEach(function(c){
+    const l=[];
+    w.varieta.forEach(function(x,i){if(w.varCol[x]===c)l.push({c:c,v:x,i:i});});
+    if(l.length)out.push.apply(out,l);else out.push({c:c,v:"",i:-1});
+  });
+  return out;
+}
+// sul foglio la coltura si scrive solo quando cambia: Arancio Tarocco Gallo / Mandarino Tacle / Nova
+function elencoFoglio(v){
+  let prec=null;
+  return righeVarieta(v).map(function(x){
+    const s=(x.c!==prec?nomeBreve(x.c)+(x.v?" ":""):"")+x.v;
+    prec=x.c;return s;
+  });
+}
+function vuotoProd(p){return !p.nome&&!p.dose&&!p.formulato;}
+// toglie le righe vuote e ne lascia una sola in fondo, pronta da scrivere
+function codaProdotti(r){
+  r.prodotti=(r.prodotti||[]).filter(p=>!vuotoProd(p));
+  r.prodotti.push(nuovoProdotto());
+}
+function preparaRicetta(r){
+  r.prodotti=(r.prodotti||[]).map(p=>Object.assign(nuovoProdotto(),p));
+  r.aziende=aziendeDi(r).slice();
+  if(!coltureDi(r).length&&!varietaDi(r).length){const c=S.coltura||(DB.colture[0]||{}).id;if(c)r.colture=[c];}
+  const w=vistaVarieta(r);
+  r.colture=w.colture;r.varieta=w.varieta.slice();r.varCol=w.varCol;r.coltura=r.colture[0]||"";
+  r.avversita=r.avversita||[];r.fase=r.fase||"";r.testo=r.testo||"";r._pend={};
+  if(!r.modo)r.modo="fogliare";
+  if(!r.base)r.base=(basiDi(r.modo)[0]||{}).v;
+  codaProdotti(r);
+  return r;
+}
+function aggiungiVarieta(c,v){
+  v=String(v||"").trim();if(!v)return;
+  const k=R.varieta.findIndex(x=>norm(x)===norm(v));
+  if(k>=0){R.varCol[R.varieta[k]]=c;return;}
+  R.varieta.push(v);R.varCol[v]=c;
+}
+// varietà scritte ma non ancora confermate con Invio o con l'elenco
+function confermaPendenti(){
+  const p=R._pend||{};
+  Object.keys(p).forEach(function(c){if(R.colture.indexOf(c)>=0)aggiungiVarieta(c,p[c]);});
+  R._pend={};
+}
+function togliColtura(c){
+  R.colture=R.colture.filter(x=>x!==c);
+  R.varieta=R.varieta.filter(x=>R.varCol[x]!==c);
+  Object.keys(R.varCol).forEach(function(k){if(R.varCol[k]===c)delete R.varCol[k];});
+  if(R._pend)delete R._pend[c];
+  R.coltura=R.colture[0]||"";
+}
+// controlla la ricetta e ne restituisce una copia pulita da salvare (null se manca qualcosa)
+function fissaRicetta(){
+  leggiRicetta();confermaPendenti();
+  const usati=R.prodotti.filter(p=>p.nome);
+  const errore=function(m,n){avviso(m);mostraPannello($("#p-ricetta"));vaiPasso(n);return null;};
+  if(!R.colture.length)return errore("Indica almeno una coltura",1);
+  if(!usati.length)return errore("Aggiungi almeno un prodotto",2);
+  if(usati.some(p=>p.dose&&!p.ok))return errore("Conferma prima le dosi in rosso",2);
+  const v=JSON.parse(JSON.stringify(R));
+  v.prodotti=v.prodotti.filter(p=>p.nome);
+  v.titolo=titoloRicetta();
+  v.varieta=righeVarieta(v).filter(x=>x.v).map(x=>x.v);
+  const vc={};v.varieta.forEach(function(x){vc[x]=v.varCol[x];});v.varCol=vc;
+  v.coltura=v.colture[0];
+  delete v._pend;delete v.avvisoOrdine;
+  v.modificato=Date.now();
+  return v;
+}
+function registraRicetta(v){
+  registraProdotti(v);
+  const i=DB.voci.findIndex(x=>x.id===v.id);
+  if(i>=0)DB.voci[i]=v;else DB.voci.unshift(v);
+  salva();
+}
 const DEF_VARIETA={
   ara:["Tarocco","Tarocco Ippolito","Tarocco Sciara","Tarocco Gallo","Tarocco Meli","Moro","Sanguinello",
        "Washington Navel","Navelina","Newhall","Lane Late","Valencia Late","Ovale","Vaniglia"],
-  man:["Clementine comune","Clementine SRA 63","Nova","Tardivo di Ciaculli","Avana","Fortune","Mapo","Simeto"],
+  man:["Clementine comune","Clementine SRA 63","Nova","Tacle","Tardivo di Ciaculli","Avana","Fortune","Mapo","Simeto"],
   lim:["Femminello siracusano","Femminello Zagara Bianca","Monachello","Interdonato"],
   oli:["Nocellara del Belice","Nocellara etnea","Biancolilla","Cerasuola","Moresca","Tonda Iblea",
        "Ogliarola messinese","Leccino","Frantoio"],
@@ -2146,95 +2389,120 @@ function rigaData(){
     (R.data!==oggiISO()?'<button class="pk-oggi" data-oggi>riporta a oggi</button>':'<span class="pk-oggi on">\u00e8 oggi</span>');
 }
 function barraPassi(){
-  return '<div class="passi">'+PASSI.map(p=>'<button class="passo'+(PASSO===p.n?" on":"")+(PASSO>p.n?" fatto":"")+
-    '" data-passo="'+p.n+'"><span class="pn">'+(PASSO>p.n?"\u2713":p.n)+'</span><span class="pt">'+esc(p.t)+'</span></button>').join("")+'</div>';
+  return '<div class="linguette">'+PASSI.map(p=>'<button class="lingua'+(PASSO===p.n?" on":"")+(PASSO>p.n?" fatto":"")+
+    '" data-passo="'+p.n+'"><span class="ln">'+(PASSO>p.n?"✓":p.n)+'</span>'+esc(p.t)+'</button>').join("")+'</div>';
 }
-function testataPasso(){
-  const p=PASSI[PASSO-1];
-  return '<div class="passo-testata"><h2>'+esc(p.t)+'</h2><p>'+esc(p.s)+'</p></div>';
+// ogni passo è un foglio nuovo: entra da destra andando avanti, da sinistra tornando indietro
+function foglioPasso(corpo){
+  const anim=PASSO!==PASSO_PREC?(DIR>0?" entra-av":" entra-ind"):"";
+  PASSO_PREC=PASSO;
+  return '<div class="foglio'+anim+'"><p class="f-hint">'+esc(PASSI[PASSO-1].s)+'</p>'+corpo+
+    '<span class="f-pag">'+PASSO+' / '+PASSI.length+'</span></div>';
 }
-
-/* ---------- 1 · prodotti ---------- */
-function passoUno(banner,daConf){
-  return banner+
-  (R.avvisoOrdine?'<div class="avviso-dose" style="border-left-color:var(--ocra);background:rgba(169,118,27,.07);border-color:rgba(169,118,27,.35)"><b style="color:var(--ocra)">'+
-    R.avvisoOrdine.length+' prodotti senza formulato</b>'+esc(R.avvisoOrdine.join(", "))+
-    ' \u2014 non potendo sapere se sono granuli, sospensioni o emulsioni, li ho messi a met\u00e0 sequenza. Leggi la sigla sull\u2019etichetta e scrivila: da quel momento resta memorizzata per sempre.</div>':"")+
-  (daConf?'<div class="avviso-dose"><b>'+daConf+' dose da confermare</b>Le dosi in rosso arrivano dall\u2019anagrafica. Toccale una per una: il salvataggio resta bloccato finch\u00e9 sono rosse.</div>':"")+
-
-  '<div class="blocco"><span class="bl-t"><b>Prodotti</b>Nome, formulato, dose e unit\u00e0. Il formulato serve a stabilire l\u2019ordine di immissione in botte.</span>'+
-    '<div id="r-prod">'+R.prodotti.map(prodottoHTML).join("")+'</div>'+
-    '<button class="mini" data-add-prod>+ Aggiungi prodotto</button></div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Ordine di miscela</b>\u00abOrdina\u00bb riordina i prodotti secondo la sequenza corretta di immissione in botte, in base al formulato.</span>'+
-    '<div class="barra-az"><button class="primo" data-ordina>Ordina</button><button data-info>Info</button></div></div>'+
-
-  '<button class="b-avanti" data-passo="2">Avanti \u00b7 azienda e coltura \u203a</button>';
+function inputVarieta(c,ph){
+  return '<span class="rel f-inl"><input type="text" class="f-in" data-var-col="'+esc(c)+'" value="'+esc((R._pend||{})[c]||"")+'" placeholder="'+esc(ph)+'" autocomplete="off" enterkeyhint="done">'+
+    '<div class="sugg-box" hidden></div></span>';
 }
 
-/* ---------- 2 · campo ---------- */
+/* ---------- foglio 1 · intestazione ---------- */
+function passoUno(){
+  const vol=modoVol(R.modo),righe=righeVarieta(R);
+  const basi=basiDi(R.modo).slice();
+  if(R.base&&!basi.some(b=>b.v===R.base))basi.push({v:R.base,t:R.base});
+  const elenco=righe.map(function(x,k){
+    const primo=k===0||righe[k-1].c!==x.c,ultimo=k===righe.length-1||righe[k+1].c!==x.c;
+    const col=primo?'<span class="f-col">'+esc(nomeBreve(x.c))+'</span>':"";
+    if(!x.v)return '<li class="f-var">'+col+inputVarieta(x.c,"varietà")+
+      '<button class="f-x" data-tog-col="'+esc(x.c)+'" aria-label="Togli la coltura">×</button></li>';
+    return '<li class="f-var">'+col+'<span class="f-v">'+esc(x.v)+'</span>'+
+      '<button class="f-x" data-tog-var="'+x.i+'" aria-label="Togli la varietà">×</button></li>'+
+      (ultimo?'<li class="f-var f-agg">'+inputVarieta(x.c,"altra varietà di "+nomeBreve(x.c).toLowerCase())+'</li>':"");
+  }).join("");
+  const libere=DB.colture.filter(c=>R.colture.indexOf(c.id)<0);
+  const scelta=AGGCOL||!R.colture.length;
+  const coltureHTML=scelta?
+    (R.colture.length?"":'<p class="f-hint" style="margin:4px 0 6px">Scegli la coltura:</p>')+
+    '<div class="f-chips">'+libere.map(c=>'<button class="f-chip" data-colt="'+esc(c.id)+'" style="--c:'+esc(c.colore)+'">'+esc(nomeBreve(c.id))+'</button>').join("")+
+      (R.colture.length?'<button class="f-chip f-chip-x" data-agg-col-x>annulla</button>':"")+'</div>':
+    (libere.length?'<button class="f-link" data-agg-col>+ altra coltura</button>':"");
+  return '<div class="f-intest-ed">'+
+      '<input type="date" id="r-data" class="f-in f-data" value="'+esc(R.data)+'" aria-label="Data">'+
+      '<span class="f-sep">;</span>'+
+      '<span class="rel f-az"><input type="text" id="r-az" class="f-in" value="'+esc(R.aziende.join(", "))+'" placeholder="azienda" autocomplete="off" enterkeyhint="done" aria-label="Azienda">'+
+        '<div class="sugg-box" id="sug-az" hidden></div></span>'+
+      '<span class="f-sep">;</span>'+
+      '<span class="f-dose">dose '+(vol?"per":"a")+' <select id="r-base" class="f-in f-sel" aria-label="Dose riferita a">'+
+        basi.map(b=>'<option value="'+esc(b.v)+'"'+(R.base===b.v?" selected":"")+'>'+esc(b.t)+'</option>').join("")+'</select></span>'+
+    '</div>'+
+    '<ul class="f-elenco-ed">'+elenco+'</ul>'+
+    '<div class="f-aggcol">'+coltureHTML+'</div>';
+}
+
+/* ---------- foglio 2 · prodotti ---------- */
 function passoDue(){
-  const vol=modoVol(R.modo);
-  return '<div class="blocco"><span class="bl-t"><b>Azienda</b>Scegli dall\u2019elenco oppure scrivi il nome: un\u2019azienda nuova si registra da sola al salvataggio.</span>'+
-    pilloleScelte("az")+pickerHTML("az","Aggiungi azienda")+'</div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Dose riferita a</b>'+(vol?"Il volume di miscela.":"La superficie o la singola pianta.")+
-    ' Impostazione propria della modalit\u00e0 \u00ab'+esc(MODO(R.modo))+'\u00bb.</span>'+
-    '<select id="r-base">'+basiDi(R.modo).map(b=>'<option value="'+esc(b.v)+'"'+(R.base===b.v?" selected":"")+'>'+esc(b.t)+'</option>').join("")+'</select></div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Coltura</b>Tocca per aggiungere o togliere. Se ne indichi pi\u00f9 di una, la ricetta comparir\u00e0 sotto ognuna.</span>'+
-    '<div class="scelte">'+DB.colture.map(c=>'<button class="scelta'+(R.colture.indexOf(c.id)>=0?" on":"")+'" data-colt="'+c.id+'" '+
-      (R.colture.indexOf(c.id)>=0?'style="background:'+c.colore+';border-color:'+c.colore+'"':"")+'>'+esc(c.nome)+'</button>').join("")+'</div></div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Variet\u00e0</b>Facoltativa. Scegli dall\u2019elenco oppure scrivi il nome: resta salvato per le volte successive.</span>'+
-    pilloleScelte("var")+pickerHTML("var","Aggiungi variet\u00e0")+'</div>'+
-
-  '<button class="b-avanti" data-passo="3">Avanti \u00b7 data e note \u203a</button>'+
-  '<div class="pie-nav"><button data-passo="1">\u2039 Prodotti</button></div>';
-}
-
-/* ---------- 3 · finitura ---------- */
-function passoTre(){
-  return '<div class="blocco"><span class="bl-t"><b>Data</b>\u00c8 gi\u00e0 impostata a oggi. Tocca il campo per aprire il calendario.</span>'+
-    '<input type="date" id="r-data" value="'+esc(R.data)+'">'+
-    '<div class="data-riga" id="r-data-riga">'+rigaData()+'</div></div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Note</b>Condizioni, macchina, pressione, motivo della scelta, cosa sorvegliare dopo.</span>'+
-    '<textarea id="r-note" placeholder="Scrivi qui quello che fra due anni non ricorderesti\u2026">'+esc(R.testo)+'</textarea></div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Fase fenologica</b>Facoltativa. Serve a ritrovare la ricetta nel momento giusto della stagione.</span>'+
-    pilloleScelte("fase")+pickerHTML("fase",R.fase?"Cambia fase fenologica":"Scegli la fase fenologica")+'</div>'+
-
-  '<div class="blocco"><span class="bl-t"><b>Avversit\u00e0 bersaglio</b>Facoltativa. \u00c8 il filtro che userai per ritrovare tutto quello che hai fatto contro quel problema.</span>'+
-    pilloleScelte("avv")+pickerHTML("avv","Aggiungi avversit\u00e0")+'</div>'+
-
-  '<details class="dett-tit"'+(R.titolo?" open":"")+'><summary>Titolo della ricetta \u2014 di norma non serve</summary>'+
-    '<input type="text" id="r-tit" value="'+esc(R.titolo||"")+'" placeholder="'+esc(titoloRicetta())+'">'+
-    '<p class="suggerimento">Lascialo vuoto e viene composto dai primi prodotti.</p></details>'+
-
-  '<button class="b-genera" data-genera>Genera ricetta</button>'+
-  '<button class="b-salva-g" data-salva>Salva nel diario</button>'+
-  '<div class="pie-nav"><button data-passo="2">\u2039 Azienda e coltura</button></div>';
-}
-
-function disegnaRicetta(){
   const daConf=R.prodotti.filter(p=>p.nome&&p.dose&&!p.ok).length;
-  const banner=R.colture.map(x=>bannerRestrizioni(x,R.prodotti)).join("");
+  return R.colture.map(x=>bannerRestrizioni(x,R.prodotti)).join("")+
+  (R.avvisoOrdine?'<div class="avviso-dose avviso-ordine"><b>'+R.avvisoOrdine.length+' prodotti senza formulato</b>'+esc(R.avvisoOrdine.join(", "))+
+    ' — non potendo sapere se sono granuli, sospensioni o emulsioni, li ho messi a metà sequenza. Leggi la sigla sull’etichetta e scrivila: da quel momento resta memorizzata per sempre.</div>':"")+
+  (daConf?'<div class="avviso-dose" id="av-dose"><b>'+daConf+' dose da confermare</b>Le dosi in rosso arrivano dall’anagrafica. Toccale una per una: il salvataggio resta bloccato finché sono rosse.</div>':"")+
+  '<div id="r-prod">'+R.prodotti.map(prodottoHTML).join("")+'</div>'+
+  '<div class="f-strumenti"><button class="f-link" data-ordina>⇅ Ordina per sequenza di miscela</button><button class="f-link" data-info>Info</button></div>';
+}
+
+/* ---------- foglio 3 · note ---------- */
+function notaHTML(n,i){
+  return '<div class="f-nota"><span class="f-nlab">Nota '+(i+1)+':</span>'+
+    '<textarea class="f-in" data-nota="'+i+'" rows="1" placeholder="'+(i?"altra nota":"scrivi una nota")+'" enterkeyhint="next">'+esc(n)+'</textarea></div>';
+}
+function passoTre(){
+  const note=noteDi(R);note.push("");
+  return '<div id="r-note">'+note.map(notaHTML).join("")+'</div>'+
+  '<details class="f-facolt"'+((R.fase||R.avversita.length||R.titolo)?" open":"")+'><summary>Facoltativi · fase, avversità, titolo</summary>'+
+    '<span class="bl-t"><b>Fase fenologica</b>Serve a ritrovare la ricetta nel momento giusto della stagione.</span>'+
+    pilloleScelte("fase")+pickerHTML("fase",R.fase?"Cambia fase fenologica":"Scegli la fase fenologica")+
+    '<span class="bl-t"><b>Avversità bersaglio</b>È il filtro che userai per ritrovare tutto quello che hai fatto contro quel problema.</span>'+
+    pilloleScelte("avv")+pickerHTML("avv","Aggiungi avversità")+
+    '<span class="bl-t"><b>Titolo</b>Lascialo vuoto e viene composto dai primi prodotti. Serve solo nel diario, non compare sul foglio.</span>'+
+    '<input type="text" id="r-tit" class="f-in" value="'+esc(R.titolo||"")+'" placeholder="'+esc(titoloRicetta())+'">'+
+  '</details>';
+}
+function navPasso(){
+  if(PASSO===1)return '<button class="b-avanti" data-passo="2">Avanti · prodotti ›</button>';
+  if(PASSO===2)return '<button class="b-avanti" data-passo="3">Avanti · note ›</button>'+
+    '<div class="pie-nav"><button data-passo="1">‹ Intestazione</button></div>';
+  return '<button class="b-genera" data-genera>Genera ricetta</button>'+
+    '<button class="b-salva-g" data-salva>Salva nel diario</button>'+
+    '<div class="pie-nav"><button data-passo="2">‹ Prodotti</button></div>';
+}
+function disegnaRicetta(){
+  codaProdotti(R);
   const pan=$("#p-ricetta"),sc=RIC_TOP?0:pan.scrollTop;
-  const corpo=PASSO===1?passoUno(banner,daConf):(PASSO===2?passoDue():passoTre());
+  const corpo=PASSO===1?passoUno():(PASSO===2?passoDue():passoTre());
   pan.innerHTML=
   '<div class="barra-p"><button class="indietro" data-annulla>Annulla</button>'+
   '<span class="modo-tag">'+(RES?"Modifica":"Nuova ricetta")+'<b>'+esc(MODO(R.modo))+'</b></span>'+
   '<button class="salva" data-salva>Salva</button></div>'+
   '<datalist id="l-form">'+FORMULATI().map(f=>'<option value="'+esc(f)+'">').join("")+'</datalist>'+
-  '<div class="wrap">'+barraPassi()+testataPasso()+corpo+'<div style="height:48px"></div></div>';
-  pan.scrollTop=sc;RIC_TOP=false;
+  '<div class="wrap scrivania">'+barraPassi()+foglioPasso(corpo)+navPasso()+'<div style="height:48px"></div></div>';
+  pan.scrollTop=sc;RIC_TOP=false;MOSSO=-1;
+  if(!CAMPO_AUTO)requestAnimationFrame(function(){$$("#p-ricetta textarea[data-nota]").forEach(autoAltezza);adattaAzienda();});
 }
+// i campi crescono con il testo (field-sizing); dove il browser non lo sa fare ci pensa lo script
+const CAMPO_AUTO=!!(window.CSS&&CSS.supports&&CSS.supports("field-sizing","content"));
+function autoAltezza(t){if(CAMPO_AUTO||!t)return;t.style.height="auto";if(t.scrollHeight)t.style.height=t.scrollHeight+"px";}
+function adattaAzienda(){if(CAMPO_AUTO)return;const a=$("#r-az");if(a)a.size=Math.max(8,a.value.length+1);}
 function leggiRicetta(){
   const g=function(id){const e=$("#"+id);return e?e.value:"";};
   if($("#r-base"))R.base=g("r-base");
   if($("#r-data"))R.data=g("r-data");
-  if($("#r-note"))R.testo=$("#r-note").value;
+  if($("#r-az")){
+    const l=[];
+    g("r-az").split(/[,;]/).map(s=>s.trim()).filter(Boolean).forEach(function(a){if(!l.some(x=>norm(x)===norm(a)))l.push(a);});
+    R.aziende=l;
+  }
+  R._pend=R._pend||{};
+  $$("#p-ricetta [data-var-col]").forEach(function(i){R._pend[i.dataset.varCol]=i.value;});
+  if($("#r-note"))R.testo=$$("#r-note textarea[data-nota]").map(t=>t.value.replace(/\s+/g," ").trim()).filter(Boolean).join("\n");
   if($("#r-tit"))R.titolo=g("r-tit").trim();
   R.prodotti.forEach(function(p,i){
     const q=function(s){return $('#r-prod [data-p="'+s+'"][data-i="'+i+'"]');};
@@ -2269,136 +2537,159 @@ function infoMiscela(){
    ============================================================ */
 let G={litri:null,scelta:"base"};
 function apriGenera(){
-  leggiRicetta();
-  const usati=R.prodotti.filter(p=>p.nome);
-  if(!usati.length){avviso("Aggiungi almeno un prodotto");vaiPasso(1);return;}
-  const rossi=usati.filter(p=>p.dose&&!p.ok);
-  if(rossi.length){avviso("Conferma prima le dosi in rosso");vaiPasso(1);return;}
-  G={litri:null,scelta:"base"};
+  const v=fissaRicetta();if(!v)return;
+  RG=v;G={litri:null,scelta:"base"};
   disegnaGenera("scelta");
   mostraPannello($("#p-genera"));
 }
-function baseEtichetta(){
-  const b=basiDi(R.modo).find(x=>x.v===R.base);
-  return b?b.t:R.base;
+function baseEtichetta(v){
+  v=v||R;
+  const b=basiDi(v.modo).find(x=>x.v===v.base);
+  return b?b.t:(v.base||"");
+}
+function etDose(v,litri){
+  if(litri)return "dose per "+fmtNum(litri)+" litri";
+  return "dose "+(modoVol(v.modo)?"per ":"a ")+baseEtichetta(v);
+}
+function noteDi(v){return String(v.testo||"").split("\n").map(s=>s.trim()).filter(Boolean);}
+/* il foglio finale: data; azienda; dose — varietà — prodotti numerati — Nota 1, Nota 2… */
+function datiFoglio(v,prodotti,et){
+  const az=aziendeDi(v);
+  const parti=[dataIt(v.data)].concat(az.length?[az.join(", ")]:[]).concat([et]);
+  return {
+    parti:parti,
+    intest:parti.join("; "),
+    elenco:elencoFoglio(v),
+    prodotti:(prodotti||[]).filter(p=>p.nome).map(p=>({nome:p.nome,
+      dose:p.dose?String(p.dose).trim()+(p.unita?" "+p.unita:""):""})),
+    note:noteDi(v)
+  };
+}
+function testoFoglio(d){
+  const r=[d.intest].concat(d.elenco.map(x=>"• "+x));
+  if(d.prodotti.length){r.push("");d.prodotti.forEach(function(p,i){r.push((i+1)+". "+p.nome+(p.dose?" "+p.dose:""));});}
+  if(d.note.length){r.push("");d.note.forEach(function(n,i){r.push("Nota "+(i+1)+": "+n);});}
+  return r.join("\n");
+}
+function foglioHTML(d){
+  return '<div class="foglio finale">'+
+    '<p class="f-intest">'+d.parti.map((p,i)=>(i===0||i===d.parti.length-1)?'<span class="nw">'+esc(p)+'</span>':esc(p)).join("; ")+'</p>'+
+    (d.elenco.length?'<ul class="f-elenco">'+d.elenco.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>':"")+
+    (d.prodotti.length?'<ol class="f-prodotti">'+d.prodotti.map(p=>'<li>'+esc(p.nome)+(p.dose?' <b>'+esc(p.dose)+'</b>':"")+'</li>').join("")+'</ol>':"")+
+    (d.note.length?'<div class="f-note">'+d.note.map((n,i)=>'<p><i>Nota '+(i+1)+':</i> '+esc(n)+'</p>').join("")+'</div>':"")+
+    '<p class="f-piede">Quaderno · verificare sempre l’etichetta e il disciplinare in vigore</p>'+
+  '</div>';
+}
+function datiGenera(){
+  const litri=(G.scelta==="conv"&&G.litri)?G.litri:null;
+  const conv=litri?(convertiRicetta(RG,litri)||[]):RG.prodotti.filter(p=>p.nome);
+  return {d:datiFoglio(RG,conv,etDose(RG,litri)),conv:conv};
 }
 function disegnaGenera(fase){
-  const vol=modoVol(R.modo);
+  const vol=modoVol(RG.modo);
   const el=$("#p-genera");
   if(fase==="scelta"){
     el.innerHTML=
-    '<div class="barra-p"><button class="indietro" data-torna>\u2039 Ricetta</button><span class="titolo-p">Genera ricetta</span><span style="width:56px"></span></div>'+
-    '<div class="wrap"><div class="testata"><h2 style="font-size:22px">Come vuoi la dose?</h2>'+
-    '<p class="suggerimento" style="font-size:13.5px;margin-top:6px">La ricetta \u00e8 impostata '+(vol?"per ":"a ")+esc(baseEtichetta())+'.</p></div>'+
+    '<div class="barra-p"><button class="indietro" data-torna>‹ Ricetta</button><span class="titolo-p">Genera ricetta</span><span style="width:56px"></span></div>'+
+    '<div class="wrap scrivania"><div class="testata"><h2 style="font-size:22px">Come vuoi la dose?</h2>'+
+    '<p class="suggerimento" style="font-size:13.5px;margin-top:6px">La ricetta è impostata '+(vol?"per ":"a ")+esc(baseEtichetta(RG))+'.</p></div>'+
     '<div class="scelta-vol">'+
-      '<button data-sc="base" class="'+(G.scelta==="base"?"on":"")+'"><span class="sv-t">Lascia '+(vol?"per ":"a ")+esc(baseEtichetta())+'</span><span class="sv-s">Nessun ricalcolo, dosi come le hai scritte</span></button>'+
+      '<button data-sc="base" class="'+(G.scelta==="base"?"on":"")+'"><span class="sv-t">Lascia '+(vol?"per ":"a ")+esc(baseEtichetta(RG))+'</span><span class="sv-s">Nessun ricalcolo, dosi come le hai scritte</span></button>'+
       (vol?'<button data-sc="conv" class="'+(G.scelta==="conv"?"on":"")+'"><span class="sv-t">Calcola per un altro volume</span><span class="sv-s">Converte tutte le dosi in proporzione</span></button>':"")+
     '</div>'+
-    (G.scelta==="conv"?'<div class="vol-input"><input type="number" inputmode="decimal" id="g-litri" placeholder="es. 300" value="'+(G.litri||"")+'"><span>litri</span></div>':"")+
+    (vol&&G.scelta==="conv"?'<div class="vol-input"><input type="number" inputmode="decimal" id="g-litri" placeholder="es. 300" value="'+(G.litri||"")+'"><span>litri</span></div>':"")+
     '<button class="b-genera" data-avanti style="margin-top:18px">Avanti</button>'+
     '<div style="height:30px"></div></div>';
-    if(G.scelta==="conv")setTimeout(function(){const i=$("#g-litri");if(i)i.focus();},80);
+    if(vol&&G.scelta==="conv")setTimeout(function(){const i=$("#g-litri");if(i)i.focus();},80);
     return;
   }
-  const conv=(G.scelta==="conv"&&G.litri)?convertiRicetta(R,G.litri):R.prodotti.filter(p=>p.nome);
-  const et=(G.scelta==="conv"&&G.litri)?("per "+fmtNum(G.litri)+" litri"):((vol?"per ":"a ")+baseEtichetta());
-  const nc=conv.filter(p=>p.nc).length;
+  const x=datiGenera(),nc=x.conv.filter(p=>p.nc).length;
   el.innerHTML=
-  '<div class="barra-p"><button class="indietro" data-indietro>\u2039 Indietro</button><span class="titolo-p">Anteprima</span><span style="width:56px"></span></div>'+
-  '<div class="wrap"><div class="testata"><div class="tipo-d">'+esc(MODO(R.modo))+'</div>'+
-  '<h2 style="font-size:23px">'+esc(titoloRicetta())+'</h2>'+
-  '<dl class="dati"><dt>Dose</dt><dd><b>'+esc(et)+'</b></dd>'+
-  '<dt>Data</dt><dd>'+dataIt(R.data)+'</dd>'+
-  '<dt>Colture</dt><dd>'+esc(R.colture.map(nomeColtura).join(", "))+(R.varieta.length?" \u2014 "+esc(R.varieta.join(", ")):"")+'</dd>'+
-  (R.aziende.length?'<dt>Azienda</dt><dd>'+R.aziende.map(esc).join(", ")+'</dd>':"")+'</dl></div>'+
-  R.colture.map(x=>bannerRestrizioni(x,R.prodotti)).join("")+
-  '<div class="anteprima"><div class="ap-h">Miscela \u00b7 '+esc(et)+'</div><table><tbody>'+
-  conv.map(p=>'<tr><td>'+esc(p.nome)+(p.formulato?' <span style="font-family:var(--mono);font-size:11px;color:var(--inchiostro-2)">'+esc(p.formulato)+'</span>':"")+'</td>'+
-    '<td class="d">'+esc(p.dose)+' '+esc(p.unita||"")+'</td></tr>').join("")+
-  '</tbody></table></div>'+
-  (nc?'<p class="suggerimento">'+nc+' voce non convertita: percentuali e dosi non numeriche restano invariate.</p>':"")+
-  (R.testo?'<div class="sez"><h3>Note</h3><div class="testo" style="font-size:14.5px">'+esc(R.testo)+'</div></div>':"")+
+  '<div class="barra-p"><button class="indietro" data-indietro>‹ Indietro</button><span class="titolo-p">Ricetta</span><span style="width:56px"></span></div>'+
+  '<div class="wrap scrivania">'+
+  RG.colture.map(c=>bannerRestrizioni(c,RG.prodotti)).join("")+
+  (nc?'<p class="suggerimento" style="margin:0 2px 10px">'+nc+' voce non convertita: percentuali e dosi non numeriche restano invariate.</p>':"")+
+  foglioHTML(x.d)+
   '<div class="tre-az">'+
-    '<button class="ok" data-conferma>Confermo \u2014 crea l\u2019immagine</button>'+
+    '<button class="ok" data-conferma>Confermo — crea l’immagine</button>'+
     '<button data-mod-ricetta>Modifica ricetta</button>'+
-    '<button data-mod-dose>Modifica dose</button>'+
+    (vol?'<button data-mod-dose>Modifica dose</button>':"")+
   '</div><div id="g-img"></div><div style="height:34px"></div></div>';
 }
-function creaImmagine(){
-  const vol=modoVol(R.modo);
-  const conv=(G.scelta==="conv"&&G.litri)?convertiRicetta(R,G.litri):R.prodotti.filter(p=>p.nome);
-  const et=(G.scelta==="conv"&&G.litri)?("per "+fmtNum(G.litri)+" litri"):((vol?"per ":"a ")+baseEtichetta());
-  const W=1080,P=64;
-  const note=(R.testo||"").split("\n");
-  const cv=document.createElement("canvas");
-  const ctx=cv.getContext("2d");
-  // misura altezza
-  function wrap(txt,maxW,font){
-    ctx.font=font;const par=String(txt).split(" ");const out=[];let l="";
-    par.forEach(function(w){const t=l?l+" "+w:w;if(ctx.measureText(t).width>maxW&&l){out.push(l);l=w;}else l=t;});
-    if(l)out.push(l);return out;
-  }
-  let righeNote=[];
-  note.forEach(function(n){ if(n.trim()) righeNote=righeNote.concat(wrap(n,W-2*P,"30px Georgia, serif")); else righeNote.push(""); });
-  const H=300+conv.length*76+(righeNote.length?70+righeNote.length*42:0)+120;
-  cv.width=W;cv.height=H;
-  const c=cv.getContext("2d");
-  c.fillStyle="#E9EAE3";c.fillRect(0,0,W,H);
-  const tinta=coloreColtura(R.colture[0]);
-  c.fillStyle=tinta;c.fillRect(0,0,W,14);
-  let y=90;
-  c.fillStyle="#5D6660";c.font="600 24px ui-monospace, Menlo, monospace";
-  c.fillText(MODO(R.modo).toUpperCase()+"  \u00b7  "+dataIt(R.data),P,y);
-  y+=58;
-  c.fillStyle="#1C2321";c.font="48px Georgia, serif";
-  wrap(titoloRicetta(),W-2*P,"48px Georgia, serif").slice(0,2).forEach(function(l){c.fillText(l,P,y);y+=56;});
-  y+=6;
-  c.fillStyle="#5D6660";c.font="27px -apple-system, Arial, sans-serif";
-  let sub=R.colture.map(nomeColtura).join(" \u00b7 ")+(R.varieta.length?" \u2014 "+R.varieta.join(", "):"");
-  if(R.aziende.length)sub+="  \u00b7  "+R.aziende.join(", ");
-  c.fillText(sub,P,y);y+=46;
-  // banda dose
-  c.fillStyle=tinta;c.fillRect(P,y-4,W-2*P,62);
-  c.fillStyle="#fff";c.font="600 30px ui-monospace, Menlo, monospace";
-  c.fillText("DOSE "+et.toUpperCase(),P+22,y+36);
-  y+=104;
-  // prodotti
-  conv.forEach(function(p,i){
-    if(i%2===0){c.fillStyle="#F3F4EE";c.fillRect(P,y-40,W-2*P,72);}
-    c.fillStyle="#1C2321";c.font="34px Georgia, serif";
-    let nome=p.nome+(p.formulato?"  ("+p.formulato+")":"");
-    c.fillText(wrap(nome,W-2*P-300,"34px Georgia, serif")[0],P+18,y);
-    c.font="600 36px ui-monospace, Menlo, monospace";
-    const d=(p.dose||"")+" "+(p.unita||"");
-    c.textAlign="right";c.fillText(d,W-P-18,y);c.textAlign="left";
-    y+=76;
+// spezza in righe un testo fatto di pezzi con caratteri diversi (normale, grassetto, corsivo)
+function impagina(ctx,segs,maxW){
+  const pezzi=[];
+  segs.forEach(function(s){String(s.t).split(/([ \t]+)/).forEach(function(w){if(w)pezzi.push({t:w,f:s.f,sp:/^[ \t]+$/.test(w)});});});
+  const righe=[[]];let x=0;
+  const chiudi=function(){const r=righe[righe.length-1];while(r.length&&r[r.length-1].sp)x-=r.pop().w;righe.push([]);x=0;};
+  pezzi.forEach(function(p){
+    ctx.font=p.f;
+    if(p.sp){if(x>0){const w=ctx.measureText(" ").width;righe[righe.length-1].push({t:" ",f:p.f,w:w,sp:true});x+=w;}return;}
+    let t=p.t,w=ctx.measureText(t).width;
+    if(x>0&&x+w>maxW)chiudi();
+    while(w>maxW&&t.length>1){
+      let k=t.length-1;
+      while(k>1&&ctx.measureText(t.slice(0,k)).width>maxW)k--;
+      righe[righe.length-1].push({t:t.slice(0,k),f:p.f,w:ctx.measureText(t.slice(0,k)).width});
+      chiudi();t=t.slice(k);w=ctx.measureText(t).width;
+    }
+    righe[righe.length-1].push({t:t,f:p.f,w:w});x+=w;
   });
-  if(righeNote.length){
-    y+=26;c.strokeStyle="#CFD2C6";c.lineWidth=2;
-    c.beginPath();c.moveTo(P,y-30);c.lineTo(W-P,y-30);c.stroke();
-    c.fillStyle="#5D6660";c.font="600 22px ui-monospace, Menlo, monospace";
-    c.fillText("NOTE",P,y+6);y+=48;
-    c.fillStyle="#1C2321";c.font="30px Georgia, serif";
-    righeNote.forEach(function(l){c.fillText(l,P,y);y+=42;});
-  }
-  c.fillStyle="#AFB4A6";c.font="22px ui-monospace, Menlo, monospace";
-  c.fillText("Quaderno \u00b7 verificare sempre l\u2019etichetta e il disciplinare in vigore",P,H-40);
+  const r=righe[righe.length-1];while(r.length&&r[r.length-1].sp)r.pop();
+  if(!r.length&&righe.length>1)righe.pop();
+  return righe;
+}
+function creaImmagine(){
+  const d=datiGenera().d;
+  const W=1080,P=88,MAX=W-2*P,LH=1.42;
+  const SER="Georgia, 'Noto Serif', 'DejaVu Serif', serif";
+  const F={intest:"600 44px "+SER,testo:"42px "+SER,forte:"700 42px "+SER,lab:"italic 600 40px "+SER,nota:"40px "+SER};
+  const mis=document.createElement("canvas").getContext("2d");
+  const bl=[];
+  bl.push({gap:0,size:44,ind:0,segs:[{t:d.parti.map((p,i)=>(i===0||i===d.parti.length-1)?p.replace(/ /g,"\u00a0"):p).join("; "),f:F.intest}]});
+  d.elenco.forEach(function(x,i){bl.push({gap:i?0:12,size:42,ind:46,pre:{t:"•",f:F.testo,dx:10},segs:[{t:x,f:F.testo}]});});
+  d.prodotti.forEach(function(p,i){bl.push({gap:i?4:46,size:42,ind:60,pre:{t:(i+1)+".",f:F.testo,dx:0},
+    segs:[{t:p.nome,f:F.testo}].concat(p.dose?[{t:" ",f:F.testo},{t:p.dose.replace(/ /g," "),f:F.forte}]:[])});});
+  d.note.forEach(function(n,i){
+    const lab="Nota "+(i+1)+":";mis.font=F.lab;const w=Math.ceil(mis.measureText(lab+" ").width);
+    bl.push({gap:i?8:46,size:40,ind:w,pre:{t:lab,f:F.lab,dx:0},segs:[{t:n,f:F.nota}]});
+  });
+  let y=P;
+  bl.forEach(function(b){y+=b.gap;b.y=y;b.righe=impagina(mis,b.segs,MAX-b.ind);y+=b.righe.length*b.size*LH;});
+  const yPiede=y+70,H=Math.ceil(yPiede+P*0.7);
+  const cv=document.createElement("canvas");cv.width=W;cv.height=H;
+  const c=cv.getContext("2d");
+  // foglio color carta, senza righe né riquadri
+  const g=c.createRadialGradient(W*0.42,H*0.28,60,W*0.5,H*0.5,Math.max(W,H)*0.85);
+  g.addColorStop(0,"#FDFBF6");g.addColorStop(1,"#F2EDDF");
+  c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.fillStyle="#1E2733";c.textBaseline="alphabetic";
+  bl.forEach(function(b){
+    b.righe.forEach(function(r,k){
+      const base=b.y+k*b.size*LH+b.size*1.02;
+      if(k===0&&b.pre){c.font=b.pre.f;c.fillText(b.pre.t,P+(b.pre.dx||0),base);}
+      let x=P+b.ind;
+      r.forEach(function(s){c.font=s.f;c.fillText(s.t,x,base);x+=s.w;});
+    });
+  });
+  c.font="24px -apple-system, Roboto, Arial, sans-serif";c.fillStyle="rgba(30,39,51,.42)";
+  c.fillText("Quaderno · verificare sempre l’etichetta e il disciplinare in vigore",P,yPiede);
   return cv;
 }
 function condividiImmagine(){
+  condividiImmagine._blob=null;condividiImmagine._file=null;
   const cv=creaImmagine();
   const box=$("#g-img");
   box.innerHTML='<img class="img-out" src="'+cv.toDataURL("image/png")+'" alt="Ricetta">'+
-    '<p class="suggerimento">Tieni premuto sull\u2019immagine per salvarla o inviarla, oppure usa i tasti qui sotto.</p>'+
+    '<p class="suggerimento">Tieni premuto sull’immagine per salvarla o inviarla, oppure usa i tasti qui sotto.</p>'+
     '<div class="tre-az" style="margin-top:8px"><button class="ok" data-share>Condividi</button><button data-scarica>Scarica PNG</button></div>';
   box.scrollIntoView({block:"start"});
   cv.toBlob(function(b){
     if(!b)return;
     condividiImmagine._blob=b;
-    condividiImmagine._file=new File([b],"ricetta-"+R.data+".png",{type:"image/png"});
+    condividiImmagine._file=new File([b],"ricetta-"+(RG.data||"")+".png",{type:"image/png"});
   },"image/png");
 }
-
 /* ============================================================
    9. PRODOTTI
    ============================================================ */
@@ -2582,19 +2873,24 @@ function apriLettura(id){
   mostraPannello($("#p-lettura"));
 }
 function testoCondivisibile(v){
-  const r=[v.titolo,"\u2014 "+v.tipo+(v.modo?" \u00b7 "+baseTesto(v):"")+" \u00b7 "+dataIt(v.data),
+  // le ricette si condividono nello stesso formato del foglio
+  if(v.modo&&(v.prodotti||[]).some(p=>p.nome)){
+    const r=[testoFoglio(datiFoglio(v,v.prodotti,etDose(v,null)))];
+    (v.allegati||[]).forEach(function(a){r.push("");r.push("↳ "+(a.titolo||"Appunto")+" ("+dataIt(a.data)+")");r.push(a.testo);});
+    return r.join("\n");
+  }
+  const r=[v.titolo,"— "+v.tipo+(v.modo?" · "+baseTesto(v):"")+" · "+dataIt(v.data),
     nomiColture(v)+(varietaDi(v).length?" ("+varietaDi(v).join(", ")+")":"")];
   const az=aziendeDi(v);if(az.length)r.push("Azienda: "+az.join(", "));
   if(v.fase)r.push("Fase: "+v.fase);
   const avv=(v.avversita||[]).map(avvNome).filter(Boolean);
-  if(avv.length)r.push("Avversit\u00e0: "+avv.join(", "));
-  if((v.prodotti||[]).filter(p=>p.nome).length){r.push("");r.push("MISCELA \u2014 "+baseTesto(v));
-    v.prodotti.filter(p=>p.nome).forEach(p=>r.push("\u2022 "+p.nome+(p.formulato?" ("+p.formulato+")":"")+" \u2014 "+p.dose+" "+(p.unita||"")));}
+  if(avv.length)r.push("Avversità: "+avv.join(", "));
+  if((v.prodotti||[]).filter(p=>p.nome).length){r.push("");r.push("MISCELA — "+baseTesto(v));
+    v.prodotti.filter(p=>p.nome).forEach(p=>r.push("• "+p.nome+(p.formulato?" ("+p.formulato+")":"")+" — "+p.dose+" "+(p.unita||"")));}
   if(v.testo){r.push("");r.push(v.testo);}
-  (v.allegati||[]).forEach(function(a){r.push("");r.push("\u21b3 "+(a.titolo||"Appunto")+" ("+dataIt(a.data)+")");r.push(a.testo);});
+  (v.allegati||[]).forEach(function(a){r.push("");r.push("↳ "+(a.titolo||"Appunto")+" ("+dataIt(a.data)+")");r.push(a.testo);});
   return r.join("\n");
 }
-
 /* ============================================================
    12. ARCHIVIO
    ============================================================ */
@@ -2815,6 +3111,10 @@ function mostraSugg(box,voci,onPick,testo){
   box.innerHTML=voci.map((v,i)=>'<button data-pick="'+i+'">'+esc(v)+'</button>').join("")+
     (nuovo?'<button data-pick="new"><span class="nuovo">nuovo \u00b7</span> '+esc(testo)+'</button>':"");
   box.hidden=false;
+  // l'elenco non deve uscire dallo schermo: se sborda lo sposto verso l'interno
+  box.style.transform="";
+  const rb=box.getBoundingClientRect(),lim=document.documentElement.clientWidth-8;
+  if(rb.right>lim)box.style.transform="translateX("+Math.round(Math.max(lim-rb.right,8-rb.left))+"px)";
   box.onclick=function(e){
     const b=e.target.closest("[data-pick]");if(!b)return;
     e.preventDefault();e.stopPropagation();
@@ -2978,39 +3278,108 @@ function confermaDose(el){
   const prod=R.prodotti[+el.dataset.i];
   if(!prod||!prod.dose||prod.ok)return;
   prod.ok=true;prod.auto=false;
-  el.classList.remove("dubbia");el.classList.add("certa");
+  el.classList.remove("dubbia");
   const tag=el.parentElement.querySelector(".dose-tag");
-  if(tag){tag.className="dose-tag verde";tag.textContent="\u2713";}
-  const av=$("#p-ricetta .avviso-dose");
+  if(tag)tag.remove();
+  const av=$("#av-dose");
   if(av){
     const rest=R.prodotti.filter(x=>x.nome&&x.dose&&!x.ok).length;
     if(!rest)av.remove();else av.querySelector("b").textContent=rest+" dose da confermare";
   }
 }
+function suggerisciAziende(el){
+  const parti=el.value.split(/[,;]/),q=parti[parti.length-1].trim();
+  const gia=parti.slice(0,-1).map(s=>norm(s));
+  const l=elencoAziende().filter(a=>gia.indexOf(norm(a))<0&&(!q||norm(a).indexOf(norm(q))>=0));
+  mostraSugg($("#sug-az"),l,function(nome){
+    parti[parti.length-1]=nome;
+    el.value=parti.map(s=>s.trim()).filter(Boolean).join(", ");
+    adattaAzienda();
+  },q);
+}
+function suggerisciVarieta(el){
+  const c=el.dataset.varCol,q=el.value.trim();
+  R._pend=R._pend||{};R._pend[c]=el.value;
+  const gia=R.varieta.map(norm);
+  const l=varietaPer(c).filter(x=>gia.indexOf(norm(x))<0&&(!q||norm(x).indexOf(norm(q))>=0));
+  mostraSugg(el.parentElement.querySelector(".sugg-box"),l,function(nome){
+    leggiRicetta();R._pend[c]="";aggiungiVarieta(c,nome);disegnaRicetta();
+  },q);
+}
+// rimette il cursore su un campo senza riaprire l'elenco dei suggerimenti
+let SENZA_SUGG=false;
+function rifuoco(sel){
+  setTimeout(function(){const i=$(sel);if(!i)return;SENZA_SUGG=true;i.focus();SENZA_SUGG=false;},60);
+}
+/* note: una per riga, Invio apre la successiva, in fondo c'è sempre una riga libera */
+function rinumeraNote(){
+  $$("#r-note .f-nota").forEach(function(d,i){
+    d.querySelector(".f-nlab").textContent="Nota "+(i+1)+":";
+    const t=d.querySelector("textarea");t.dataset.nota=i;t.placeholder=i?"altra nota":"scrivi una nota";
+  });
+}
+function notaLiberaInFondo(){
+  const tutte=$$("#r-note .f-nota");
+  const ult=tutte.length?tutte[tutte.length-1].querySelector("textarea"):null;
+  if(!ult||ult.value.trim())$("#r-note").insertAdjacentHTML("beforeend",notaHTML("",tutte.length));
+  rinumeraNote();
+}
+function nuovaNotaDopo(ta){
+  const pos=ta.selectionStart==null?ta.value.length:ta.selectionStart;
+  const prima=ta.value.slice(0,pos).trim(),dopo=ta.value.slice(pos).trim();
+  if(!prima&&!dopo){ta.blur();return;}
+  ta.value=prima;autoAltezza(ta);
+  const div=ta.closest(".f-nota"),succ=div.nextElementSibling,ts=succ&&succ.querySelector("textarea");
+  let t;
+  if(!dopo&&ts&&!ts.value.trim())t=ts;
+  else{div.insertAdjacentHTML("afterend",notaHTML(dopo,0));t=div.nextElementSibling.querySelector("textarea");}
+  notaLiberaInFondo();
+  t.focus();t.setSelectionRange(0,0);autoAltezza(t);
+}
+function gestisciNota(el){
+  if(el.value.indexOf("\n")>=0){
+    // testo incollato su più righe, o tastiera che non segnala l'Invio: una nota per riga
+    const parti=el.value.split("\n").map(s=>s.trim());
+    el.value=parti.shift();
+    let dopo=el.closest(".f-nota");
+    parti.forEach(function(p){
+      const succ=dopo.nextElementSibling,ts=succ&&succ.querySelector("textarea");
+      if(!p&&ts&&!ts.value.trim()){dopo=succ;return;}
+      dopo.insertAdjacentHTML("afterend",notaHTML(p,0));dopo=dopo.nextElementSibling;
+    });
+    notaLiberaInFondo();
+    $$("#r-note textarea[data-nota]").forEach(autoAltezza);
+    const t=dopo.querySelector("textarea");
+    if(t){t.focus();t.setSelectionRange(t.value.length,t.value.length);}
+    return;
+  }
+  autoAltezza(el);
+  notaLiberaInFondo();
+}
 $("#p-ricetta").addEventListener("click",function(e){
   const t=e.target;
   if(t.closest("[data-annulla]")){if(confirm("Chiudere senza salvare?")){chiudiPannelli();vaiA("home");}return;}
   if(t.closest("[data-salva]")){
-    leggiRicetta();
-    const usati=R.prodotti.filter(p=>p.nome);
-    if(!usati.length){avviso("Aggiungi almeno un prodotto");vaiPasso(1);return;}
-    const rossi=usati.filter(p=>p.dose&&!p.ok);
-    if(rossi.length){avviso("Conferma le dosi in rosso");vaiPasso(1);return;}
-    R.prodotti=usati;R.titolo=titoloRicetta();R.modificato=Date.now();R.coltura=R.colture[0];
-    registraProdotti(R);
-    const i=DB.voci.findIndex(v=>v.id===R.id);
-    if(i>=0)DB.voci[i]=R;else DB.voci.unshift(R);
-    salva();chiudiPannelli();vaiA("home");avviso("Ricetta salvata");
+    const v=fissaRicetta();if(!v)return;
+    registraRicetta(v);chiudiPannelli();vaiA("home");avviso("Ricetta salvata");
     return;
   }
   const md=t.closest("[data-modo]");
-  if(md){leggiRicetta();R.modo=md.dataset.modo;R.base=(basiDi(R.modo)[0]||{}).v;disegnaRicetta(false);return;}
+  if(md){leggiRicetta();R.modo=md.dataset.modo;R.base=(basiDi(R.modo)[0]||{}).v;disegnaRicetta();return;}
+  if(t.closest("[data-agg-col]")){leggiRicetta();AGGCOL=true;disegnaRicetta();return;}
+  if(t.closest("[data-agg-col-x]")){leggiRicetta();AGGCOL=false;disegnaRicetta();return;}
   const ct=t.closest("[data-colt]");
   if(ct){leggiRicetta();const id=ct.dataset.colt;
-    const k=R.colture.indexOf(id);
-    if(k>=0){if(R.colture.length===1){avviso("Serve almeno una coltura");return;}R.colture.splice(k,1);}
-    else R.colture.push(id);
-    R.coltura=R.colture[0];disegnaRicetta(false);return;}
+    if(R.colture.indexOf(id)<0)R.colture.push(id);
+    R.coltura=R.colture[0];AGGCOL=false;disegnaRicetta();
+    setTimeout(function(){const i=$('#p-ricetta [data-var-col="'+id+'"]');if(i)i.focus();},80);
+    return;}
+  const tc=t.closest("[data-tog-col]");
+  if(tc){leggiRicetta();togliColtura(tc.dataset.togCol);disegnaRicetta();return;}
+  const tv=t.closest("[data-tog-var]");
+  if(tv){leggiRicetta();const k=+tv.dataset.togVar,x=R.varieta[k];
+    if(x!==undefined){R.varieta.splice(k,1);delete R.varCol[x];}
+    disegnaRicetta();return;}
   const tp=t.closest("[data-tog-pick]");
   if(tp){leggiRicetta();togliScelta(tp.dataset.togPick,+tp.dataset.i);disegnaRicetta();return;}
   const ps=t.closest("[data-passo]");
@@ -3024,11 +3393,15 @@ $("#p-ricetta").addEventListener("click",function(e){
     disegnaRicetta();
     if(PICK===k)setTimeout(function(){const i=$("#r-"+k);if(i)i.focus();},70);
     return;}
-  if(t.closest("[data-oggi]")){leggiRicetta();R.data=oggiISO();disegnaRicetta();avviso("Data riportata a oggi");return;}
-  if(t.closest("[data-add-prod]")){leggiRicetta();R.prodotti.push(nuovoProdotto());disegnaRicetta(false);
-    setTimeout(function(){const el=$("#r-prod .prod:last-child input");if(el)el.focus();},80);return;}
+  // spostamento manuale dei prodotti, anche dopo averli ordinati
+  const mv=t.closest("[data-su],[data-giu]");
+  if(mv){leggiRicetta();
+    const su=mv.hasAttribute("data-su"),i=+(su?mv.dataset.su:mv.dataset.giu),j=su?i-1:i+1,fondo=R.prodotti.length-1;
+    if(j<0||j>fondo||(j===fondo&&vuotoProd(R.prodotti[j])))return;
+    const x=R.prodotti[i];R.prodotti[i]=R.prodotti[j];R.prodotti[j]=x;
+    MOSSO=j;disegnaRicetta();return;}
   const dp=t.closest("[data-del-prod]");
-  if(dp){leggiRicetta();R.prodotti.splice(+dp.dataset.delProd,1);if(!R.prodotti.length)R.prodotti=[nuovoProdotto()];disegnaRicetta(false);return;}
+  if(dp){leggiRicetta();R.prodotti.splice(+dp.dataset.delProd,1);disegnaRicetta();return;}
   if(t.closest("[data-ordina]")){
     leggiRicetta();
     const pieni=R.prodotti.filter(p=>p.nome),vuoti=R.prodotti.filter(p=>!p.nome);
@@ -3037,7 +3410,7 @@ $("#p-ricetta").addEventListener("click",function(e){
     R.prodotti=pieni.concat(vuoti);
     const senza=pieni.filter(x=>!x.formulato);
     R.avvisoOrdine=senza.length?senza.map(x=>x.nome):null;
-    disegnaRicetta(false);
+    disegnaRicetta();
     avviso(senza.length?senza.length+" senza formulato: controlla":"Riordinati per sequenza di miscela");
     return;
   }
@@ -3045,9 +3418,10 @@ $("#p-ricetta").addEventListener("click",function(e){
   if(t.closest("[data-genera]")){apriGenera();return;}
 });
 $("#p-ricetta").addEventListener("change",function(e){
-  if(e.target.id==="r-base"){R.base=e.target.value;return;}
-  if(e.target.id==="r-data"){R.data=e.target.value;const rd=$("#r-data-riga");if(rd)rd.innerHTML=rigaData();return;}
-  if(e.target.dataset&&e.target.dataset.p==="unita")R.prodotti[+e.target.dataset.i].unita=e.target.value;
+  const el=e.target;
+  if(el.id==="r-base"){R.base=el.value;return;}
+  if(el.id==="r-data"){R.data=el.value;return;}
+  if(el.dataset&&el.dataset.p==="unita"&&R.prodotti[+el.dataset.i])R.prodotti[+el.dataset.i].unita=el.value;
 });
 $("#p-ricetta").addEventListener("input",function(e){
   const el=e.target;
@@ -3056,12 +3430,23 @@ $("#p-ricetta").addEventListener("input",function(e){
     if(box)box.innerHTML=righePick(PICK,el.value.trim());
     return;
   }
+  if(el.id==="r-az"){adattaAzienda();suggerisciAziende(el);return;}
+  if(el.dataset.varCol){suggerisciVarieta(el);return;}
+  if(el.dataset.nota!==undefined){gestisciNota(el);return;}
   const p=el.dataset.p;if(!p)return;
   const i=+el.dataset.i,prod=R.prodotti[i];if(!prod)return;
+  const riga=el.closest(".prod");
   if(p==="nome"){
     prod.nome=el.value;
+    if(riga)riga.classList.toggle("vuota",!el.value.trim()&&!prod.dose);
+    // scrivendo sull'ultima riga se ne apre un'altra sotto, come su un foglio
+    if(i===R.prodotti.length-1&&el.value.trim()){
+      R.prodotti.push(nuovoProdotto());
+      $("#r-prod").insertAdjacentHTML("beforeend",prodottoHTML(R.prodotti[i+1],i+1));
+      const g=$('#r-prod [data-giu="'+(i-1)+'"]');if(g)g.disabled=false;
+    }
     const q=el.value.trim();
-    const l=(DB.prodotti||[]).filter(x=>norm(x.nome).indexOf(norm(q))>=0).slice(0,8).map(x=>x.nome);
+    const l=q?(DB.prodotti||[]).filter(x=>norm(x.nome).indexOf(norm(q))>=0).slice(0,8).map(x=>x.nome):[];
     mostraSugg($('#r-prod [data-sug="'+i+'"]'),l,function(nome){
       leggiRicetta();
       const noto=prodottoNoto(nome);
@@ -3071,12 +3456,13 @@ $("#p-ricetta").addEventListener("input",function(e){
         else{const f=formulatoDaNome(nome);if(f)R.prodotti[i].formulato=f;}
         if(noto.dose){R.prodotti[i].dose=noto.dose;R.prodotti[i].unita=noto.unita||"";R.prodotti[i].ok=false;R.prodotti[i].auto=true;}
       }
-      disegnaRicetta(false);
+      disegnaRicetta();
       if(noto&&noto.dose)avviso("Dose precompilata: confermala toccandola");
     },q);
   } else if(p==="dose"){
     prod.dose=el.value;confermaDose(el);
-    if(!prod.ok){prod.ok=true;el.classList.remove("dubbia");el.classList.add("certa");}
+    if(!prod.ok){prod.ok=true;el.classList.remove("dubbia");}
+    if(riga)riga.classList.toggle("vuota",!prod.nome&&!el.value.trim());
   } else if(p==="formulato"){
     prod.formulato=el.value;
     if(prod.nome&&el.value.trim()){
@@ -3087,14 +3473,18 @@ $("#p-ricetta").addEventListener("input",function(e){
   }
 });
 $("#p-ricetta").addEventListener("focusin",function(e){
-  const el=e.target;
-  if(el.dataset&&el.dataset.p==="dose")confermaDose(el);
+  const el=e.target;if(!el.dataset)return;
+  if(el.dataset.p==="dose")confermaDose(el);
+  else if(SENZA_SUGG)return;
+  else if(el.id==="r-az"&&!el.value.trim())suggerisciAziende(el);
+  else if(el.dataset.varCol&&!el.value.trim())suggerisciVarieta(el);
 });
 $("#p-info").addEventListener("click",function(e){if(e.target.closest("[data-chiudi-info]"))mostraPannello($("#p-ricetta"));});
 
 $("#p-genera").addEventListener("click",function(e){
   const t=e.target;
-  if(t.closest("[data-torna]")||t.closest("[data-mod-ricetta]")){mostraPannello($("#p-ricetta"));return;}
+  if(t.closest("[data-torna]")||t.closest("[data-mod-ricetta]")){
+    mostraPannello($("#p-ricetta"));RIC_TOP=true;disegnaRicetta();return;}
   const sc=t.closest("[data-sc]");
   if(sc){G.scelta=sc.dataset.sc;if(G.scelta==="base")G.litri=null;disegnaGenera("scelta");return;}
   if(t.closest("[data-avanti]")){
@@ -3103,18 +3493,14 @@ $("#p-genera").addEventListener("click",function(e){
       if(!n||n<=0){avviso("Scrivi il volume in litri");return;}
       G.litri=n;
     }
-    disegnaGenera("anteprima");window.scrollTo(0,0);return;
+    disegnaGenera("anteprima");$("#p-genera").scrollTop=0;return;
   }
   if(t.closest("[data-indietro]")||t.closest("[data-mod-dose]")){
     if(t.closest("[data-mod-dose]"))G.scelta="conv";
-    disegnaGenera("scelta");window.scrollTo(0,0);return;
+    disegnaGenera("scelta");$("#p-genera").scrollTop=0;return;
   }
   if(t.closest("[data-conferma]")){
-    R.titolo=titoloRicetta();R.modificato=Date.now();R.coltura=R.colture[0];
-    registraProdotti(R);
-    const i=DB.voci.findIndex(v=>v.id===R.id);
-    if(i>=0)DB.voci[i]=R;else DB.voci.unshift(R);
-    salva();
+    registraRicetta(RG);RES=true;
     condividiImmagine();
     avviso("Ricetta salvata e immagine pronta");
     return;
@@ -3122,15 +3508,15 @@ $("#p-genera").addEventListener("click",function(e){
   if(t.closest("[data-share]")){
     const f=condividiImmagine._file;
     if(f&&navigator.canShare&&navigator.canShare({files:[f]}))
-      navigator.share({files:[f],title:R.titolo||"Ricetta"}).catch(function(){});
-    else avviso("Tieni premuto sull\u2019immagine per condividerla");
+      navigator.share({files:[f],title:RG.titolo||"Ricetta"}).catch(function(){});
+    else avviso("Tieni premuto sull’immagine per condividerla");
     return;
   }
   if(t.closest("[data-scarica]")){
     const b=condividiImmagine._blob;
     if(!b){avviso("Immagine non pronta");return;}
     const u=URL.createObjectURL(b),a=document.createElement("a");
-    a.href=u;a.download="ricetta-"+R.data+".png";document.body.appendChild(a);a.click();
+    a.href=u;a.download="ricetta-"+(RG.data||"")+".png";document.body.appendChild(a);a.click();
     setTimeout(function(){URL.revokeObjectURL(u);a.remove();},400);
   }
 });
@@ -3219,14 +3605,13 @@ $("#p-lettura").addEventListener("click",function(e){
     const v=JSON.parse(JSON.stringify(o));
     v.id=nuovoId();v.data=oggiISO();v.allegati=[];v.pin=false;v.rif=false;v.creato=Date.now();
     (v.prodotti||[]).forEach(function(p){if(p.dose){p.ok=false;p.auto=true;}});
-    if(v.modo){R=v;RES=false;PASSO=1;PICK=null;RIC_TOP=true;disegnaRicetta();mostraPannello($("#p-ricetta"));avviso("Copia: conferma le dosi in rosso");}
+    if(v.modo){R=preparaRicetta(v);RES=false;avviaEditor();avviso("Copia: conferma le dosi in rosso");}
     return;}
   const rg=t.closest("[data-rigenera]");
   if(rg){R=JSON.parse(JSON.stringify(DB.voci.find(x=>x.id===rg.dataset.rigenera)));
-    if(!R.aziende)R.aziende=aziendeDi(R);
-    R.colture=coltureDi(R);R.varieta=varietaDi(R);
     (R.prodotti||[]).forEach(function(p){p.ok=true;});
-    G={litri:null,scelta:"base"};disegnaGenera("scelta");mostraPannello($("#p-genera"));return;}
+    preparaRicetta(R);RES=true;PASSO=1;PASSO_PREC=1;DIR=1;PICK=null;AGGCOL=false;MOSSO=-1;RIC_TOP=true;
+    disegnaRicetta();apriGenera();return;}
   const co=t.closest("[data-condividi]");
   if(co){const v=DB.voci.find(x=>x.id===co.dataset.condividi),x=testoCondivisibile(v);
     if(navigator.share)navigator.share({title:v.titolo,text:x}).catch(function(){});
@@ -3432,20 +3817,51 @@ $("#p-impostazioni").addEventListener("change",function(e){
   r.readAsText(f);e.target.value="";
 });
 $("#p-ricetta").addEventListener("keydown",function(e){
-  if(e.key!=="Enter")return;
-  const el=e.target;
-  if(!PICK||el.id!=="r-"+PICK)return;
-  e.preventDefault();
-  const k=PICK,v=el.value.trim();
-  leggiRicetta();
-  if(liberoPick(k)){ if(!v)return; aggiungiScelta(k,v); }
-  else{
-    const prima=$('#p-ricetta [data-lista="'+k+'"] .pk-r');
-    if(!prima)return;
-    aggiungiScelta(k,prima.dataset.val);
+  const el=e.target;if(!el.dataset)return;
+  if(e.key==="Backspace"&&el.dataset.nota!==undefined&&el.value===""){
+    const div=el.closest(".f-nota"),prec=div&&div.previousElementSibling;
+    if(prec){
+      e.preventDefault();div.remove();notaLiberaInFondo();
+      const t=prec.querySelector("textarea");if(t){t.focus();t.setSelectionRange(t.value.length,t.value.length);}
+    }
+    return;
   }
-  disegnaRicetta();
-  if(PICK===k)setTimeout(function(){const i=$("#r-"+k);if(i)i.focus();},70);
+  if(e.key!=="Enter")return;
+  if(PICK&&el.id==="r-"+PICK){
+    e.preventDefault();
+    const k=PICK,v=el.value.trim();
+    leggiRicetta();
+    if(liberoPick(k)){ if(!v)return; aggiungiScelta(k,v); }
+    else{
+      const prima=$('#p-ricetta [data-lista="'+k+'"] .pk-r');
+      if(!prima)return;
+      aggiungiScelta(k,prima.dataset.val);
+    }
+    disegnaRicetta();
+    if(PICK===k)setTimeout(function(){const i=$("#r-"+k);if(i)i.focus();},70);
+    return;
+  }
+  if(el.dataset.varCol){
+    e.preventDefault();
+    const c=el.dataset.varCol,v=el.value.trim();
+    const box=el.parentElement.querySelector(".sugg-box");if(box)box.hidden=true;
+    if(!v){el.blur();return;}
+    leggiRicetta();R._pend[c]="";aggiungiVarieta(c,v);disegnaRicetta();
+    rifuoco('#p-ricetta [data-var-col="'+c+'"]');
+    return;
+  }
+  if(el.id==="r-az"){e.preventDefault();const b=$("#sug-az");if(b)b.hidden=true;el.blur();return;}
+  if(el.dataset.nota!==undefined){e.preventDefault();nuovaNotaDopo(el);return;}
+  if(el.dataset.p==="nome"||el.dataset.p==="dose"){
+    e.preventDefault();
+    $$("#r-prod .sugg-box").forEach(function(b){b.hidden=true;});
+    if(el.dataset.p==="nome"&&!el.value.trim()){el.blur();return;}
+    const i=+el.dataset.i;
+    const dest=el.dataset.p==="nome"?$('#r-prod [data-p="dose"][data-i="'+i+'"]'):$('#r-prod [data-p="nome"][data-i="'+(i+1)+'"]');
+    if(dest)dest.focus();else el.blur();
+    return;
+  }
+  if(el.dataset.p==="formulato"){e.preventDefault();el.blur();}
 });
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$$(".pannello").some(p=>!p.hidden))chiudiPannelli();});
 document.addEventListener("click",function(e){
